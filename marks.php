@@ -6,10 +6,13 @@ $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
 $class = $_POST['class'];
-$sql = "SELECT * FROM student WHERE class='$class' GROUP BY stuName ASC";
+if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
+$sql = "SELECT grades.stuIC, grades.marksBM, grades.marksBI, grades.marksMath, grades.marksSains, grades.marksSeni, grades.marksSeni, grades.marksPI, grades.marksBA, grades.marksTasmik, grades.remarks, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";}
+else
+{$sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";}
+
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
-
 $val=$connect->query($sql);    
 $rows=$val;
 }
@@ -120,7 +123,7 @@ $rows=$val;
                     <ul class="u-sidebar-nav-menu u-sidebar-nav-menu--top-level">
                         <!-- Dashboard -->
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link active" href="index.html">
+                            <a class="u-sidebar-nav-menu__link" href="index.html">
                                 <i class="fas fa-tachometer-alt u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Dashboard</span>
                             </a>
@@ -198,7 +201,7 @@ $rows=$val;
                 <section class="es-form-area">
                     <div class="card">
                         <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
-                            <a href="" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>
+                            <a href="marks-add.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>
                         </header>
                         <div class="card-body">
                             <form action="marks.php" method="post" class="es-form">
@@ -274,23 +277,44 @@ $rows=$val;
 
                                         <tbody>
                                            <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                            
                                             while($row=$rows->fetch_assoc()):
-                                            
+                                            if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
                                             ?>
-                                           
                                             <tr>
                                                 <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $row["icNum"];?></td>
-                                                <td><?php echo $row["stuGender"];?></td>
-                                                <td><?php echo $row["date_of_birth"];?></td>
-                                                <td><?php echo $row["stuAddress"];?></td>
-                                                <td><?php echo $row["stu_phoneNum"];?></td>
-                                                <td><?php echo $row["cocurricular"];?></td>
+                                                <td><?php echo $row["marksBM"];?></td>
+                                                <td><?php echo $row["marksBI"];?></td>
+                                                <td><?php echo $row["marksMath"];?></td>
+                                                <td><?php echo $row["marksSains"];?></td>
+                                                <td><?php echo $row["marksSeni"];?></td>
+                                                <td><?php echo $row["marksPI"];?></td>
+                                                <td><?php echo $row["marksBA"];?></td>
+                                                <td><?php echo $row["marksTasmik"];?></td>
+                                                <td><?php echo $row["remarks"];?></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
-                                            </tr>
-                                            <?php endwhile; ?>
-                                            <?php }?>
+                                            </tr><?php }
+                                            else
+                                            { ?>
+                                            <tr>
+                                                <td><?php echo $row["stuName"];?></td>
+                                                <td><?php echo $row["marksBM"];?></td>
+                                                <td><?php echo $row["marksBI"];?></td>
+                                                <td><?php echo $row["marksMath"];?></td>
+                                                <td><?php echo $row["marksSains"];?></td>
+                                                <td><?php echo $row["marksSeni"];?></td>
+                                                <td><?php echo $row["marksMusik"];?></td>
+                                                <td><?php echo $row["marksRBT"];?></td>
+                                                <td><?php echo $row["marksPI"];?></td>
+                                                <td><?php echo $row["marksBA"];?></td>
+                                                <td><?php echo $row["marksTasmik"];?></td>
+                                                <td><?php echo $row["marksSejarah"];?></td>
+                                                <td><?php echo $row["remarks"];?></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
+                                            </tr><?php
+                                            }
+                                            endwhile;
+}
+                                            ?>
                                                   
                                                    <tbody>
                                             
