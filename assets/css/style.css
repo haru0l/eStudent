@@ -42,6 +42,24 @@ button {
 }
 
 .bg-gradient {
+	background: #FFD291; /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  #FFD291 0%, #FFA726 66%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg,  #FFD291 0%,#FFA726 66%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg,  #FFD291 0%,#FFA726 66%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFD291', endColorstr='#FFA726',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	box-shadow: 0 1rem 3rem rgba(255, 167, 38, .35) !important;
+}
+
+.bg-new {
+	background: #FFD291; /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  #FFD291 0%, #FFA726 66%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg,  #FFD291 0%,#FFA726 66%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg,  #FFD291 0%,#FFA726 66%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFD291', endColorstr='#FFA726',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	box-shadow: 0 1rem 3rem rgba(255, 167, 38, .35) !important;
+}
+
+.bg-gradient-old {
 	background: #ff948a; /* Old browsers */
 	background: -moz-linear-gradient(-45deg,  #ff948a 0%, #fa5d4e 37%, #fa5d4e 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(-45deg,  #ff948a 0%,#fa5d4e 37%,#fa5d4e 100%); /* Chrome10-25,Safari5.1-6 */
@@ -49,6 +67,7 @@ button {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff948a', endColorstr='#fa5d4e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	box-shadow: 0 1rem 3rem rgba(250, 93, 78, .2) !important;
 }
+
 .bg-gradient-purple {
 	background: #e564fb; /* Old browsers */
 	background: -moz-linear-gradient(-45deg,  #e564fb 0%, #9c27b0 66%); /* FF3.6-15 */
@@ -235,7 +254,7 @@ img.u-avatar--xs {
 	padding: .88rem 11px;
 }
 .u-sidebar-nav-menu__item-icon {
-	color: inherit;
+	color: white;
 	transition: all 0.3s ease-out;
 }
 .u-sidebar-nav-menu__item-icon {
@@ -255,7 +274,7 @@ img.u-avatar--xs {
 }
 
 .u-sidebar-nav-menu__link.active, .u-sidebar-nav-menu--top-level > .u-sidebar-nav--opened > .u-sidebar-nav-menu__link {
-    color: #FA5D4E;
+    color: white;
     background-color: #fff;
 }
 .u-sidebar-nav-menu__link.active .u-sidebar-nav-menu__item-icon, .u-sidebar-nav-menu--top-level > .u-sidebar-nav--opened > .u-sidebar-nav-menu__link .u-sidebar-nav-menu__item-icon {

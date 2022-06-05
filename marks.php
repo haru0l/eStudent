@@ -65,13 +65,13 @@ $rows=$val;
                 <i class="fa fa-times u-sidebar-invoker__icon--close"></i>
                 
             </a>
-            <h1 class="text-danger" style="text-align: center; font-size: 36;">e-Student Assessment System</h1>
+            <h1 class="text" style="text-align: center; font-size: 36">e-Student Assessment System</h1>
 
         <div class="u-header-right">
             <!-- User Profile -->
             <div class="dropdown ml-2">
                 <a class="link-muted d-flex align-items-center us-u-avatar-wrap" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-                    <img class="u-avatar--xs img-fluid rounded-circle mr-2 bg-gradient" src="assets/img/avatars/user-unknown.jpg" alt="User Profile">
+                    <img class="u-avatar--xs img-fluid rounded-circle mr-2 bg-gradient-blue" src="assets/img/avatars/user-unknown.jpg" alt="User Profile">
                     <span class="d-none d-sm-inline-block text-danger">
                         <small class="fas fa-ellipsis-v"></small>
                     </span>
@@ -110,13 +110,12 @@ $rows=$val;
     <main class="u-main" role="main">
         <!-- Sidebar -->
         <aside id="sidebar" class="u-sidebar">
-            <div class="u-sidebar-inner bg-gradient bdrs-30">
+            <div class="u-sidebar-inner bg-gradient-yellow bdrs-30">
                 <header class="u-sidebar-header">
                     <a class="u-sidebar-logo" href="index.html">
                         <img class="img-fluid" src="assets/img/logo_sk.png" width="124" alt="Stream Dashboard">
                     </a>
                 </header>
-
                 <nav class="u-sidebar-nav">
                     <ul class="u-sidebar-nav-menu u-sidebar-nav-menu--top-level">
                         <!-- Dashboard -->
@@ -130,39 +129,21 @@ $rows=$val;
 
                         <!-- Classes -->
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="#!" data-target="#attendances">
+                            <a class="u-sidebar-nav-menu__link" href="classes-view.html">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Classes</span>
-                                <i class="fa fa-angle-right u-sidebar-nav-menu__item-arrow"></i>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
-
-                            <ul id="attendances" class="u-sidebar-nav-menu u-sidebar-nav-menu--second-level" style="display: none;">
-                                <li class="u-sidebar-nav-menu__item">
-                                    <a class="u-sidebar-nav-menu__link" href="classes-view.html">
-                                        <span class="u-sidebar-nav-menu__item-title">View classes</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <!-- End Classes -->
 
                         <!-- Marks -->
                         <li class="u-sidebar-nav-menu__item u-sidebar-nav">
-                            <a class="u-sidebar-nav-menu__link" href="#!" data-target="#marks">
+                            <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Marks</span>
-                                <i class="fa fa-angle-right u-sidebar-nav-menu__item-arrow"></i>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
-
-                            <ul id="marks" class="u-sidebar-nav-menu u-sidebar-nav-menu--second-level" style="display: none;">
-                                <li class="u-sidebar-nav-menu__item">
-                                    <a class="u-sidebar-nav-menu__link" href="marks.php">
-                                        <span class="u-sidebar-nav-menu__item-title">Marks</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <!-- End Marks -->
 
@@ -199,7 +180,7 @@ $rows=$val;
             <div class="u-body">
 
                 <!-- breadcumb-area -->
-                <section class="breadcumb-area card bg-gradient mb-5">
+                <section class="breadcumb-area card bg-gradient-blue mb-5">
                     <div class="bread-cumb-content card-body d-flex align-items-center">
                         <div class="breadcumb-heading">
                             <h2 class="text-white">All Students Marks</h2>
@@ -216,7 +197,7 @@ $rows=$val;
                 
                 <section class="es-form-area">
                     <div class="card">
-                        <header class="card-header bg-gradient border-0 pt-5 pb-5 d-flex align-items-center">
+                        <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
                             <a href="" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>
                         </header>
                         <div class="card-body">
@@ -240,7 +221,7 @@ $rows=$val;
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <button type="submit" class="es-form-btn btn btn-block bg-gradient text-white">View</button>
+                                        <button type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white">View</button>
                                     </div>
                                 </div>
                             </form> 
@@ -251,7 +232,7 @@ $rows=$val;
 
                                 <div class="table-responsive">
                                     <table class="table mb-0">
-                                        <thead class="bg-gradient">
+                                        <thead class="bg-gradient-blue">
                                             <tr>
                                                <?php
                                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -332,7 +313,7 @@ $rows=$val;
                                     <a class="btn btn-outline-danger prev" href="#"><span class="ml-1 d-none d-xl-inline-block">Previous</span></a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="btn btn-danger bg-gradient text-white ml-4 mr-4" href="#">1</a>
+                                    <a class="btn btn-danger bg-gradient-blue text-white ml-4 mr-4" href="#">1</a>
                                 </li>
                                 <li class="page-item">
                                     <a class="btn btn-outline-danger next" href="#"><span class="mr-1 d-none d-xl-inline-block">Next</span></a>
