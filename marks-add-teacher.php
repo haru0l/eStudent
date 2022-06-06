@@ -311,7 +311,7 @@ if (isset($_COOKIE["user_name"]))
                                             <option value="2020">2020</option>
                                         </select>
                                     </div>
-                                    <?php if ($row["teacherType"] = "Guru kelas"){echo 
+                                    <?php if ($row["teacherType"] == "Guru kelas"){echo 
                                     '<div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Remarks</label>
                                         <input name="remarks" id="remarks" type="text">
