@@ -1,4 +1,31 @@
-<!DOCTYPE html>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "estudent";
+$conn = new mysqli($servername, $username, $password, $dbname);
+$stuIC = $_POST['stuIC'];
+$subject = $_POST['subject'];
+$marks = $_POST['marks'];
+$remarks = $_POST['remarks'];
+$year = $_POST['year'];
+    
+if ($conn->query("SELECT * FROM grades WHERE stuIC = $stuIC"))
+{
+$sql = "UPDATE grades SET $subject = '$marks', remarks = '$remarks' WHERE stuIC = $stuIC";
+$conn->query($sql);
+}
+else
+{
+$sql = "INSERT into grades (stuIC, $subject, year)
+VALUES ('$stuIC', '$marks', '$remarks', '$year')";
+$conn->query($sql);
+}
+
+//header ('Location: attendances-blank.html');
+}
+?>
 <html lang="en" class="no-js">
 <!-- Head -->
 
@@ -173,44 +200,46 @@
                             <h2 class="text-white mb-0">Add New Marks</h2>
                         </header>
                         <div class="card-body">
-                            <form action="" class="es-form es-add-form">
+                            <form action="marks-add.php" method="post" class="es-form es-add-form">
                                 <div class="row">
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Studen Name</label>
-                                        <input type="text" placeholder="Alexa">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="class">Class</label>
-                                        <select id="class" class="es-add-select">
-                                            <option data-display="X">X</option>
-                                            <option value="1">iX</option>
-                                            <option value="2">Viii</option>
-                                            <option value="3">Vii</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="section">Section</label>
-                                        <select id="section" class="es-add-select">
-                                            <option data-display="A">A</option>
-                                            <option value="1">B</option>
-                                            <option value="2">C</option>
-                                        </select>
+                                        <label for="title">Student IC</label>
+                                        <input name="stuIC" type="text" placeholder="">
                                     </div>
                                      <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="subject">Subject</label>
-                                        <select id="subject" class="es-add-select">
-                                            <option data-display="Accounting">Accounting</option>
-                                            <option value="1">Physics</option>
-                                            <option value="2">Chemistry</option>
-                                            <option value="3">Math</option>
+                                        <select name="subject" id="subject" class="es-add-select">
+                                            <option value="marksBM">Bahasa Melayu</option>
+                                            <option value="marksBI">Bahasa Inggeris</option>
+                                            <option value="marksMath">Matematik</option>
+                                            <option value="marksSains">Sains</option>
+                                            <option value="marksSeni">Pendidikan Seni Visual</option>
+                                            <option value="marksMusik">Pendidikan Musik</option>
+                                            <option value="marksRBT">Reka bentuk teknologi</option>
+                                            <option value="marksPI">Pendidikan Islam</option>
+                                            <option value="marksBA">Bahasa Arab</option>
+                                            <option value="marksTasmik">Tasmik</option>
+                                            <option value="marksSejarah">Sejarah</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="marks">Marks</label>
-                                        <input id="marks" type="text" placeholder="80">
+                                        <input name="marks" id="marks" type="text">
                                     </div>
-                                    <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
-                                        <a href="" class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</a>        
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="remarks">Remarks</label>
+                                        <input name="remarks" id="remarks" type="text">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="remarks">Year</label>
+                                        <select name="year" id="year" class="es-add-select">
+                                            <option value="2022">2022</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2020">2020</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 offset-lg-4 col-md-12 text-center">    
+                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>       
                                     </div>
                                 </div>
                                 
