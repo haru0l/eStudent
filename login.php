@@ -62,7 +62,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 			      			<h3 class="mb-4">Sign In</h3>
 			      		</div>
 			      	</div>
-							<form action="login.php" class="signin-form" method="post">
+							<form action="logout.php" class="signin-form" method="post">
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Username</label>
 			      			<input type="text" name="username" class="form-control" placeholder="Username" required>

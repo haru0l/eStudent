@@ -25,7 +25,7 @@ VALUES ('$login_id', '$teacherPassword', '$teacherName', '$gender', '$teacher_ph
 $conn->query($sql);
 //header ('Location: attendances-blank.php');
 }
-if (!isset($_COOKIE["user_name"]))
+if (!isset($_COOKIE["user_name"]) || $_COOKIE["user_name"] != "admin")
 {?>
 <html>
 <meta charset="utf-8">
@@ -43,7 +43,7 @@ if (!isset($_COOKIE["user_name"]))
     </div>
     <script>
         function logout() {
-            window.location.replace("login.php");
+            window.location.replace("logout.php");
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -55,7 +55,7 @@ if (!isset($_COOKIE["user_name"]))
 <?php
 }
 
-if (isset($_COOKIE["user_name"]))
+if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
 {?>
 <html lang="en" class="no-js">
 <!-- Head -->
