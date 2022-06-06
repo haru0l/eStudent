@@ -1,10 +1,11 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
 
 $login_id = $_POST['login_id'];
 $teacherPassword = $_POST['teacherPassword'];
@@ -25,6 +26,12 @@ VALUES ('$login_id', '$teacherPassword', '$teacherName', '$gender', '$teacher_ph
 $conn->query($sql);
 //header ('Location: attendances-blank.php');
 }
+$login_user = $_COOKIE["user_name"];
+$sql = "SELECT * FROM teacher WHERE login_id='$login_user'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
+$val=$conn->query($sql);    
+$rows=$val;
 if (!isset($_COOKIE["user_name"]) || $_COOKIE["user_name"] != "admin")
 {?>
 <html>
@@ -145,6 +152,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
     </header>
     <!-- End Header (Topbar) -->
 
+    
     <main class="u-main" role="main">
         <!-- Sidebar -->
         <aside id="sidebar" class="u-sidebar">
@@ -165,15 +173,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                         </li>
                         <!-- End Dashboard -->
 
-                        <!-- Classes -->
-                        <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
-                                <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Classes</span>
-                                <span class="u-sidebar-nav-menu__indicator"></span>
-                            </a>
-                        </li>
-                        <!-- End Classes -->
+                        
                         <?php if ($_COOKIE["user_name"] == "admin") {
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="teacher-list.php">
@@ -186,13 +186,38 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                         <!-- End Classes -->
 
                         <!-- Marks -->
-                        <li class="u-sidebar-nav-menu__item">
+                        <!-- Classes -->
+                        <?php if ($row["teacherType"] == "Guru kelas") {
+                        
+                        echo '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
+                                <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Classes</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+                        
+    
+    
+                        echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Marks</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
-                        </li>
+                        </li>';
+}
+                        else {
+                        echo '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="marks-sub.php">
+                                <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Marks</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+                        
+                        }?>
+                        <!-- End Classes -->
                         <!-- End Marks -->
 
                         <!-- Profile -->

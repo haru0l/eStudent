@@ -1,10 +1,10 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $stuIC = $_POST['stuIC'];
 $subject = $_POST['subject'];
 $marks = $_POST['marks'];
@@ -22,6 +22,13 @@ $sql = "INSERT into grades (stuIC, $subject, year)
 VALUES ('$stuIC', '$marks', '$remarks', '$year')";
 $conn->query($sql);
 }
+
+$login_user = $_COOKIE["user_name"];
+$sql = "SELECT * FROM teacher WHERE login_id='$login_user'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
+$val=$conn->query($sql);    
+$rows=$val;
 
 //header ('Location: attendances-blank.php');
 }

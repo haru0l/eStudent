@@ -149,15 +149,7 @@ if (isset($_COOKIE["user_name"]))
                         </li>
                         <!-- End Dashboard -->
 
-                        <!-- Classes -->
-                        <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
-                                <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Classes</span>
-                                <span class="u-sidebar-nav-menu__indicator"></span>
-                            </a>
-                        </li>
-                        <!-- End Classes -->
+                        
                         <?php if ($_COOKIE["user_name"] == "admin") {
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="teacher-list.php">
@@ -170,13 +162,38 @@ if (isset($_COOKIE["user_name"]))
                         <!-- End Classes -->
 
                         <!-- Marks -->
-                        <li class="u-sidebar-nav-menu__item">
+                        <!-- Classes -->
+                        <?php if ($row["teacherType"] == "Guru kelas") {
+                        
+                        echo '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
+                                <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Classes</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+                        
+    
+    
+                        echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Marks</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
-                        </li>
+                        </li>';
+}
+                        else {
+                        echo '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="marks-sub.php">
+                                <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Marks</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+                        
+                        }?>
+                        <!-- End Classes -->
                         <!-- End Marks -->
 
                         <!-- Profile -->
