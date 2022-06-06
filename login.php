@@ -14,11 +14,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
     $row = $result->fetch_assoc();
     $count = mysqli_num_rows($result);
     if ($count == 1)
-    {
-        session_start();
+    { 
         $cookie_name = "user_name";
-        $user_name_value = $username;
-        setcookie($cookie_name, $user_name_value, time() + (86400 * 30), "/");
+        $cookie_value = $username;
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
         header ('Location: index.php');
     }
     else 
@@ -62,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 			      			<h3 class="mb-4">Sign In</h3>
 			      		</div>
 			      	</div>
-							<form action="logout.php" class="signin-form" method="post">
+							<form action="login.php" class="signin-form" method="post">
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Username</label>
 			      			<input type="text" name="username" class="form-control" placeholder="Username" required>
