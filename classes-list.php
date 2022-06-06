@@ -158,6 +158,16 @@ if (isset($_COOKIE["user_name"]))
                             </a>
                         </li>
                         <!-- End Classes -->
+                        <?php if ($_COOKIE["user_name"] == "admin") {
+                        echo '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="teacher-list.php">
+                                <i class="fas fa-chalkboard-teacher u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Teachers</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+} ?>
+                        <!-- End Classes -->
 
                         <!-- Marks -->
                         <li class="u-sidebar-nav-menu__item">

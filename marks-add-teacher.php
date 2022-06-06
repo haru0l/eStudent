@@ -1,30 +1,74 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-$login_id = $_POST['login_id'];
-$teacherPassword = $_POST['teacherPassword'];
-$teacherName = $_POST['teacherName'];
-$gender = $_POST['gender'];
-$teacher_phoneNum = $_POST['teacher_phoneNum'];
-$date_of_birth = $_POST['date_of_birth'];
-$teacher_Address = $_POST['teacher_Address'];
-$teacherEmail = $_POST['teacherEmail'];
-$acaQualification = $_POST['acaQualification'];
-$teacherType = $_POST['teacherType'];
-$teacherSub1 = $_POST['teacherSub1'];
-$teacherSub2 = $_POST['teacherSub2'];
-$teacherSub3 = $_POST['teacherSub3'];
-    
-$sql = "INSERT into teacher
-VALUES ('$login_id', '$teacherPassword', '$teacherName', '$gender', '$teacher_phoneNum', '$date_of_birth', '$teacher_Address', '$teacherEmail', '$acaQualification', '$teacherType', '$teacherSub1', '$teacherSub2', '$teacherSub3')";
-$conn->query($sql);
-//header ('Location: attendances-blank.php');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$stuIC = $_POST['stuIC'];
+$subject = $_POST['subject'];
+
+switch ($subject) {
+  case "Bahasa Melayu":
+    $newSub = "marksBM";
+    break;
+  case "Bahasa Inggeris":
+    $newSub = "marksBI";
+    break;
+  case "Sains":
+    $newSub = "marksSains";
+    break;
+  case "Pendidikan Seni Visual":
+    $newSub = "marksSeni";
+    break;
+  case "Pendidikan Musik":
+    $newSub = "marksMusik";
+    break;
+  case "Reka bentuk teknologi":
+    $newSub = "marksRBT";
+    break;
+  case "Pendidikan Islam":
+    $newSub = "marksPI";
+    break;
+  case "Bahasa Arab":
+    $newSub = "marksBA";
+    break;
+  case "Tasmik":
+    $newSub = "marksTasmik";
+    break;
+   case "Sejarah":
+    $newSub = "marksSejarah";
+    break;
+  default:
+    echo "error";
 }
+        
+        
+$marks = $_POST['marks'];
+$remarks = $_POST['remarks'];
+$year = $_POST['year'];
+if ($conn->query("SELECT * FROM grades WHERE stuIC = $stuIC AND year='2022'"))
+{
+$sql = "UPDATE grades SET $newSub = '$marks', remarks = '$remarks' WHERE stuIC = $stuIC";
+$conn->query($sql);
+}
+else
+{
+$sql = "INSERT into grades (stuIC, $newSub, year)
+VALUES ('$stuIC', '$marks', '$remarks', '$year')";
+$conn->query($sql);
+}
+}
+$username = $_COOKIE["user_name"];
+$sql = "SELECT * FROM teacher WHERE login_id='$username'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
+
+$val=$conn->query($sql);    
+$rows=$val;
+
+//header ('Location: attendances-blank.php');
 if (!isset($_COOKIE["user_name"]))
 {?>
 <html>
@@ -233,115 +277,55 @@ if (isset($_COOKIE["user_name"]))
                 <section class="es-form-area">
                     <div class="card">
                         <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
-                            <h2 class="text-white mb-0">Add New Teacher</h2>
+                            <h2 class="text-white mb-0">Add New Marks</h2>
                         </header>
                         <div class="card-body">
-                            <form action="teacher-add.php" method="post" class="es-form es-add-form">
+                            <form action="marks-add-teacher.php" method="post" class="es-form es-add-form">
                                 <div class="row">
-                                   <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Login ID</label>
-                                        <input type="text" name="login_id">
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Student IC</label>
+                                        <input name="stuIC" type="text" placeholder="">
+                                    </div>
+                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="subject">Subject</label>
+                                        <select name="subject" id="subject" class="es-add-select">
+                                            <option value="<?php echo $row["teacherSub1"];?>"><?php echo $row["teacherSub1"];?></option>
+                                            <?php if ($row["teacherSub2"] != ""){?>
+                                            <option value="<?php echo $row["teacherSub2"];?>"><?php echo $row["teacherSub2"];?></option>
+                                            <?php }
+                                            if ($row["teacherSub3"] != ""){?>
+                                            <option value="<?php echo $row["teacherSub3"];?>"><?php echo $row["teacherSub3"];?></option>
+                                            <?php } ?>
+                                        </select>
+                                        
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Login Password</label>
-                                        <input type="text" name="teacherPassword">
+                                        <label for="marks">Marks</label>
+                                        <input name="marks" id="marks" type="text">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Teacher Name</label>
-                                        <input type="text" name="teacherName">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Date of Birth</label>
-                                        <input type="text" name="date_of_birth">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="class">Gender</label>
-                                        <select name="gender" id="gender" class="es-add-select">
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                        <label for="remarks">Year</label>
+                                        <select name="year" id="year" class="es-add-select">
+                                            <option value="2022">2022</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2020">2020</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Phone number</label>
-                                        <input type="tel" name="teacher_phoneNum">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Address</label>
-                                        <input type="text" name="teacher_Address">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Email</label>
-                                        <input type="text" name="teacherEmail">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Academic Qualification</label>
-                                        <input type="text" name="acaQualification">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="class">Type</label>
-                                        <select name="teacherType" id="class">
-                                            <option value="Guru kelas">Guru kelas</option>
-                                            <option value="Guru subjek">Guru subjek</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="subject">Subject 1</label>
-                                        <select name="teacherSub1" id="subject" class="es-add-select">
-                                            <option value="Bahasa Melayu">Bahasa Melayu</option>
-                                            <option value="Bahasa Inggeris">Bahasa Inggeris</option>
-                                            <option value="Matematik">Matematik</option>
-                                            <option value="Sains">Sains</option>
-                                            <option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
-                                            <option value="Pendidikan Musik">Pendidikan Musik</option>
-                                            <option value="Reka bentuk teknologi">Reka bentuk teknologi</option>
-                                            <option value="Pendidikan Islam">Pendidikan Islam</option>
-                                            <option value="Bahasa Arab">Bahasa Arab</option>
-                                            <option value="Tasmik">Tasmik</option>
-                                            <option value="Sejarah">Sejarah</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="subject">Subject 2</label>
-                                        <select name="teacherSub2" id="subject" class="es-add-select">
-                                            <option value="">-</option>
-                                            <option value="Bahasa Melayu">Bahasa Melayu</option>
-                                            <option value="Bahasa Inggeris">Bahasa Inggeris</option>
-                                            <option value="Matematik">Matematik</option>
-                                            <option value="Sains">Sains</option>
-                                            <option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
-                                            <option value="Pendidikan Musik">Pendidikan Musik</option>
-                                            <option value="Reka bentuk teknologi">Reka bentuk teknologi</option>
-                                            <option value="Pendidikan Islam">Pendidikan Islam</option>
-                                            <option value="Bahasa Arab">Bahasa Arab</option>
-                                            <option value="Tasmik">Tasmik</option>
-                                            <option value="Sejarah">Sejarah</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="subject">Subject 3</label>
-                                        <select name="teacherSub3" id="subject" class="es-add-select">
-                                            <option value="">-</option>
-                                            <option value="Bahasa Melayu">Bahasa Melayu</option>
-                                            <option value="Bahasa Inggeris">Bahasa Inggeris</option>
-                                            <option value="Matematik">Matematik</option>
-                                            <option value="Sains">Sains</option>
-                                            <option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
-                                            <option value="Pendidikan Musik">Pendidikan Musik</option>
-                                            <option value="Reka bentuk teknologi">Reka bentuk teknologi</option>
-                                            <option value="Pendidikan Islam">Pendidikan Islam</option>
-                                            <option value="Bahasa Arab">Bahasa Arab</option>
-                                            <option value="Tasmik">Tasmik</option>
-                                            <option value="Sejarah">Sejarah</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
-                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>
+                                    <?php if ($row["teacherType"] = "Guru kelas"){echo 
+                                    '<div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="remarks">Remarks</label>
+                                        <input name="remarks" id="remarks" type="text">
+                                    </div>';}?>
+                                    <div class="col-lg-4 offset-lg-4 col-md-12 text-center">    
+                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>       
                                     </div>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>    
                 </section>
+
             </div>
         </div>
     </main>
@@ -363,14 +347,7 @@ if (isset($_COOKIE["user_name"]))
     <script src="assets/js/main.js"></script>
     <script src="assets/js/dashboard-page-scripts.js"></script>
     <!--<script src="assets/js/scripts.js"></script>-->
-<script>
-
-        function logout() {
-            window.location.replace("logout.php");
-        }
-    </script>
 </body>
-
 </html><?php
 }
 ?>
