@@ -1,16 +1,23 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
 $class = $_POST['class'];
-$sql = "SELECT * FROM student WHERE class='$class' GROUP BY stuName ASC";
+if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
+$sql = "SELECT grades.stuIC, grades.marksBM, grades.marksBI, grades.marksMath, grades.marksSains, grades.marksSeni, grades.marksPI, grades.marksBA, grades.marksTasmik, grades.remarks, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";}
+else
+{
+$sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";
+}
+
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
-
 $val=$connect->query($sql);    
 $rows=$val;
+}
 if (!isset($_COOKIE["user_name"]))
 {?>
 <html>
@@ -43,11 +50,13 @@ if (!isset($_COOKIE["user_name"]))
 
 if (isset($_COOKIE["user_name"]))
 {?>
-<html>
+<html lang="en" class="no-js">
+<!-- Head -->
 
 <head>
     <title>eStudent Assessment System</title>
 
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -215,64 +224,149 @@ if (isset($_COOKIE["user_name"]))
                 <section class="breadcumb-area card bg-gradient-blue mb-5">
                     <div class="bread-cumb-content card-body d-flex align-items-center">
                         <div class="breadcumb-heading">
-                            <h2 class="text-white">Manage Classes</h2>
+                            <h2 class="text-white">All Students Marks</h2>
                         </div>
                         <div class="breadcumb-image ml-auto">
-                            <img src="assets/img/breadcumb-manage-attendances.png" alt="">
+                            <img src="assets/img/breadcumb-marks.png" alt="">
                         </div>
                     </div>
                 </section>
                 <!-- End breadcumb-area -->
 
+                
+
+                
                 <section class="es-form-area">
                     <div class="card">
-                        
+                        <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
+                           <?php
+                            if ($_COOKIE["user_name"] == "admin") 
+                            {
+                             echo '<a href="marks-add.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>';
+                            }
+                            else
+                            {
+                            echo    '<a href="marks-add-teacher.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>' ;
+                            } ?>
+                        </header>
                         <div class="card-body">
-                            <form action="classes-list.php" method="post" class="es-form">
+                            <form action="marks.php" method="post" class="es-form">
                                 <div class="row align-items-center">
-                                    <div class="es-form">
-                                        <label for="class">Class <?php echo $_POST['class']; ?></label>
+                                    <div class="col">
+                                        <label for="class">Class</label>
+                                        <select name="class" id="class" value="<?php echo $_POST['class'];?>">
+                                            <option value="1 Bijak">1 Bijak</option>
+                                            <option value="1 Cerdik">1 Cerdik</option>
+                                            <option value="2 Bijak">2 Bijak</option>
+                                            <option value="2 Cerdik">2 Cerdik</option>
+                                            <option value="3 Bijak">3 Bijak</option>
+                                            <option value="3 Cerdik">3 Cerdik</option>
+                                            <option value="4 Bijak">4 Bijak</option>
+                                            <option value="4 Cerdik">4 Cerdik</option>
+                                            <option value="5 Bijak">5 Bijak</option>
+                                            <option value="5 Cerdik">5 Cerdik</option>
+                                            <option value="6 Bijak">6 Bijak</option>
+                                            <option value="6 Cerdik">6 Cerdik</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <button type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white">View</button>
                                     </div>
                                 </div>
                             </form> 
 
-                            <div class="attendances-list-wrap mt-1">
+                            <div class="attendances-list-wrap mt-5">
                                 <div class="show-option d-flex align-items-center mb-4">
-                                    <div class="search-student ml-auto">
-                                        <a href="students-add.php" class="btn btn-lg btn-pill bg-gradient-blue text-white">Add new</a>
-                                    </div>
                                 </div>
 
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead class="bg-gradient-blue">
                                             <tr>
-                                                <th scope="col" class="text-white">Student Name</th>
-                                                <th scope="col" class="text-white">IC Number</th>
-                                                <th scope="col" class="text-white">Gender</th>
-                                                <th scope="col" class="text-white">Date of Birth</th>
-                                                <th scope="col" class="text-white">Address</th>
-                                                <th scope="col" class="text-white">Phone number</th>
-                                                <th scope="col" class="text-white">Co-curricular</th>
+                                               <?php
+                                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                                if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
+                                                echo
+                                                '<th scope="col" class="text-white">Student</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Melayu</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Inggeris</th>
+                                                <th scope="col" class="text-white text-center">Matematik</th>
+                                                <th scope="col" class="text-white text-center">Sains</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Kesenian</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Islam</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Arab</th>
+                                                <th scope="col" class="text-white text-center">Tasmik</th>
+                                                <th scope="col" class="text-white text-center">Remarks</th>
                                                 <th scope="col" class="text-white text-center">Edit</th>
-                                                <th scope="col" class="text-white text-center">Delete</th>
+                                                <th scope="col" class="text-white text-center">Delete</th>'
+                                                ;}
+                                                else echo
+                                                '<th scope="col" class="text-white">Student</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Melayu</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Inggeris</th>
+                                                <th scope="col" class="text-white text-center">Matematik</th>
+                                                <th scope="col" class="text-white text-center">Sains</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Seni Visual</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Musik</th>
+                                                <th scope="col" class="text-white text-center">Reka bentuk teknologi</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Islam</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Arab</th>
+                                                <th scope="col" class="text-white text-center">Tasmik</th>
+                                                <th scope="col" class="text-white text-center">Sejarah</th>
+                                                <th scope="col" class="text-white text-center">Remarks</th>
+                                                <th scope="col" class="text-white text-center">Edit</th>
+                                                <th scope="col" class="text-white text-center">Delete</th>'  
+                                                ;}
+                                                ?>
                                             </tr>
                                         </thead>
 
                                         <tbody>
-                                            <?php while($row=$rows->fetch_assoc()):?>
+                                           <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                            while($row=$rows->fetch_assoc()):
+                                            if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
+                                            ?>
                                             <tr>
                                                 <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $row["icNum"];?></td>
-                                                <td><?php echo $row["stuGender"];?></td>
-                                                <td><?php echo $row["date_of_birth"];?></td>
-                                                <td><?php echo $row["stuAddress"];?></td>
-                                                <td><?php echo $row["stu_phoneNum"];?></td>
-                                                <td><?php echo $row["cocurricular"];?></td>
-                                                <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Edit</a>
-                                                <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Delete</a>
-                                            </tr>
-                                            <?php endwhile; ?>
+                                                <td><?php echo $row["marksBM"];?></td>
+                                                <td><?php echo $row["marksBI"];?></td>
+                                                <td><?php echo $row["marksMath"];?></td>
+                                                <td><?php echo $row["marksSains"];?></td>
+                                                <td><?php echo $row["marksSeni"];?></td>
+                                                <td><?php echo $row["marksPI"];?></td>
+                                                <td><?php echo $row["marksBA"];?></td>
+                                                <td><?php echo $row["marksTasmik"];?></td>
+                                                <td><?php echo $row["remarks"];?></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
+                                            </tr><?php }
+                                            else
+                                            { ?>
+                                            <tr>
+                                                <td><?php echo $row["stuName"];?></td>
+                                                <td><?php echo $row["marksBM"];?></td>
+                                                <td><?php echo $row["marksBI"];?></td>
+                                                <td><?php echo $row["marksMath"];?></td>
+                                                <td><?php echo $row["marksSains"];?></td>
+                                                <td><?php echo $row["marksSeni"];?></td>
+                                                <td><?php echo $row["marksMusik"];?></td>
+                                                <td><?php echo $row["marksRBT"];?></td>
+                                                <td><?php echo $row["marksPI"];?></td>
+                                                <td><?php echo $row["marksBA"];?></td>
+                                                <td><?php echo $row["marksTasmik"];?></td>
+                                                <td><?php echo $row["marksSejarah"];?></td>
+                                                <td><?php echo $row["remarks"];?></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
+                                            </tr><?php
+                                            }
+                                            endwhile;
+}
+                                            ?>
+                                                  
+                                                   <tbody>
+                                            
+                                                
+                                            
+                                        </tbody>                           
                                         </tbody>
                                     </table>
                                 </div>

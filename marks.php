@@ -254,7 +254,7 @@ if (isset($_COOKIE["user_name"]))
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <label for="class">Class</label>
-                                        <select name="class" id="class" class="$_POST['class']">
+                                        <select name="class" id="class" value="<?php echo $_POST['class'];?>">
                                             <option value="1 Bijak">1 Bijak</option>
                                             <option value="1 Cerdik">1 Cerdik</option>
                                             <option value="2 Bijak">2 Bijak</option>
@@ -338,6 +338,7 @@ if (isset($_COOKIE["user_name"]))
                                                 <td><?php echo $row["marksTasmik"];?></td>
                                                 <td><?php echo $row["remarks"];?></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Delete</a></td>
                                             </tr><?php }
                                             else
                                             { ?>
@@ -356,6 +357,7 @@ if (isset($_COOKIE["user_name"]))
                                                 <td><?php echo $row["marksSejarah"];?></td>
                                                 <td><?php echo $row["remarks"];?></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Delete</a></td>
                                             </tr><?php
                                             }
                                             endwhile;
