@@ -23,12 +23,18 @@ VALUES ('$stuIC', '$marks', '$remarks', '$year')";
 $conn->query($sql);
 }
 
-$login_user = $_COOKIE["user_name"];
-$sql = "SELECT * FROM teacher WHERE login_id='$login_user'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
-$val=$conn->query($sql);    
-$rows=$val;
+if ($conn -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+if (!$conn->query($sql)) {
+  echo("Error description: " . $mysqli -> error);
+}
+else {
+    echo '<script>alert("Added!")</script>';
+    header("Location: marks.php");
+die();
+}
 
 //header ('Location: attendances-blank.php');
 }

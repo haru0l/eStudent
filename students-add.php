@@ -17,7 +17,19 @@ $cocurricular = $_POST['cocurricular'];
 
 $sql = "INSERT into student (icNum, stuName, stuGender, date_of_birth, stuAddress, stu_phoneNum, class, cocurricular)
 VALUES ('$icNum', '$stuName', '$stuGender', '$date_of_birth', '$stuAddress', '$stu_phoneNum', '$class', '$cocurricular')";
-$conn->query($sql);
+
+    if ($conn -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+if (!$conn->query($sql)) {
+  echo("Error description: " . $mysqli -> error);
+}
+else {
+    echo '<script>alert("Added!")</script>';
+    header("Location: classes-view.php");
+die();
+}
 //header ('Location: attendances-blank.php');
 }
 $login_user = $_COOKIE["user_name"];

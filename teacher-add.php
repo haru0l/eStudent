@@ -20,11 +20,23 @@ $teacherType = $_POST['teacherType'];
 $teacherSub1 = $_POST['teacherSub1'];
 $teacherSub2 = $_POST['teacherSub2'];
 $teacherSub3 = $_POST['teacherSub3'];
+$class = $_POST['class'];
     
 $sql = "INSERT into teacher
-VALUES ('$login_id', '$teacherPassword', '$teacherName', '$gender', '$teacher_phoneNum', '$date_of_birth', '$teacher_Address', '$teacherEmail', '$acaQualification', '$teacherType', '$teacherSub1', '$teacherSub2', '$teacherSub3')";
-$conn->query($sql);
-//header ('Location: attendances-blank.php');
+VALUES ('$login_id', '$teacherPassword', '$teacherName', '$gender', '$teacher_phoneNum', '$date_of_birth', '$teacher_Address', '$teacherEmail', '$acaQualification', '$teacherType', '$teacherSub1', '$teacherSub2', '$teacherSub3', '$class')";
+
+if ($conn -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+if (!$conn->query($sql)) {
+  echo("Error description: " . $mysqli -> error);
+}
+else {
+    echo '<script>alert("Success")</script>';
+    header("Location: teacher-list.php");
+die();
+}
 }
 $login_user = $_COOKIE["user_name"];
 $sql = "SELECT * FROM teacher WHERE login_id='$login_user'";
@@ -358,6 +370,10 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                             <option value="Tasmik">Tasmik</option>
                                             <option value="Sejarah">Sejarah</option>
                                         </select>
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Class</label>
+                                        <input type="text" name="class">
                                     </div>
                                     <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
                                         <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>

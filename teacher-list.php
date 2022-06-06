@@ -270,6 +270,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                                 <th scope="col" class="text-white">Subject 1</th>
                                                 <th scope="col" class="text-white">Subject 2</th>
                                                 <th scope="col" class="text-white">Subject 3</th>
+                                                <th scope="col" class="text-white">Class</th>
                                                 <th scope="col" class="text-white text-center">Edit</th>
                                                 <th scope="col" class="text-white text-center">Delete</th>
                                             </tr>
@@ -291,6 +292,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                                 <td><?php echo $row["teacherSub1"];?></td>
                                                 <td><?php echo $row["teacherSub2"];?></td>
                                                 <td><?php echo $row["teacherSub3"];?></td>
+                                                <td><?php echo $row["class"];?></td>
                                                 <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Edit</a>
                                                 <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Delete</a>
                                             </tr>
