@@ -114,11 +114,6 @@ if (isset($_COOKIE["user_name"]))
                                         <span class="h3 mb-0"><i class="far fa-user-circle text-muted mr-3"></i></span> View Profile
                                     </a>
                                 </li>
-                                <li class="mb-4">
-                                    <a class="d-flex align-items-center link-dark" href="#!">
-                                        <span class="h3 mb-0"><i class="far fa-list-alt text-muted mr-3"></i></span> Settings
-                                    </a>
-                                </li>
                                 <li>
                                     <a class="d-flex align-items-center link-dark" href="logout.php">
                                         <span class="h3 mb-0"><i class="far fa-share-square text-muted mr-3"></i></span> Sign Out
