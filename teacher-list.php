@@ -4,8 +4,8 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
-$username = $_COOKIE["user_name"];
-$sql = "SELECT * FROM teacher WHERE login_id='$username'";
+$class = $_POST['class'];
+$sql = "SELECT * FROM student WHERE class='$class' GROUP BY stuName ASC";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 
@@ -44,12 +44,10 @@ if (!isset($_COOKIE["user_name"]))
 if (isset($_COOKIE["user_name"]))
 {?>
 <html>
-<!-- Head -->
 
 <head>
     <title>eStudent Assessment System</title>
 
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -212,35 +210,96 @@ if (isset($_COOKIE["user_name"]))
                 <section class="breadcumb-area card bg-gradient-blue mb-5">
                     <div class="bread-cumb-content card-body d-flex align-items-center">
                         <div class="breadcumb-heading">
-                            <h2 class="text-white">My Profile</h2>
+                            <h2 class="text-white">Manage Classes</h2>
                         </div>
                         <div class="breadcumb-image ml-auto">
-                            <img src="assets/img/breadcumb-dashboard.png" alt="">
+                            <img src="assets/img/breadcumb-manage-attendances.png" alt="">
                         </div>
                     </div>
                 </section>
                 <!-- End breadcumb-area -->
 
-                
+                <section class="es-form-area">
+                    <div class="card">
+                        
+                        <div class="card-body">
+                            <form action="teacher-list.php" method="post" class="es-form">
+                                <div class="row align-items-center">
+                                    <div class="es-form">
+                                        <label for="class">Class <?php echo $_POST['class']; ?></label>
+                                    </div>
+                                </div>
+                            </form> 
 
-                
-                <section class="profile-area card">
-                      <div class="profile-content card-body d-flex">
-                          <div class="user-image-wrap mr-5">
-                              <img src="" alt="">
-                          </div>
-                          <div class="user-about">
-                              <h2 class="text-danger"><?php echo $row["teacherName"];?></h2>
-                              <p><strong><?php echo $row["acaQualification"];?></strong></p>
-                              <p>Email: <?php echo $row["teacherEmail"];?></p>
-                              <p>Phone: <?php echo $row["teacher_phoneNum"];?></p>
-                              <p>Address: <?php echo $row["teacher_Address"];?></p>
-                              <br>
-                              <br>
-                              <a href="" class="btn btn-outline-danger pl-4 pr-4">Edit</a>
-                          </div>
-                      </div>
+                            <div class="attendances-list-wrap mt-5">
+                                <div class="show-option d-flex align-items-center mb-4">
+                                    <div class="search-student ml-auto">
+                                        <a href="teacher-add.php" class="btn btn-lg btn-pill bg-gradient-blue text-white">Add new</a>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead class="bg-gradient-blue">
+                                            <tr>
+                                                <th scope="col" class="text-white">Login ID</th>
+                                                <th scope="col" class="text-white">Login Password</th>
+                                                <th scope="col" class="text-white">Teacher Name</th>
+                                                <th scope="col" class="text-white">Gender</th>
+                                                <th scope="col" class="text-white">Phone number</th>
+                                                <th scope="col" class="text-white">Date of Birth</th>
+                                                <th scope="col" class="text-white">Address</th>
+                                                <th scope="col" class="text-white">Qualification</th>
+                                                <th scope="col" class="text-white">Type</th>
+                                                <th scope="col" class="text-white">Subject 1</th>
+                                                <th scope="col" class="text-white">Subject 2</th>
+                                                <th scope="col" class="text-white">Subject 3</th>
+                                                <th scope="col" class="text-white text-center">Edit</th>
+                                                <th scope="col" class="text-white text-center">Delete</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <?php while($row=$rows->fetch_assoc()):?>
+                                            <tr>
+                                                <td><?php echo $row["stuName"];?></td>
+                                                <td><?php echo $row["icNum"];?></td>
+                                                <td><?php echo $row["stuGender"];?></td>
+                                                <td><?php echo $row["date_of_birth"];?></td>
+                                                <td><?php echo $row["stuAddress"];?></td>
+                                                <td><?php echo $row["stu_phoneNum"];?></td>
+                                                <td><?php echo $row["cocurricular"];?></td>
+                                                <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Edit</a>
+                                                <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Delete</a>
+                                            </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
                 </section>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <nav aria-label="Bootstrap Pagination" class="mt-5 text-center d-inline-block">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="btn btn-outline-danger prev" href="#"><span class="ml-1 d-none d-xl-inline-block">Previous</span></a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="btn btn-danger bg-gradient-blue text-white ml-4 mr-4" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="btn btn-outline-danger next" href="#"><span class="mr-1 d-none d-xl-inline-block">Next</span></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                        
 
             </div>
         </div>

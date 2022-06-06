@@ -181,7 +181,7 @@ if (isset($_COOKIE["user_name"]))
                         <!-- End Classes -->
 
                         <!-- Marks -->
-                        <li class="u-sidebar-nav-menu__item u-sidebar-nav">
+                        <li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Marks</span>
