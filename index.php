@@ -12,11 +12,6 @@ $row = mysqli_fetch_array($result);
 
 $val=$conn->query($sql);    
 $rows=$val;
-
-$type = $row["teacherType"];
-$cookie_name = "type";
-$cookie_value = $type;
-setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 if (!isset($_COOKIE["user_name"]))
 {
 ?>

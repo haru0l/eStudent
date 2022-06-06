@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $query = "SELECT teacherPassword from teacher WHERE login_id='$username'";
+    $query = "SELECT * from teacher WHERE login_id='$username' AND teacherPassword = '$password'";
     $result = $connect->query($query);
     $row = $result->fetch_assoc();
     $count = mysqli_num_rows($result);
@@ -18,7 +18,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         $cookie_name = "user_name";
         $cookie_value = $username;
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+        $type = $row["teacherType"];
+        $cookie_name = "type";
+        $cookie_value = $type;
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
         header ('Location: index.php');
+        
     }
     else 
     {
