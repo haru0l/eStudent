@@ -164,7 +164,7 @@ if (isset($_COOKIE["user_name"]))
 
                         <!-- Marks -->
                         <!-- Classes -->
-                        <?php if ($row["teacherType"] == "Guru kelas") {
+                        <?php if ($_COOKIE["type"] == "Guru kelas" || $_COOKIE["user_name"] == "admin") {
                         
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-view.php">

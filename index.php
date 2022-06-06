@@ -13,7 +13,10 @@ $row = mysqli_fetch_array($result);
 $val=$conn->query($sql);    
 $rows=$val;
 
-
+$type = $row["teacherType"];
+$cookie_name = "type";
+$cookie_value = $type;
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 if (!isset($_COOKIE["user_name"]))
 {
 ?>
@@ -162,7 +165,7 @@ if (isset($_COOKIE["user_name"]))
 
                         <!-- Marks -->
                         <!-- Classes -->
-                        <?php if ($row["teacherType"] == "Guru kelas") {
+                        <?php if ($_COOKIE["type"] == "Guru kelas" || $_COOKIE["user_name"] == "admin") {
                         
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-view.php">

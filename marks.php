@@ -1,10 +1,10 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $class = $_POST['class'];
 if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
 $sql = "SELECT grades.stuIC, grades.marksBM, grades.marksBI, grades.marksMath, grades.marksSains, grades.marksSeni, grades.marksPI, grades.marksBA, grades.marksTasmik, grades.remarks, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";}
@@ -13,14 +13,11 @@ else
 $sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";
 }
 
-
-}
-$login_user = $_COOKIE["user_name"];
-$sql = "SELECT * FROM teacher WHERE login_id='$login_user'";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 $val=$connect->query($sql);    
 $rows=$val;
+}
 if (!isset($_COOKIE["user_name"]))
 {?>
 <html>
@@ -175,7 +172,7 @@ if (isset($_COOKIE["user_name"]))
 
                         <!-- Marks -->
                         <!-- Classes -->
-                        <?php if ($row["teacherType"] == "Guru kelas") {
+                        <?php if ($_COOKIE["type"] == "Guru kelas" || $_COOKIE["user_name"] == "admin") {
                         
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-view.php">
