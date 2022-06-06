@@ -4,8 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
-$class = $_POST['class'];
-$sql = "SELECT * FROM student WHERE class='$class' GROUP BY stuName ASC";
+$sql = "SELECT * FROM teacher GROUP BY teacherName ASC";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 
@@ -210,7 +209,7 @@ if (isset($_COOKIE["user_name"]))
                 <section class="breadcumb-area card bg-gradient-blue mb-5">
                     <div class="bread-cumb-content card-body d-flex align-items-center">
                         <div class="breadcumb-heading">
-                            <h2 class="text-white">Manage Classes</h2>
+                            <h2 class="text-white">Manage Teachers</h2>
                         </div>
                         <div class="breadcumb-image ml-auto">
                             <img src="assets/img/breadcumb-manage-attendances.png" alt="">
@@ -223,15 +222,9 @@ if (isset($_COOKIE["user_name"]))
                     <div class="card">
                         
                         <div class="card-body">
-                            <form action="teacher-list.php" method="post" class="es-form">
-                                <div class="row align-items-center">
-                                    <div class="es-form">
-                                        <label for="class">Class <?php echo $_POST['class']; ?></label>
-                                    </div>
-                                </div>
-                            </form> 
+                            
 
-                            <div class="attendances-list-wrap mt-5">
+                            <div class="attendances-list-wrap mt-2">
                                 <div class="show-option d-flex align-items-center mb-4">
                                     <div class="search-student ml-auto">
                                         <a href="teacher-add.php" class="btn btn-lg btn-pill bg-gradient-blue text-white">Add new</a>
@@ -249,6 +242,7 @@ if (isset($_COOKIE["user_name"]))
                                                 <th scope="col" class="text-white">Phone number</th>
                                                 <th scope="col" class="text-white">Date of Birth</th>
                                                 <th scope="col" class="text-white">Address</th>
+                                                <th scope="col" class="text-white">Email</th>
                                                 <th scope="col" class="text-white">Qualification</th>
                                                 <th scope="col" class="text-white">Type</th>
                                                 <th scope="col" class="text-white">Subject 1</th>
@@ -262,13 +256,19 @@ if (isset($_COOKIE["user_name"]))
                                         <tbody>
                                             <?php while($row=$rows->fetch_assoc()):?>
                                             <tr>
-                                                <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $row["icNum"];?></td>
-                                                <td><?php echo $row["stuGender"];?></td>
+                                                <td><?php echo $row["login_id"];?></td>
+                                                <td><?php echo $row["teacherPassword"];?></td>
+                                                <td><?php echo $row["teacherName"];?></td>
+                                                <td><?php echo $row["gender"];?></td>
+                                                <td><?php echo $row["teacher_phoneNum"];?></td>
                                                 <td><?php echo $row["date_of_birth"];?></td>
-                                                <td><?php echo $row["stuAddress"];?></td>
-                                                <td><?php echo $row["stu_phoneNum"];?></td>
-                                                <td><?php echo $row["cocurricular"];?></td>
+                                                <td><?php echo $row["teacher_Address"];?></td>
+                                                <td><?php echo $row["teacherEmail"];?></td>
+                                                <td><?php echo $row["acaQualification"];?></td>
+                                                <td><?php echo $row["teacherType"];?></td>
+                                                <td><?php echo $row["teacherSub1"];?></td>
+                                                <td><?php echo $row["teacherSub2"];?></td>
+                                                <td><?php echo $row["teacherSub3"];?></td>
                                                 <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Edit</a>
                                                 <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Delete</a>
                                             </tr>

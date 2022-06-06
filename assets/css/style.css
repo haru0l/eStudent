@@ -353,7 +353,7 @@ img.u-avatar--xs {
 /*breadcumb start*/
 .breadcumb-area {
 	height: 200px;
-	margin-top: 50px;
+	margin-top: 0px;
 	position: relative;
 	padding-left: 45px;
 	padding-right: 45px;

@@ -1,4 +1,31 @@
-<?php if (!isset($_COOKIE["user_name"]))
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "estudent";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+$login_id = $_POST['login_id'];
+$teacherPassword = $_POST['teacherPassword'];
+$teacherName = $_POST['teacherName'];
+$gender = $_POST['gender'];
+$teacher_phoneNum = $_POST['teacher_phoneNum'];
+$date_of_birth = $_POST['date_of_birth'];
+$teacher_Address = $_POST['teacher_Address'];
+$teacherEmail = $_POST['teacherEmail'];
+$acaQualification = $_POST['acaQualification'];
+$teacherType = $_POST['teacherType'];
+$teacherSub1 = $_POST['teacherSub1'];
+$teacherSub2 = $_POST['teacherSub2'];
+$teacherSub3 = $_POST['teacherSub3'];
+    
+$sql = "INSERT into teacher
+VALUES ('$login_id', '$teacherPassword', '$teacherName', '$gender', '$teacher_phoneNum', '$date_of_birth', '$teacher_Address', '$teacherEmail', '$acaQualification', '$teacherType', '$teacherSub1', '$teacherSub2', '$teacherSub3')";
+$conn->query($sql);
+//header ('Location: attendances-blank.php');
+}
+if (!isset($_COOKIE["user_name"]))
 {?>
 <html>
 <meta charset="utf-8">
@@ -195,55 +222,121 @@ if (isset($_COOKIE["user_name"]))
         <div class="u-content">
             <div class="u-body">
 
-                <!-- breadcumb-area -->
-                <section class="breadcumb-area card bg-gradient-blue mb-5">
-                    <div class="bread-cumb-content card-body d-flex align-items-center">
-                        <div class="breadcumb-heading">
-                            <h2 class="text-white">View Classes</h2>
-                        </div>
-                        <div class="breadcumb-image ml-auto">
-                            <img src="assets/img/breadcumb-manage-attendances.png" alt="">
-                        </div>
-                    </div>
-                </section>
-                <!-- End breadcumb-area -->
-
                 
 
                 
                 <section class="es-form-area">
                     <div class="card">
-                        
+                        <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
+                            <h2 class="text-white mb-0">Add New Teacher</h2>
+                        </header>
                         <div class="card-body">
-                            <form action="classes-list.php" method="post" class="es-form">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <label for="class">Class</label>
-                                        <select name="class" id="class">
-                                            <option value="1 Bijak">1 Bijak</option>
-                                            <option value="1 Cerdik">1 Cerdik</option>
-                                            <option value="2 Bijak">2 Bijak</option>
-                                            <option value="2 Cerdik">2 Cerdik</option>
-                                            <option value="3 Bijak">3 Bijak</option>
-                                            <option value="3 Cerdik">3 Cerdik</option>
-                                            <option value="4 Bijak">4 Bijak</option>
-                                            <option value="4 Cerdik">4 Cerdik</option>
-                                            <option value="5 Bijak">5 Bijak</option>
-                                            <option value="5 Cerdik">5 Cerdik</option>
-                                            <option value="6 Bijak">6 Bijak</option>
-                                            <option value="6 Cerdik">6 Cerdik</option>
+                            <form action="teacher-add.php" method="post" class="es-form es-add-form">
+                                <div class="row">
+                                   <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Login ID</label>
+                                        <input type="text" name="login_id">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Login Password</label>
+                                        <input type="text" name="teacherPassword">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Teacher Name</label>
+                                        <input type="text" name="teacherName">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Date of Birth</label>
+                                        <input type="text" name="date_of_birth">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="class">Gender</label>
+                                        <select name="gender" id="gender" class="es-add-select">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                         </select>
                                     </div>
-                                    
-                                    <div class="col">
-                                        <input type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white" value="Submit"/>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Phone number</label>
+                                        <input type="tel" name="teacher_phoneNum">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Address</label>
+                                        <input type="text" name="teacher_Address">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Email</label>
+                                        <input type="text" name="teacherEmail">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Academic Qualification</label>
+                                        <input type="text" name="acaQualification">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="class">Type</label>
+                                        <select name="teacherType" id="class">
+                                            <option value="Guru kelas">Guru kelas</option>
+                                            <option value="Guru subjek">Guru subjek</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="subject">Subject 1</label>
+                                        <select name="teacherSub1" id="subject" class="es-add-select">
+                                            <option value="Bahasa Melayu">Bahasa Melayu</option>
+                                            <option value="Bahasa Inggeris">Bahasa Inggeris</option>
+                                            <option value="Matematik">Matematik</option>
+                                            <option value="Sains">Sains</option>
+                                            <option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
+                                            <option value="Pendidikan Musik">Pendidikan Musik</option>
+                                            <option value="Reka bentuk teknologi">Reka bentuk teknologi</option>
+                                            <option value="Pendidikan Islam">Pendidikan Islam</option>
+                                            <option value="Bahasa Arab">Bahasa Arab</option>
+                                            <option value="Tasmik">Tasmik</option>
+                                            <option value="Sejarah">Sejarah</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="subject">Subject 2</label>
+                                        <select name="teacherSub2" id="subject" class="es-add-select">
+                                            <option value="">-</option>
+                                            <option value="Bahasa Melayu">Bahasa Melayu</option>
+                                            <option value="Bahasa Inggeris">Bahasa Inggeris</option>
+                                            <option value="Matematik">Matematik</option>
+                                            <option value="Sains">Sains</option>
+                                            <option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
+                                            <option value="Pendidikan Musik">Pendidikan Musik</option>
+                                            <option value="Reka bentuk teknologi">Reka bentuk teknologi</option>
+                                            <option value="Pendidikan Islam">Pendidikan Islam</option>
+                                            <option value="Bahasa Arab">Bahasa Arab</option>
+                                            <option value="Tasmik">Tasmik</option>
+                                            <option value="Sejarah">Sejarah</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="subject">Subject 3</label>
+                                        <select name="teacherSub3" id="subject" class="es-add-select">
+                                            <option value="">-</option>
+                                            <option value="Bahasa Melayu">Bahasa Melayu</option>
+                                            <option value="Bahasa Inggeris">Bahasa Inggeris</option>
+                                            <option value="Matematik">Matematik</option>
+                                            <option value="Sains">Sains</option>
+                                            <option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
+                                            <option value="Pendidikan Musik">Pendidikan Musik</option>
+                                            <option value="Reka bentuk teknologi">Reka bentuk teknologi</option>
+                                            <option value="Pendidikan Islam">Pendidikan Islam</option>
+                                            <option value="Bahasa Arab">Bahasa Arab</option>
+                                            <option value="Tasmik">Tasmik</option>
+                                            <option value="Sejarah">Sejarah</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
+                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>
                                     </div>
                                 </div>
-                            </form> 
+                            </form>
                         </div>
                     </div>    
                 </section>
-
             </div>
         </div>
     </main>
@@ -265,7 +358,14 @@ if (isset($_COOKIE["user_name"]))
     <script src="assets/js/main.js"></script>
     <script src="assets/js/dashboard-page-scripts.js"></script>
     <!--<script src="assets/js/scripts.js"></script>-->
+<script>
+
+        function logout() {
+            window.location.replace("logout.php");
+        }
+    </script>
 </body>
+
 </html><?php
 }
 ?>

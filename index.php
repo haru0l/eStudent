@@ -55,13 +55,7 @@ if (isset($_COOKIE["user_name"]))
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Custom Charts -->
-    <style>
-        .js-doughnut-chart {
-            width: 70px !important;
-            height: 70px !important;
-        }
-    </style>
+  
 </head>
 <!-- End Head -->
 
@@ -148,6 +142,15 @@ if (isset($_COOKIE["user_name"]))
                             <a class="u-sidebar-nav-menu__link" href="classes-view.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Classes</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>
+                        <!-- End Classes -->
+                        
+                        <li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="teacher-list.php">
+                                <i class="fas fa-chalkboard-teacher u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Teachers</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>
