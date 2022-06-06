@@ -1,4 +1,35 @@
-<!DOCTYPE html>
+<?php if (!isset($_COOKIE["user_name"]))
+{?>
+<html>
+<meta charset="utf-8">
+<title>Error</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="container">
+    <div class="alert alert-danger alert-dismissible fade show">
+        <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> Oops! Something went wrong.</h4>
+        <p>We have detected that are not logged in to an account.</p>
+        <hr>
+        <p class="mb-0">Click on the 'Go home' button to login.</p>
+        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="logout()">Go home</button>
+    </div>
+    <script>
+        function logout() {
+            window.location.replace("login.php");
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</div>
+
+</html>
+<?php
+}
+
+if (isset($_COOKIE["user_name"]))
+{?>
 <html lang="en" class="no-js">
 <!-- Head -->
 
@@ -38,7 +69,7 @@
     <!-- Header (Topbar) -->
     <header class="u-header">
         <div class="u-header-left">
-            <a class="u-header-logo" href="index.html">
+            <a class="u-header-logo" href="index.php">
                 <img class="u-logo-desktop" src="assets/img/logo_sk.png" width="160" alt="Stream Dashboard">
                 <img class="img-fluid u-logo-mobile" src="assets/img/logo-mobile.png" width="50" alt="Stream Dashboard">
             </a>
@@ -97,7 +128,7 @@
         <aside id="sidebar" class="u-sidebar">
             <div class="u-sidebar-inner bg-gradient-yellow bdrs-30">
                 <header class="u-sidebar-header">
-                    <a class="u-sidebar-logo" href="index.html">
+                    <a class="u-sidebar-logo" href="index.php">
                         <img class="img-fluid" src="assets/img/logo_sk.png" width="124" alt="Stream Dashboard">
                     </a>
                 </header>
@@ -105,7 +136,7 @@
                     <ul class="u-sidebar-nav-menu u-sidebar-nav-menu--top-level">
                         <!-- Dashboard -->
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="index.html">
+                            <a class="u-sidebar-nav-menu__link" href="index.php">
                                 <i class="fas fa-tachometer-alt u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Dashboard</span>
                             </a>
@@ -114,7 +145,7 @@
 
                         <!-- Classes -->
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="classes-view.html">
+                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Classes</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
@@ -160,55 +191,51 @@
             </div>
         </aside>
         <!-- End Sidebar -->
-
         <div class="u-content">
             <div class="u-body">
-
-                <!-- breadcumb-area -->
-                <section class="breadcumb-area card bg-gradient-blue mb-5">
-                    <div class="bread-cumb-content card-body d-flex align-items-center">
-                        <div class="breadcumb-heading">
-                            <h2 class="text-white">View Classes</h2>
-                        </div>
-                        <div class="breadcumb-image ml-auto">
-                            <img src="assets/img/breadcumb-manage-attendances.png" alt="">
-                        </div>
-                    </div>
-                </section>
-                <!-- End breadcumb-area -->
 
                 
 
                 
                 <section class="es-form-area">
                     <div class="card">
-                        
+                        <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
+                            <h2 class="text-white mb-0">Edit profile</h2>
+                        </header>
                         <div class="card-body">
-                            <form action="classes-list.php" method="post" class="es-form">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <label for="class">Class</label>
-                                        <select name="class" id="class">
-                                            <option value="1 Bijak">1 Bijak</option>
-                                            <option value="1 Cerdik">1 Cerdik</option>
-                                            <option value="2 Bijak">2 Bijak</option>
-                                            <option value="2 Cerdik">2 Cerdik</option>
-                                            <option value="3 Bijak">3 Bijak</option>
-                                            <option value="3 Cerdik">3 Cerdik</option>
-                                            <option value="4 Bijak">4 Bijak</option>
-                                            <option value="4 Cerdik">4 Cerdik</option>
-                                            <option value="5 Bijak">5 Bijak</option>
-                                            <option value="5 Cerdik">5 Cerdik</option>
-                                            <option value="6 Bijak">6 Bijak</option>
-                                            <option value="6 Cerdik">6 Cerdik</option>
+                            <form action="" class="es-form es-add-form">
+                                <div class="row">
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="name">Name</label>
+                                        <input id="name" type="text" placeholder="Enter name">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="description">Description</label>
+                                        <input id="description" type="text" placeholder="Enter text">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="email">Email</label>
+                                        <input id="email" type="email" placeholder="Enter email">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="phone">Phone</label>
+                                        <input id="phone" type="tel" placeholder="Enter phone">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="subject">Subject</label>
+                                        <select id="subject" class="es-add-select">
+                                            <option data-display="English">English</option>
+                                            <option value="1">Bahasa Melayu</option>
+                                            <option value="2">Mathmatics</option>
+                                            <option value="3">Science</option>
                                         </select>
                                     </div>
-                                    
-                                    <div class="col">
-                                        <input type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white" value="Submit"/>
+                                    <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
+                                        <a href="" class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</a>        
                                     </div>
                                 </div>
-                            </form> 
+                                
+                            </form>
                         </div>
                     </div>    
                 </section>
@@ -235,4 +262,6 @@
     <script src="assets/js/dashboard-page-scripts.js"></script>
     <!--<script src="assets/js/scripts.js"></script>-->
 </body>
-</html>
+</html><?php
+}
+?>

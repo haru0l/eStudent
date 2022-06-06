@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         $cookie_name = "user_name";
         $user_name_value = $username;
         setcookie($cookie_name, $user_name_value, time() + (86400 * 30), "/");
-        header ('Location: index.html');
+        header ('Location: index.php');
     }
     else 
     {

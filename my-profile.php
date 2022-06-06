@@ -11,7 +11,38 @@ $row = mysqli_fetch_array($result);
 
 $val=$connect->query($sql);    
 $rows=$val;
-?>
+if (!isset($_COOKIE["user_name"]))
+{?>
+<html>
+<meta charset="utf-8">
+<title>Error</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="container">
+    <div class="alert alert-danger alert-dismissible fade show">
+        <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> Oops! Something went wrong.</h4>
+        <p>We have detected that are not logged in to an account.</p>
+        <hr>
+        <p class="mb-0">Click on the 'Go home' button to login.</p>
+        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="logout()">Go home</button>
+    </div>
+    <script>
+        function logout() {
+            window.location.replace("login.php");
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</div>
+
+</html>
+<?php
+}
+
+if (isset($_COOKIE["user_name"]))
+{?>
 <html>
 <!-- Head -->
 
@@ -51,7 +82,7 @@ $rows=$val;
     <!-- Header (Topbar) -->
     <header class="u-header">
         <div class="u-header-left">
-            <a class="u-header-logo" href="index.html">
+            <a class="u-header-logo" href="index.php">
                 <img class="u-logo-desktop" src="assets/img/logo_sk.png" width="160" alt="Stream Dashboard">
                 <img class="img-fluid u-logo-mobile" src="assets/img/logo-mobile.png" width="50" alt="Stream Dashboard">
             </a>
@@ -110,7 +141,7 @@ $rows=$val;
         <aside id="sidebar" class="u-sidebar">
             <div class="u-sidebar-inner bg-gradient-yellow bdrs-30">
                 <header class="u-sidebar-header">
-                    <a class="u-sidebar-logo" href="index.html">
+                    <a class="u-sidebar-logo" href="index.php">
                         <img class="img-fluid" src="assets/img/logo_sk.png" width="124" alt="Stream Dashboard">
                     </a>
                 </header>
@@ -118,7 +149,7 @@ $rows=$val;
                     <ul class="u-sidebar-nav-menu u-sidebar-nav-menu--top-level">
                         <!-- Dashboard -->
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="index.html">
+                            <a class="u-sidebar-nav-menu__link" href="index.php">
                                 <i class="fas fa-tachometer-alt u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Dashboard</span>
                             </a>
@@ -127,7 +158,7 @@ $rows=$val;
 
                         <!-- Classes -->
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="classes-view.html">
+                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Classes</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
@@ -233,4 +264,6 @@ $rows=$val;
     <script src="assets/js/dashboard-page-scripts.js"></script>
     <!--<script src="assets/js/scripts.js"></script>-->
 </body>
-</html>
+</html><?php
+}
+?>
