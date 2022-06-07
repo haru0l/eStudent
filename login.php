@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         $cookie_name = "type";
         $cookie_value = "student";
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-        header ('Location: index-student.php');
+        header ('Location: index.php');
         }
         else
         {

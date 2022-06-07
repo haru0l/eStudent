@@ -197,6 +197,40 @@ if (isset($_COOKIE["user_name"]))
             <center><?php echo $row["marksSains"];?></center>
         </td>
     </tr>
+    <?php
+    if (in_array($row["class"], array("4 Bijak", "4 Cerdik","5 Bijak", "5 Cerdik","6 Bijak", "6 Cerdik"), true)) {
+        echo '<tr>
+        <td>&nbsp;&nbsp;&nbsp;9.</td>
+        <td>PENDIDIKAN MUSIK</td>
+        <td>
+            <center><?php echo $row["marksMusik"];?></center>
+        </td>
+        <td>
+            <center><?php echo $row["marksMusik"];?></center>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;10.</td>
+        <td>REKA BENTUK TEKNOLOGI</td>
+        <td>
+            <center><?php echo $row["marksRBT"];?></center>
+        </td>
+        <td>
+            <center><?php echo $row["marksRBT"];?></center>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;11.</td>
+        <td>SEJARAH</td>
+        <td>
+            <center><?php echo $row["marksSejarah"];?></center>
+        </td>
+        <td>
+            <center><?php echo $row["marksSejarah"];?></center>
+        </td>
+    </tr>';
+    }?>
+    
 </table>
 <table width="700" border="0" align="center" cellpadding="3" cellspacing="0">
     <tr>
@@ -207,7 +241,14 @@ if (isset($_COOKIE["user_name"]))
     <tr>
         <td width="220">&nbsp;Bilangan Mata Pelajaran Daftar </td>
         <td width="1">:</td>
-        <td width="179">7 </td>
+        <td width="179"><?php
+            if (in_array($row["class"], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
+                echo '8';
+            }
+ else {
+     echo '11';
+ }
+            ?></td>
         <td width="214">Jumlah Markah </td>
         <td width="1">:</td>
         <td width="85">505</td>
@@ -215,14 +256,14 @@ if (isset($_COOKIE["user_name"]))
     <tr>
         <td>&nbsp;Kedudukan Dalam Kelas </td>
         <td width="1">:</td>
-        <td>4 / 26</td>
+        <td><?php echo $row["rankingClass"]?> / 26</td>
         <td>&nbsp; </td>
         <td>&nbsp; </td>
         <td>&nbsp; </td>
     <tr>
         <td>&nbsp;Kedudukan Dalam Tingkatan </td>
         <td width="1">:</td>
-        <td>5 / 116</td>
+        <td><?php echo $row["rankingWhole"]?> / 116</td>
         <td>Peratus</td>
         <td width="1">:</td>
         <td>72.14</td>
@@ -230,7 +271,7 @@ if (isset($_COOKIE["user_name"]))
     <tr>
         <td>&nbsp;Kehadiran</td>
         <td width="1">:</td>
-        <td> / Hari</td>
+        <td><?php echo $row["attendance"]?> / 999 Hari</td>
         <td>Gred Purata Pelajar </td>
         <td width="1">:</td>
         <td>2.71</td>
@@ -243,6 +284,7 @@ if (isset($_COOKIE["user_name"]))
         <td width="1">:</td>
         <td>LULUS</td>
     </tr>
+    
     <tr>
         <td colspan="6">
             <hr align="center" noshade>
