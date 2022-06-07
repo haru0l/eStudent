@@ -178,16 +178,10 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                         </li>
                         <!-- End Dashboard -->
 
-                        <!-- Classes -->
-                        <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
-                                <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Classes</span>
-                                <span class="u-sidebar-nav-menu__indicator"></span>
-                            </a>
-                        </li>
-                        <!-- End Classes -->
-                        <?php if ($_COOKIE["user_name"] == "admin") {
+                        
+                        <?php 
+                        if ($_COOKIE["user_name"] == "admin" || $_COOKIE["type"] == "Guru kelas" || $_COOKIE["type"] == "Guru subjek") {
+                        if ($_COOKIE["user_name"] == "admin") {
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="teacher-list.php">
                                 <i class="fas fa-chalkboard-teacher u-sidebar-nav-menu__item-icon"></i>
@@ -199,17 +193,40 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                         <!-- End Classes -->
 
                         <!-- Marks -->
-                        <li class="u-sidebar-nav-menu__item">
+                        <!-- Classes -->
+                        <?php if ($_COOKIE["type"] == "Guru kelas" || $_COOKIE["user_name"] == "admin") {
+                        
+                        echo '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
+                                <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Classes</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+                        
+    
+    
+                        echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Marks</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
-                        </li>
-                        <!-- End Marks -->
+                        </li>';
+}
+                        else {
+                        echo '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="marks-sub.php">
+                                <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Marks</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+                        
+                        }
 
-                        <!-- Profile -->
-                        <li class="u-sidebar-nav-menu__item">
+                        echo
+                        '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="#!" data-target="#profile">
                                 <i class="fa fa-user u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">My Profile</span>
@@ -229,7 +246,20 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>';
+                        }
+                        if ($_COOKIE["type"] == "student" ){
+                            echo 
+                            '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="slip.php" target="_blank">
+                                <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Check results</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+                        }
+                        ?>
+                        
                         <!-- End Profile -->
                     </ul>
                 </nav>
