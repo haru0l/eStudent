@@ -5,12 +5,10 @@ $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
 $login_user = $_COOKIE["user_name"];
-$sql = "SELECT report.*, grades.*, teacher.* FROM report
-INNER JOIN teacher on report.class = teacher.class
+$sql = "SELECT report.*, grades.*, student.* FROM report
 INNER JOIN grades on grades.stuIC = report.stuIC
-WHERE report.stuIC = $login_user
-AND teacher.class = report.class
-AND report.teacherName = teacher.teacherName";
+INNER JOIN student on student.icNum = report.stuIC
+WHERE report.stuIC = $login_user";
 
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
@@ -51,7 +49,7 @@ if (isset($_COOKIE["user_name"]))
 <br>
 <br>
 <div align="center">
-    <img src="assets/img/logo_sk.png" width="50" height="53"><br>
+    <img src="assets/img/JBB5038.png" width="45" height="60"><br>
 </div>
 <div align="center">
     <b>SEKOLAH KEBANGSAAN KOTA RAJA</b>
@@ -78,10 +76,10 @@ if (isset($_COOKIE["user_name"]))
     <tr>
         <td>&nbsp;No. KP</td>
         <td>:</td>
-        <td>&nbsp;<?php echo $row["noIC"];?></td>
+        <td>&nbsp;<?php echo $row["stuIC"];?></td>
         <td>&nbsp;Jantina</td>
         <td>:</td>
-        <td>&nbsp;<?php echo $row["gender"];?></td>
+        <td>&nbsp;<?php echo $row["stuGender"];?></td>
     </tr>
 </table><br>
 <table width="700" border="0" align="center" cellpadding="3" cellspacing="0">
@@ -120,83 +118,83 @@ if (isset($_COOKIE["user_name"]))
             <center><?php echo $row["marksBM"];?></center>
         </td>
         <td>
-            <center>C</center>
+            <center><?php echo $row["marksBM"];?></center>
         </td>
     </tr>
     <tr>
     </tr>
     <tr>
         <td>&nbsp;&nbsp;&nbsp;2.</td>
-        <td>GEOGRAFI</td>
+        <td>BAHASA INGGERIS</td>
         <td>
-            <center>78</center>
+            <center><?php echo $row["marksBI"];?></center>
         </td>
         <td>
-            <center>B</center>
+            <center><?php echo $row["marksBI"];?></center>
         </td>
     </tr>
     <tr>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;3.</td>
+        <td>MATEMATIK</td>
+        <td>
+            <center><?php echo $row["marksMath"];?></center>
+        </td>
+        <td>
+            <center><?php echo $row["marksMath"];?></center>
+        </td>
     </tr>
     <tr>
         <td>&nbsp;&nbsp;&nbsp;4.</td>
-        <td>MATEMATIK</td>
+        <td>PENDIDIKAN ISLAM</td>
         <td>
-            <center>98</center>
+            <center><?php echo $row["marksPI"];?></center>
         </td>
         <td>
-            <center>A</center>
+            <center><?php echo $row["marksPI"];?></center>
         </td>
+    </tr>
+    <tr>
     </tr>
     <tr>
         <td>&nbsp;&nbsp;&nbsp;5.</td>
-        <td>PENDIDIKAN ISLAM</td>
+        <td>PENDIDIKAN SENI VISUAL</td>
         <td>
-            <center>82</center>
+            <center><?php echo $row["marksSeni"];?></center>
         </td>
         <td>
-            <center>B</center>
+            <center><?php echo $row["marksSeni"];?></center>
         </td>
     </tr>
     <tr>
+        <td>&nbsp;&nbsp;&nbsp;6.</td>
+        <td>BAHASA ARAB</td>
+        <td>
+            <center><?php echo $row["marksBA"];?></center>
+        </td>
+        <td>
+            <center><?php echo $row["marksBA"];?></center>
+        </td>
     </tr>
     <tr>
         <td>&nbsp;&nbsp;&nbsp;7.</td>
-        <td>PENDIDIKAN SENI VISUAL</td>
+        <td>TASMIK</td>
         <td>
-            <center>60</center>
+            <center><?php echo $row["marksTasmik"];?></center>
         </td>
         <td>
-            <center>C</center>
+            <center><?php echo $row["marksTasmik"];?></center>
         </td>
     </tr>
     <tr>
         <td>&nbsp;&nbsp;&nbsp;8.</td>
-        <td>SEJARAH</td>
-        <td>
-            <center>58</center>
-        </td>
-        <td>
-            <center>D</center>
-        </td>
-    </tr>
-    <tr>
-        <td>&nbsp;&nbsp;&nbsp;9.</td>
-        <td>SIVIK DAN KEWARGANEGARAAN</td>
-        <td>
-            <center>68</center>
-        </td>
-        <td>
-            <center>C</center>
-        </td>
-    </tr>
-    <tr>
-        <td>&nbsp;&nbsp;&nbsp;10.</td>
         <td>SAINS</td>
         <td>
-            <center>56</center>
+            <center><?php echo $row["marksSains"];?></center>
         </td>
         <td>
-            <center>D</center>
+            <center><?php echo $row["marksSains"];?></center>
         </td>
     </tr>
 </table>

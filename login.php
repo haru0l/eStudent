@@ -25,6 +25,27 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         header ('Location: index.php');
         
     }
+    else if ($count != 1)
+    {
+    $query = "SELECT * from student WHERE icNum='$username' AND stuPassword = '$password'";
+    $result = $connect->query($query);
+    $row = $result->fetch_assoc();
+    $count = mysqli_num_rows($result);
+        if ($count == 1)
+        {
+        $cookie_name = "user_name";
+        $cookie_value = $username;
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+        $cookie_name = "type";
+        $cookie_value = "student";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+        header ('Location: index-student.php');
+        }
+        else
+        {
+            echo "wrong username or password";
+        }
+    }
     else 
     {
         echo "wrong username or password";
