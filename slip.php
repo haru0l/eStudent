@@ -46,6 +46,29 @@ if (!isset($_COOKIE["user_name"]))
 
 if (isset($_COOKIE["user_name"]))
 {?>
+<button onclick="hideButton(this)" id="button">Download PDF</button>
+<script src="html2pdf.bundle.min.js"></script>
+<script>
+const btn = document.getElementById("button"); 
+    
+btn.addEventListener("click", function(){
+var element = document.getElementById('body');
+var opt = {
+  margin:       1,
+  filename:     'slip.pdf',
+  image:        { type: 'png', quality: 0.98 },
+  html2canvas:  { scale: 2 }
+};
+html2pdf().set(opt).from(element).save();
+
+});
+</script>
+<script>
+function hideButton(x)
+ {
+  x.style.display = 'none';
+ }</script>
+<body id="body">
 <br>
 <br>
 <div align="center">
@@ -239,7 +262,7 @@ if (isset($_COOKIE["user_name"]))
         </td>
     </tr>
     <tr>
-        <td width="220">&nbsp;Bilangan Mata Pelajaran Daftar </td>
+        <td width="230">&nbsp;Bilangan Mata Pelajaran Daftar </td>
         <td width="1">:</td>
         <td width="179"><?php
             if (in_array($row["class"], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
@@ -293,7 +316,7 @@ if (isset($_COOKIE["user_name"]))
 </table><br>
 <table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
-        <td width='120'>Nama Guru Kelas</td>
+        <td width='120'>&nbsp;Nama Guru Kelas</td>
         <td width='1'>:</td>
         <td width='579'>&nbsp;<?php echo $row["teacherName"];?></td>
     </tr>
@@ -301,11 +324,13 @@ if (isset($_COOKIE["user_name"]))
         <td colspan='3'>&nbsp;</td>
     </tr>
     <tr>
-        <td>Ulasan Guru Kelas</td>
+        <td width='140'>&nbsp;Ulasan Guru Kelas</td>
         <td>:</td>
         <td>&nbsp;<?php echo $row["remarks"];?></td>
     </tr>
 </table>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
 <?php
 }
 ?>

@@ -4,8 +4,6 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
-$class=$_GET['class'];
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -300,7 +298,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Teacher Name</label>
-                                        <input type="text" name="teacherName">
+                                        <input type="text" oninput="this.value = this.value.toUpperCase()" name="teacherName">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Date of Birth</label>
@@ -387,8 +385,22 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                         </select>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Class</label>
-                                        <input type="text" name="class">
+                                        <label for="class">Class</label>
+                                        <select name="class" id="class">
+                                            <option value="1 Bijak">1 Bijak</option>
+                                            <option value="1 Cerdik">1 Cerdik</option>
+                                            <option value="2 Bijak">2 Bijak</option>
+                                            <option value="2 Cerdik">2 Cerdik</option>
+                                            <option value="3 Bijak">3 Bijak</option>
+                                            <option value="3 Cerdik">3 Cerdik</option>
+                                            <option value="4 Bijak">4 Bijak</option>
+                                            <option value="4 Cerdik">4 Cerdik</option>
+                                            <option value="5 Bijak">5 Bijak</option>
+                                            <option value="5 Cerdik">5 Cerdik</option>
+                                            <option value="6 Bijak">6 Bijak</option>
+                                            <option value="6 Cerdik">6 Cerdik</option>
+                                        </select>
+                                    </div>
                                     </div>
                                     <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
                                         <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>
