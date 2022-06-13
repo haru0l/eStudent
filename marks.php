@@ -272,11 +272,11 @@ if (isset($_COOKIE["user_name"]))
                            <?php
                             if ($_COOKIE["user_name"] == "admin") 
                             {
-                             echo '<a href="marks-add.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>';
+                             echo '<a href="marks-viewClass.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>';
                             }
                             else
                             {
-                            echo    '<a href="marks-add-teacher.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>' ;
+                            echo    '<a href="marks-viewClass.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>' ;
                             } ?>
                         </header>
                         <div class="card-body">

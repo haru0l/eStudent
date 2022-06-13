@@ -4,6 +4,8 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
+$class=$_GET['class'];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 

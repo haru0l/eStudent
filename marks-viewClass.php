@@ -1,73 +1,23 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "estudent";
-$conn = new mysqli($servername, $username, $password, $dbname);
-$class=$_GET['class'];
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$stuIC = $_POST['stuIC'];
-$subject = $_POST['subject'];
-
-switch ($subject) {
-  case "Bahasa Melayu":
-    $newSub = "marksBM";
-    break;
-  case "Bahasa Inggeris":
-    $newSub = "marksBI";
-    break;
-  case "Sains":
-    $newSub = "marksSains";
-    break;
-  case "Pendidikan Seni Visual":
-    $newSub = "marksSeni";
-    break;
-  case "Pendidikan Musik":
-    $newSub = "marksMusik";
-    break;
-  case "Reka bentuk teknologi":
-    $newSub = "marksRBT";
-    break;
-  case "Pendidikan Islam":
-    $newSub = "marksPI";
-    break;
-  case "Bahasa Arab":
-    $newSub = "marksBA";
-    break;
-  case "Tasmik":
-    $newSub = "marksTasmik";
-    break;
-   case "Sejarah":
-    $newSub = "marksSejarah";
-    break;
-  default:
-    echo "error";
-}
-        
-        
-$marks = $_POST['marks'];
-$remarks = $_POST['remarks'];
-$year = $_POST['year'];
-if ($conn->query("SELECT * FROM grades WHERE stuIC = $stuIC AND year='2022'"))
-{
-$sql = "UPDATE grades SET $newSub = '$marks', remarks = '$remarks' WHERE stuIC = $stuIC";
-$conn->query($sql);
-}
+$connect = new mysqli($servername, $username, $password, $dbname);
+$class = $_POST['class'];
+if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
+$sql = "SELECT grades.stuIC, grades.marksBM, grades.marksBI, grades.marksMath, grades.marksSains, grades.marksSeni, grades.marksPI, grades.marksBA, grades.marksTasmik, grades.remarks, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";}
 else
 {
-$sql = "INSERT into grades (stuIC, $newSub, year)
-VALUES ('$stuIC', '$marks', '$remarks', '$year')";
-$conn->query($sql);
+$sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";
 }
-}
-$username = $_COOKIE["user_name"];
-$sql = "SELECT * FROM teacher WHERE login_id='$username'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
 
-$val=$conn->query($sql);    
+$result = mysqli_query($connect, $sql);
+$row = mysqli_fetch_array($result);
+$val=$connect->query($sql);    
 $rows=$val;
-//header ('Location: attendances-blank.php');
+}
 if (!isset($_COOKIE["user_name"]))
 {?>
 <html>
@@ -300,74 +250,71 @@ if (isset($_COOKIE["user_name"]))
         <div class="u-content">
             <div class="u-body">
 
+                <!-- breadcumb-area -->
+                <section class="breadcumb-area card bg-gradient-blue mb-5">
+                    <div class="bread-cumb-content card-body d-flex align-items-center">
+                        <div class="breadcumb-heading">
+                            <h2 class="text-white">All Students Marks</h2>
+                        </div>
+                        <div class="breadcumb-image ml-auto">
+                            <img src="assets/img/breadcumb-marks.png" alt="">
+                        </div>
+                    </div>
+                </section>
+                <!-- End breadcumb-area -->
+
                 
 
                 
                 <section class="es-form-area">
                     <div class="card">
                         <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
-                            <h2 class="text-white mb-0">Add New Marks for Class <?php echo $class;?></h2>
+                           <?php
+                            if ($_COOKIE["user_name"] == "admin") 
+                            {
+                             echo '<a href="marks-add.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>';
+                            }
+                            else
+                            {
+                            echo    '<a href="marks-add-teacher.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>' ;
+                            } ?>
                         </header>
                         <div class="card-body">
-                            <form action="marks-add-teacher.php" method="post" class="es-form es-add-form">
-                                <div class="row">
-                                   
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                       
-                                        <label for="title">Student Name</label>
-                                        <select name="stuName" id="stuName" class="es-add-select">
-                                        <?php
-                                            $sql2 = "SELECT * FROM student WHERE class='$class'";
-                                        $result2 = mysqli_query($conn, $sql2);
-                                        $row2 = mysqli_fetch_array($result2);
-
-                                        $val2=$conn->query($sql2);    
-                                        $rows2=$val2;
-                                            while($row2=$rows2->fetch_assoc()):?>
-                                            
-                                            <option value="<?php echo $row2["icNum"];?>"><?php echo $row2["stuName"];?> - <?php echo $row2["icNum"];?></option>
-                                            <?php endwhile; ?>
+                            <form action="marks-add-teacher.php" method="get" class="es-form">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <label for="class">Class</label>
+                                        <select name="class" id="class">
+                                            <option value="1 Bijak">1 Bijak</option>
+                                            <option value="1 Cerdik">1 Cerdik</option>
+                                            <option value="2 Bijak">2 Bijak</option>
+                                            <option value="2 Cerdik">2 Cerdik</option>
+                                            <option value="3 Bijak">3 Bijak</option>
+                                            <option value="3 Cerdik">3 Cerdik</option>
+                                            <option value="4 Bijak">4 Bijak</option>
+                                            <option value="4 Cerdik">4 Cerdik</option>
+                                            <option value="5 Bijak">5 Bijak</option>
+                                            <option value="5 Cerdik">5 Cerdik</option>
+                                            <option value="6 Bijak">6 Bijak</option>
+                                            <option value="6 Cerdik">6 Cerdik</option>
                                         </select>
                                     </div>
-                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="subject">Subject</label>
-                                        <select name="subject" id="subject" class="es-add-select">
-                                            <option value="<?php echo $row["teacherSub1"];?>"><?php echo $row["teacherSub1"];?></option>
-                                            <?php if ($row["teacherSub2"] != ""){?>
-                                            <option value="<?php echo $row["teacherSub2"];?>"><?php echo $row["teacherSub2"];?></option>
-                                            <?php }
-                                            if ($row["teacherSub3"] != ""){?>
-                                            <option value="<?php echo $row["teacherSub3"];?>"><?php echo $row["teacherSub3"];?></option>
-                                            <?php } ?>
-                                        </select>
-                                        
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="marks">Marks</label>
-                                        <input name="marks" id="marks" type="text">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="remarks">Year</label>
-                                        <select name="year" id="year" class="es-add-select">
-                                            <option value="2022">2022</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2020">2020</option>
-                                        </select>
-                                    </div>
-                                    <?php if ($row["teacherType"] == "Guru kelas"){echo 
-                                    '<div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="remarks">Remarks</label>
-                                        <input name="remarks" id="remarks" type="text">
-                                    </div>';}?>
-                                    <div class="col-lg-4 offset-lg-4 col-md-12 text-center">    
-                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>       
+                                    <div class="col">
+                                        <button type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white">Add marks to this class</button>
                                     </div>
                                 </div>
-                                
-                            </form>
+                            </form> 
+
+                            </div>
                         </div>
                     </div>    
                 </section>
+
+                <div class="row">
+                    
+                </div>
+
+                        
 
             </div>
         </div>
