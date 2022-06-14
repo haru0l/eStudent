@@ -4,7 +4,17 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
-
+if(isset($_GET['stuName'])) {
+    $stuGet = $_GET['stuName'];
+    $dobGet = $_GET['date_of_birth'];
+    $icGet = $_GET['icNum'];
+    $genderGet = $_GET['stuGender'];
+    $phoneGet = $_GET['stu_phoneNum'];
+    $addressGet = $_GET['stuAddress'];
+    $classGet = $_GET['class'];
+    $kokoGet = $_GET['cocurricular'];
+    $tabGet = $_GET['tableID'];
+}
 $class = $_GET['class'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -14,15 +24,14 @@ $stuGender = $_POST['stuGender'];
 $date_of_birth = $_POST['date_of_birth'];
 $stuAddress = $_POST['stuAddress'];
 $stu_phoneNum = $_POST['stu_phoneNum'];
-$class = $_POST['class'];
+$newClass = $_POST['class'];
 $cocurricular = $_POST['cocurricular'];
 $year = $_POST['year'];
+$tableID = $_POST['tableID'];
 
-$sql = "INSERT into student (icNum, stuName, stuGender, date_of_birth, stuAddress, stu_phoneNum, class, cocurricular)
-VALUES ('$icNum', '$stuName', '$stuGender', '$date_of_birth', '$stuAddress', '$stu_phoneNum', '$class', '$cocurricular')";
-$conn->query($sql);
+
+$conn->query("UPDATE student SET stuName='$stuName' WHERE tableID = '$tableID'");
 }
-
 $username = $_COOKIE["user_name"];
 $sql = "SELECT * FROM user WHERE login_id='$username'";
 $result = mysqli_query($conn, $sql);
@@ -295,38 +304,42 @@ if (isset($_COOKIE["user_name"]))
                             <h2 class="text-white mb-0">Add New Student to Class <?php echo $class; ?></h2>
                         </header>
                         <div class="card-body">
-                            <form action="students-add.php" method="post" class="es-form es-add-form">
+                            <form action="students-edit.php" method="post" class="es-form es-add-form">
                                 <div class="row">
+                                   <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="tableID">Student ID</label>
+                                        <input type="text" name="tableID" disabled value="<?php echo $tabGet?>">
+                                    </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Student Name</label>
-                                        <input type="text" name="stuName">
+                                        <input type="text" name="stuName" value="<?php echo $stuGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Date of Birth</label>
-                                        <input type="text" name="date_of_birth">
+                                        <input type="text" name="date_of_birth" value="<?php echo $dobGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">IC Number</label>
-                                        <input type="text" name="icNum">
+                                        <input type="text" name="icNum" value="<?php echo $icGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Gender</label>
-                                        <select name="stuGender" id="gender" class="es-add-select">
+                                        <select name="stuGender" id="gender" class="es-add-select" value="<?php echo $genderGet?>">
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Phone number</label>
-                                        <input type="tel" name="stu_phoneNum">
+                                        <input type="tel" name="stu_phoneNum" value="<?php echo $phoneGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Address</label>
-                                        <input type="text" name="stuAddress">
+                                        <input type="text" name="stuAddress" value="<?php echo $addressGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Class</label>
-                                        <select name="class" id="class">
+                                        <select name="class" id="class" value="<?php echo $classGet?>">
                                             <option value="1 Bijak">1 Bijak</option>
                                             <option value="1 Cerdik">1 Cerdik</option>
                                             <option value="2 Bijak">2 Bijak</option>
@@ -343,18 +356,18 @@ if (isset($_COOKIE["user_name"]))
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Co-curricular</label>
-                                        <input type="text" name="cocurricular">
+                                        <input type="text" name="cocurricular" value="<?php echo $kokoGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Year</label>
-                                        <select name="year" id="year" class="es-add-select">
+                                        <select name="year" id="year" class="es-add-select" value="<?php echo $year?>">
                                             <option value="2022">2022</option>
                                             <option value="2021">2021</option>
                                             <option value="2020">2020</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
-                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>
+                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Update</button>
                                     </div>
                                 </div>
 

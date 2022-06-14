@@ -292,7 +292,7 @@ if (isset($_COOKIE["user_name"]))
                             <div class="attendances-list-wrap mt-1">
                                 <div class="show-option d-flex align-items-center mb-4">
                                     <div class="search-student ml-auto">
-                                        <a href="students-add.php" class="btn btn-lg btn-pill bg-gradient-blue text-white">Add new</a>
+                                        <a href="students-add.php?class=<?php echo $class;?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-lg btn-pill bg-gradient-blue text-white">Add new</a>
                                     </div>
                                 </div>
 
@@ -322,8 +322,8 @@ if (isset($_COOKIE["user_name"]))
                                                 <td><?php echo $row["stuAddress"];?></td>
                                                 <td><?php echo $row["stu_phoneNum"];?></td>
                                                 <td><?php echo $row["cocurricular"];?></td>
-                                                <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Edit</a>
-                                                <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Delete</a>
+                                                <td class="text-center"><a href="students-edit.php?stuName=<?php echo $row['stuName'];?>&icNum=<?php echo $row["icNum"];?>&stuGender=<?php echo $row["stuGender"];?>&date_of_birth=<?php echo $row["date_of_birth"];?>&stuAddress=<?php echo $row["stuAddress"];?>&stu_phoneNum=<?php echo $row["stu_phoneNum"];?>&cocurricular=<?php echo $row["cocurricular"];?>&class=<?php echo $class; ?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Edit</a>
+                                                <td class="text-center"><a href="del-student.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Delete</a>
                                             </tr>
                                             <?php endwhile; ?>
                                         </tbody>

@@ -60,9 +60,9 @@ switch ($subject) {
 }
 
 $query = "SELECT * FROM grades WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'";
-    $result = $conn->query($query);
-    $row = $result->fetch_assoc();
-    $count = mysqli_num_rows($result);
+$result = $conn->query($query);
+$row = $result->fetch_assoc();
+$count = mysqli_num_rows($result);
     
 if ($count == 1)    
 {
