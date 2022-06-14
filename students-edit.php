@@ -17,20 +17,27 @@ if(isset($_GET['stuName'])) {
 }
 $class = $_GET['class'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
 $icNum = $_POST['icNum'];
 $stuName = $_POST['stuName'];
 $stuGender = $_POST['stuGender'];
 $date_of_birth = $_POST['date_of_birth'];
 $stuAddress = $_POST['stuAddress'];
 $stu_phoneNum = $_POST['stu_phoneNum'];
-$newClass = $_POST['class'];
+$class = $_POST['class'];
 $cocurricular = $_POST['cocurricular'];
 $year = $_POST['year'];
 $tableID = $_POST['tableID'];
 
-
-$conn->query("UPDATE student SET stuName='$stuName' WHERE tableID = '$tableID'");
+echo "<script type='text/javascript'>alert('$tableID');</script>";
+$conn->query("UPDATE student SET icNum='$icNum' WHERE tableID='$tableID'");
+$conn->query("UPDATE student SET stuName='$stuName' WHERE tableID='$tableID'");
+$conn->query("UPDATE student SET stuGender='$stuGender' WHERE tableID='$tableID'");
+$conn->query("UPDATE student SET date_of_birth='$date_of_birth' WHERE tableID='$tableID'");
+$conn->query("UPDATE student SET stuAddress='$stuAddress' WHERE tableID='$tableID'");
+$conn->query("UPDATE student SET stu_phoneNum='$stu_phoneNum' WHERE tableID='$tableID'");
+$conn->query("UPDATE student SET class='$class' WHERE tableID='$tableID'");
+$conn->query("UPDATE student SET cocurricular='$cocurricular' WHERE tableID='$tableID'");
+$conn->query("UPDATE student SET year='$band' WHERE tableID = '$tableID'");
 }
 $username = $_COOKIE["user_name"];
 $sql = "SELECT * FROM user WHERE login_id='$username'";
@@ -308,7 +315,7 @@ if (isset($_COOKIE["user_name"]))
                                 <div class="row">
                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="tableID">Student ID</label>
-                                        <input type="text" name="tableID" disabled value="<?php echo $tabGet?>">
+                                        <input type="text" name="tableID" readonly value="<?php echo $tabGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Student Name</label>
