@@ -13,6 +13,50 @@ else
 $sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";
 }
 
+switch ($subject) {
+  case "Bahasa Melayu":
+    $newSub = "marksBM";
+    $newBand = "bandBM";
+    break;
+  case "Bahasa Inggeris":
+    $newSub = "marksBI";
+    $newBand = "bandBI";
+    break;
+  case "Sains":
+    $newSub = "marksSains";
+    $newBand = "bandSains";
+    break;
+  case "Pendidikan Seni Visual":
+    $newSub = "marksSeni";
+    $newBand = "bandSeni";
+    break;
+  case "Pendidikan Musik":
+    $newSub = "marksMusik";
+    $newBand = "bandMusik";
+    break;
+  case "Reka bentuk teknologi":
+    $newSub = "marksRBT";
+    $newBand = "bandRBT";
+    break;
+  case "Pendidikan Islam":
+    $newSub = "marksPI";
+    $newBand = "bandPI";
+    break;
+  case "Bahasa Arab":
+    $newSub = "marksBA";
+    $newBand = "bandBA";
+    break;
+  case "Tasmik":
+    $newSub = "marksTasmik";
+    $newBand = "bandTasmik";
+    break;
+   case "Sejarah":
+    $newSub = "marksSejarah";
+    $newBand = "bandSejarah";
+    break;
+  default:
+    echo "error";
+}
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 $val=$connect->query($sql);    

@@ -352,8 +352,9 @@ if (isset($_COOKIE["user_name"]))
                                      <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="subject">Subject</label>
                                         <select name="subject" id="subject" class="es-add-select">
+                                           <?php if ($row["teacherSub1"] != ""){?>
                                             <option value="<?php echo $row["teacherSub1"];?>"><?php echo $row["teacherSub1"];?></option>
-                                            <?php if ($row["teacherSub2"] != ""){?>
+                                            <?php } if ($row["teacherSub2"] != ""){?>
                                             <option value="<?php echo $row["teacherSub2"];?>"><?php echo $row["teacherSub2"];?></option>
                                             <?php }
                                             if ($row["teacherSub3"] != ""){?>

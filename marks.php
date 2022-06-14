@@ -6,17 +6,15 @@ $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
 $class = $_POST['class'];
-if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
-$sql = "SELECT grades.stuIC, grades.marksBM, grades.marksBI, grades.marksMath, grades.marksSains, grades.marksSeni, grades.marksPI, grades.marksBA, grades.marksTasmik, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";}
-else
-{
-$sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";
-}
-
+$loggedin = $_COOKIE["user_name"];
+$sql = "SELECT grades.*, student.*, user.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum INNER JOIN user ON student.class=user.class WHERE student.class='$class' AND year='2022' AND user.login_id=$loggedin GROUP BY stuName ASC";
+    
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 $val=$connect->query($sql);    
 $rows=$val;
+
+
 }
 if (!isset($_COOKIE["user_name"]))
 {?>
@@ -315,79 +313,141 @@ if (isset($_COOKIE["user_name"]))
                                             <tr>
                                                <?php
                                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                                if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
-                                                echo
-                                                '<th scope="col" class="text-white">Student</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Melayu</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Inggeris</th>
-                                                <th scope="col" class="text-white text-center">Matematik</th>
-                                                <th scope="col" class="text-white text-center">Sains</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Kesenian</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Islam</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Arab</th>
-                                                <th scope="col" class="text-white text-center">Tasmik</th>
-                                                <th scope="col" class="text-white text-center">Edit</th>
-                                                <th scope="col" class="text-white text-center">Delete</th>'
-                                                ;}
-                                                else echo
-                                                '<th scope="col" class="text-white">Student</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Melayu</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Inggeris</th>
-                                                <th scope="col" class="text-white text-center">Matematik</th>
-                                                <th scope="col" class="text-white text-center">Sains</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Seni Visual</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Musik</th>
-                                                <th scope="col" class="text-white text-center">Reka bentuk teknologi</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Islam</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Arab</th>
-                                                <th scope="col" class="text-white text-center">Tasmik</th>
-                                                <th scope="col" class="text-white text-center">Sejarah</th>
-                                                <th scope="col" class="text-white text-center">Edit</th>
-                                                <th scope="col" class="text-white text-center">Delete</th>'  
-                                                ;}
+                                                
+                                                ?>
+                                                <th scope="col" class="text-white">Student</th>
+                                                <th scope="col" class="text-white text-center"><?php echo $row["teacherSub1"];?></th>
+                                                <?php if ($row["teacherSub2"] != ""){?>
+                                                <th scope="col" class="text-white text-center"><?php echo $row["teacherSub2"];?></th>
+                                                <?php } ?>
+                                                <?php if ($row["teacherSub3"] != ""){ ?>
+                                                <th scope="col" class="text-white text-center"><?php echo $row["teacherSub3"];?></th>
+                                                <?php }
+                                                }
                                                 ?>
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                            <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                            while($row=$rows->fetch_assoc()):
-                                            if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
+
+                                                    $sub1 = $row["teacherSub1"];
+                                                    $sub2 = $row["teacherSub2"];
+                                                    $sub3 = $row["teacherSub3"];
+                                                    switch ($sub1) {
+                                                      case "Bahasa Melayu":
+                                                        $marks1 = $row["marksBM"];
+                                                        break;
+                                                      case "Bahasa Inggeris":
+                                                        $marks1 = $row["marksBI"];
+                                                        break;
+                                                      case "Sains":
+                                                        $marks1 = $row["marksSains"];
+                                                        break;
+                                                      case "Pendidikan Seni Visual":
+                                                        $marks1 = $row["marksSeni"];
+                                                        break;
+                                                      case "Pendidikan Musik":
+                                                        $marks1 = $row["marksMusik"];
+                                                        break;
+                                                      case "Reka bentuk teknologi":
+                                                        $marks1 = $row["marksRBT"];
+                                                        break;
+                                                      case "Pendidikan Islam":
+                                                        $marks1 = $row["marksPI"];
+                                                        break;
+                                                      case "Bahasa Arab":
+                                                        $marks1 = $row["marksBA"];
+                                                        break;
+                                                      case "Tasmik":
+                                                        $marks1 = $row["marksTasmik"];
+                                                        break;
+                                                       case "Sejarah":
+                                                        $marks1 = $row["marksSejarah"];
+                                                        break;
+                                                      default:
+                                                        echo "error";
+                                                    }
+                                                    switch ($sub2) {
+                                                      case "Bahasa Melayu":
+                                                        $marks2 = $row["marksBM"];
+                                                        break;
+                                                      case "Bahasa Inggeris":
+                                                        $marks2 = $row["marksBI"];
+                                                        break;
+                                                      case "Sains":
+                                                        $marks2 = $row["marksSains"];
+                                                        break;
+                                                      case "Pendidikan Seni Visual":
+                                                        $marks2 = $row["marksSeni"];
+                                                        break;
+                                                      case "Pendidikan Musik":
+                                                        $marks2 = $row["marksMusik"];
+                                                        break;
+                                                      case "Reka bentuk teknologi":
+                                                        $marks2 = $row["marksRBT"];
+                                                        break;
+                                                      case "Pendidikan Islam":
+                                                        $marks2 = $row["marksPI"];
+                                                        break;
+                                                      case "Bahasa Arab":
+                                                        $marks2 = $row["marksBA"];
+                                                        break;
+                                                      case "Tasmik":
+                                                        $marks2 = $row["marksTasmik"];
+                                                        break;
+                                                       case "Sejarah":
+                                                        $marks2 = $row["marksSejarah"];
+                                                        break;
+                                                      default:
+                                                        echo "error";
+                                                    }
+                                                    switch ($sub3) {
+                                                      case "Bahasa Melayu":
+                                                        $marks3 = $row["marksBM"];
+                                                        break;
+                                                      case "Bahasa Inggeris":
+                                                        $marks3 = $row["marksBI"];
+                                                        break;
+                                                      case "Sains":
+                                                        $marks3 = $row["marksSains"];
+                                                        break;
+                                                      case "Pendidikan Seni Visual":
+                                                        $marks3 = $row["marksSeni"];
+                                                        break;
+                                                      case "Pendidikan Musik":
+                                                        $marks3 = $row["marksMusik"];
+                                                        break;
+                                                      case "Reka bentuk teknologi":
+                                                        $marks3 = $row["marksRBT"];
+                                                        break;
+                                                      case "Pendidikan Islam":
+                                                        $marks3 = $row["marksPI"];
+                                                        break;
+                                                      case "Bahasa Arab":
+                                                        $marks3 = $row["marksBA"];
+                                                        break;
+                                                      case "Tasmik":
+                                                        $marks3 = $row["marksTasmik"];
+                                                        break;
+                                                       case "Sejarah":
+                                                        $marks3 = $row["marksSejarah"];
+                                                        break;
+                                                      default:
+                                                        echo "error";
+                                                    }
                                             ?>
                                             <tr>
                                                 <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $row["marksBM"];?></td>
-                                                <td><?php echo $row["marksBI"];?></td>
-                                                <td><?php echo $row["marksMath"];?></td>
-                                                <td><?php echo $row["marksSains"];?></td>
-                                                <td><?php echo $row["marksSeni"];?></td>
-                                                <td><?php echo $row["marksPI"];?></td>
-                                                <td><?php echo $row["marksBA"];?></td>
-                                                <td><?php echo $row["marksTasmik"];?></td>
-                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
-                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Delete</a></td>
-                                            </tr><?php }
-                                            else
-                                            { ?>
-                                            <tr>
-                                                <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $row["marksBM"];?></td>
-                                                <td><?php echo $row["marksBI"];?></td>
-                                                <td><?php echo $row["marksMath"];?></td>
-                                                <td><?php echo $row["marksSains"];?></td>
-                                                <td><?php echo $row["marksSeni"];?></td>
-                                                <td><?php echo $row["marksMusik"];?></td>
-                                                <td><?php echo $row["marksRBT"];?></td>
-                                                <td><?php echo $row["marksPI"];?></td>
-                                                <td><?php echo $row["marksBA"];?></td>
-                                                <td><?php echo $row["marksTasmik"];?></td>
-                                                <td><?php echo $row["marksSejarah"];?></td>
-                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
-                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Delete</a></td>
+                                                <td><?php echo $marks1;?></td>
+                                                <?php if ($row["teacherSub2"] != ""){ ?>
+                                                <td><?php echo $marks2;?></td>
+                                            <?php }
+                                                if ($row["teacherSub3"] != ""){ ?>
+                                                <td><?php echo $marks3?></td>
+                                             <?php   }?>
                                             </tr><?php
                                             }
-                                            endwhile;
-}
                                             ?>
                                                   
                                                    <tbody>
