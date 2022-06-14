@@ -326,7 +326,7 @@ function hideButton(x)
     <tr>
         <td width='140'>&nbsp;Ulasan Guru Kelas</td>
         <td>:</td>
-        <td>&nbsp;<?php echo $row["remarks"];?></td>
+        <td>&nbsp;<?php echo $row["comment"];?></td>
     </tr>
 </table>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
