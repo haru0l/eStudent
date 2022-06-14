@@ -58,15 +58,20 @@ switch ($subject) {
   default:
     echo "error";
 }
+
+$query = "SELECT * FROM grades WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'";
+    $result = $conn->query($query);
+    $row = $result->fetch_assoc();
+    $count = mysqli_num_rows($result);
     
-if ($conn->query("SELECT * FROM grades WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'")===TRUE)
+if ($count == 1)    
 {
-$conn->query("UPDATE grades SET $newBand='$band' WHERE stuIC = '$stuIC' AND test='$test'");
-$conn->query("UPDATE grades SET $newSub='$marks' WHERE stuIC = '$stuIC' AND test='$test'");
-echo '<script type="text/javascript">';
-echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
-echo '</script>';
-echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
+$conn->query("UPDATE grades SET $newBand='$band' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+$conn->query("UPDATE grades SET $newSub='$marks' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+#echo '<script type="text/javascript">';
+#echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+#echo '</script>';
+#echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
 }
 else
 {
