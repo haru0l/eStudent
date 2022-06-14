@@ -419,7 +419,7 @@ if (isset($_COOKIE["user_name"]))
                                                         $marks2 = $row["marksSejarah"];
                                                         break;
                                                       default:
-                                                        echo "error";
+                                                        break;
                                                     }
                                                     switch ($sub3) {
                                                       case "Bahasa Melayu":
@@ -453,7 +453,7 @@ if (isset($_COOKIE["user_name"]))
                                                         $marks3 = $row["marksSejarah"];
                                                         break;
                                                       default:
-                                                        echo "error";
+                                                        break;
                                                     }
                                             ?>
                                             <tr>

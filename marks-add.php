@@ -4,40 +4,92 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
+$class=$_GET['class'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$stuIC = $_POST['stuIC'];
+$stuIC = $_POST['stuName'];
 $subject = $_POST['subject'];
 $marks = $_POST['marks'];
-$remarks = $_POST['remarks'];
+#$remarks = $_POST['remarks'];
+$test = $_POST['test'];
+$band = $_POST['band'];
 $year = $_POST['year'];
+
+switch ($subject) {
+  case "Bahasa Melayu":
+    $newSub = "marksBM";
+    $newBand = "bandBM";
+    break;
+  case "Bahasa Inggeris":
+    $newSub = "marksBI";
+    $newBand = "bandBI";
+    break;
+  case "Sains":
+    $newSub = "marksSains";
+    $newBand = "bandSains";
+    break;
+  case "Pendidikan Seni Visual":
+    $newSub = "marksSeni";
+    $newBand = "bandSeni";
+    break;
+  case "Pendidikan Musik":
+    $newSub = "marksMusik";
+    $newBand = "bandMusik";
+    break;
+  case "Reka bentuk teknologi":
+    $newSub = "marksRBT";
+    $newBand = "bandRBT";
+    break;
+  case "Pendidikan Islam":
+    $newSub = "marksPI";
+    $newBand = "bandPI";
+    break;
+  case "Bahasa Arab":
+    $newSub = "marksBA";
+    $newBand = "bandBA";
+    break;
+  case "Tasmik":
+    $newSub = "marksTasmik";
+    $newBand = "bandTasmik";
+    break;
+   case "Sejarah":
+    $newSub = "marksSejarah";
+    $newBand = "bandSejarah";
+    break;
+  default:
+    echo "went through switchcase";
+        echo $subject;
+        break;
+}
+
+$query = "SELECT * FROM grades WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'";
+    $result = $conn->query($query);
+    $row = $result->fetch_assoc();
+    $count = mysqli_num_rows($result);
     
-if ($conn->query("SELECT * FROM grades WHERE stuIC = $stuIC AND year='2022'"))
+if ($count == 1)    
 {
-$sql = "UPDATE grades SET $subject = '$marks', remarks = '$remarks' WHERE stuIC = $stuIC";
-$conn->query($sql);
+$conn->query("UPDATE grades SET $newBand='$band' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+$conn->query("UPDATE grades SET $newSub='$marks' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
 }
 else
 {
-$sql = "INSERT into grades (stuIC, $subject, year)
-VALUES ('$stuIC', '$marks', '$remarks', '$year')";
+$sql = "INSERT into grades (stuIC, $newSub, year, test, $newBand)
+VALUES ('$stuIC', '$marks', '$year', '$test', '$band')";
 $conn->query($sql);
 }
+}
+$username = $_COOKIE["user_name"];
+$sql = "SELECT * FROM user WHERE login_id='$username'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
 
-if ($conn -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-  exit();
-}
-if (!$conn->query($sql)) {
-  echo("Error description: " . $mysqli -> error);
-}
-else {
-    echo '<script>alert("Added!")</script>';
-    header("Location: marks.php");
-die();
-}
-
+$val=$conn->query($sql);    
+$rows=$val;
 //header ('Location: attendances-blank.php');
-}
 if (!isset($_COOKIE["user_name"]) || $_COOKIE["user_name"] != "admin")
 {?>
 <html>
@@ -293,39 +345,68 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                 <section class="es-form-area">
                     <div class="card">
                         <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
-                            <h2 class="text-white mb-0">Add New Marks</h2>
+                            <h2 class="text-white mb-0">Add New Marks for Class <?php echo $class;?></h2>
                         </header>
                         <div class="card-body">
                             <form action="marks-add.php" method="post" class="es-form es-add-form">
                                 <div class="row">
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Student IC</label>
-                                        <input name="stuIC" type="text" placeholder="">
+                                        <label for="title">Student Name</label>
+                                        <select name="stuName" id="stuName" class="es-add-select">
+                                        <?php
+                                            $sql2 = "SELECT * FROM student WHERE class='$class'";
+                                        $result2 = mysqli_query($conn, $sql2);
+                                        $row2 = mysqli_fetch_array($result2);
+
+                                        $val2=$conn->query($sql2);    
+                                        $rows2=$val2;
+                                            while($row2=$rows2->fetch_assoc()):?>
+                                            
+                                            <option value="<?php echo $row2["icNum"];?>"><?php echo $row2["stuName"];?></option>
+                                            <?php endwhile; ?>
+                                        </select>
                                     </div>
                                      <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="subject">Subject</label>
                                         <select name="subject" id="subject" class="es-add-select">
-                                            <option value="marksBM">Bahasa Melayu</option>
-                                            <option value="marksBI">Bahasa Inggeris</option>
-                                            <option value="marksMath">Matematik</option>
-                                            <option value="marksSains">Sains</option>
-                                            <option value="marksSeni">Pendidikan Seni Visual</option>
-                                            <option value="marksMusik">Pendidikan Musik</option>
-                                            <option value="marksRBT">Reka bentuk teknologi</option>
-                                            <option value="marksPI">Pendidikan Islam</option>
-                                            <option value="marksBA">Bahasa Arab</option>
-                                            <option value="marksTasmik">Tasmik</option>
-                                            <option value="marksSejarah">Sejarah</option>
+                                            <option value="Bahasa Melayu">Bahasa Melayu</option>
+                                            <option value="Bahasa Inggeris">Bahasa Inggeris</option>
+                                            <option value="Matematik">Matematik</option>
+                                            <option value="Sains">Sains</option>
+                                            <option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
+                                            <option value="Pendidikan Musik">Pendidikan Musik</option>
+                                            <option value="Reka bentuk teknologi">Reka bentuk teknologi</option>
+                                            <option value="Pendidikan Islam">Pendidikan Islam</option>
+                                            <option value="Bahasa Arab">Bahasa Arab</option>
+                                            <option value="Tasmik">Tasmik</option>
+                                            <option value="Sejarah">Sejarah</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="marks">Marks</label>
-                                        <input name="marks" id="marks" type="text">
+                                        <input name="marks" id="marks" type="number" placeholder="90">
                                     </div>
+                                    
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="remarks">Remarks</label>
-                                        <input name="remarks" id="remarks" type="text">
+                                        <label for="exam">Exam</label>
+                                           <select name="test" id="test" class="es-add-select">
+                                            <option value="PepAwal">Peperiksaan Awal Tahun</option>
+                                            <option value="PepAkhir">Peperiksaan Akhir Tahun</option>
+                                             </select>
                                     </div>
+                                    
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="band">Band</label>
+                                        <select name="band" id="band" class="es-add-select">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                    
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Year</label>
                                         <select name="year" id="year" class="es-add-select">

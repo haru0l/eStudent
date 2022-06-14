@@ -333,7 +333,15 @@ if (isset($_COOKIE["user_name"]))
                         
                         </header>
                         <div class="card-body">
-                            <form action="marks-add-teacher.php" method="get" class="es-form">
+                           <?php
+                            if ($_COOKIE["user_name"] == "admin") 
+                            {
+                             echo '<form action="marks-add.php" method="get" class="es-form">';
+                            }
+                            else
+                            {
+                            echo    '<form action="marks-add-teacher.php" method="get" class="es-form">' ;
+                            } ?>
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <label for="class">Class</label>
