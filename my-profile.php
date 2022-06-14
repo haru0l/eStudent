@@ -5,7 +5,7 @@ $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
 $username = $_COOKIE["user_name"];
-$sql = "SELECT * FROM teacher WHERE login_id='$username'";
+$sql = "SELECT * FROM user WHERE login_id='$username'";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 

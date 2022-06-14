@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $query = "SELECT * from teacher WHERE login_id='$username' AND teacherPassword = '$password'";
+    $query = "SELECT * FROM user WHERE login_id='$username' AND teacherPassword = '$password'";
     $result = $connect->query($query);
     $row = $result->fetch_assoc();
     $count = mysqli_num_rows($result);

@@ -39,7 +39,7 @@ die();
 }
 }
 $login_user = $_COOKIE["user_name"];
-$sql = "SELECT * FROM teacher WHERE login_id='$login_user'";
+$sql = "SELECT * FROM user WHERE login_id='$login_user'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 $val=$conn->query($sql);    
@@ -283,7 +283,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                 <section class="es-form-area">
                     <div class="card">
                         <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
-                            <h2 class="text-white mb-0">Add New Teacher</h2>
+                            <h2 class="text-white mb-0">Add New User</h2>
                         </header>
                         <div class="card-body">
                             <form action="teacher-add.php" method="post" class="es-form es-add-form">
@@ -332,6 +332,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                         <select name="teacherType" id="class">
                                             <option value="Guru kelas">Guru kelas</option>
                                             <option value="Guru subjek">Guru subjek</option>
+											<option value="Guru subjek">Admin</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">

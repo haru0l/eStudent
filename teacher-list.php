@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
-$sql = "SELECT * FROM teacher GROUP BY teacherName ASC";
+$sql = "SELECT * FROM user GROUP BY teacherName ASC";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 
