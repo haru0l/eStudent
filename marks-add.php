@@ -197,9 +197,9 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                         <?php if ($_COOKIE["type"] == "Guru kelas" || $_COOKIE["user_name"] == "admin") {
                         
                         echo '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
+                            <a class="u-sidebar-nav-menu__link" href="classes-list.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Classes</span>
+                                <span class="u-sidebar-nav-menu__item-title">Student list</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';

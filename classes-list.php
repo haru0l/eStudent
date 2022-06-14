@@ -168,9 +168,9 @@ if (isset($_COOKIE["user_name"]))
                         <?php if ($_COOKIE["type"] == "Guru kelas" || $_COOKIE["user_name"] == "admin") {
                         
                         echo '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
+                            <a class="u-sidebar-nav-menu__link" href="classes-list.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Classes</span>
+                                <span class="u-sidebar-nav-menu__item-title">Student list</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -245,7 +245,7 @@ if (isset($_COOKIE["user_name"]))
                 <section class="breadcumb-area card bg-gradient-blue mb-5">
                     <div class="bread-cumb-content card-body d-flex align-items-center">
                         <div class="breadcumb-heading">
-                            <h2 class="text-white">Manage Classes</h2>
+                            <h2 class="text-white">Manage Students</h2>
                         </div>
                         <div class="breadcumb-image ml-auto">
                             <img src="assets/img/breadcumb-manage-attendances.png" alt="">
