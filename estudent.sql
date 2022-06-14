@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2022 at 11:38 AM
+-- Generation Time: Jun 14, 2022 at 04:51 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -40,17 +40,39 @@ CREATE TABLE `grades` (
   `marksMusik` varchar(2) NOT NULL,
   `marksRBT` varchar(2) NOT NULL,
   `marksSejarah` varchar(2) NOT NULL,
-  `remarks` varchar(50) NOT NULL,
-  `year` year(4) NOT NULL
+  `year` year(4) NOT NULL,
+  `test` varchar(50) NOT NULL,
+  `bandBM` varchar(2) NOT NULL,
+  `bandBI` varchar(2) NOT NULL,
+  `bandMath` varchar(2) NOT NULL,
+  `bandSains` varchar(2) NOT NULL,
+  `bandSeni` varchar(2) NOT NULL,
+  `bandPI` varchar(2) NOT NULL,
+  `bandBA` varchar(2) NOT NULL,
+  `bandTasmik` varchar(2) NOT NULL,
+  `bandMusik` varchar(2) NOT NULL,
+  `bandRBT` varchar(2) NOT NULL,
+  `bandSejarah` varchar(2) NOT NULL,
+  `remarksBM` varchar(50) NOT NULL,
+  `remarksBI` varchar(50) NOT NULL,
+  `remarksMath` varchar(50) NOT NULL,
+  `remarksSains` varchar(50) NOT NULL,
+  `remarksSeni` varchar(50) NOT NULL,
+  `remarksPI` varchar(50) NOT NULL,
+  `remarksBA` varchar(50) NOT NULL,
+  `remarksTaskmik` varchar(50) NOT NULL,
+  `remarksMusik` varchar(50) NOT NULL,
+  `remarksRBT` varchar(50) NOT NULL,
+  `remarksSejarah` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `grades`
 --
 
-INSERT INTO `grades` (`stuIC`, `marksBM`, `marksBI`, `marksMath`, `marksSains`, `marksSeni`, `marksPI`, `marksBA`, `marksTasmik`, `marksMusik`, `marksRBT`, `marksSejarah`, `remarks`, `year`) VALUES
-('020822050567', 'A', 'B', 'C', 'D', 'E', 'F', 'A', 'B', '', '', '', 'good', 2022),
-('4', 'A', 'A', '', 'D', 'A', '', '', '', '', '', 'A', '', 2022);
+INSERT INTO `grades` (`stuIC`, `marksBM`, `marksBI`, `marksMath`, `marksSains`, `marksSeni`, `marksPI`, `marksBA`, `marksTasmik`, `marksMusik`, `marksRBT`, `marksSejarah`, `year`, `test`, `bandBM`, `bandBI`, `bandMath`, `bandSains`, `bandSeni`, `bandPI`, `bandBA`, `bandTasmik`, `bandMusik`, `bandRBT`, `bandSejarah`, `remarksBM`, `remarksBI`, `remarksMath`, `remarksSains`, `remarksSeni`, `remarksPI`, `remarksBA`, `remarksTaskmik`, `remarksMusik`, `remarksRBT`, `remarksSejarah`) VALUES
+('020822050567', '', '66', '', '33', '67', '', '', '', '', '', '', 2022, 'PepAwal', '', '1', '', '1', '1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('020822050567', '', '', '', '99', '23', '', '', '', '', '', '', 2022, 'PepAkhir', '', '', '', '3', '6', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -59,15 +81,25 @@ INSERT INTO `grades` (`stuIC`, `marksBM`, `marksBI`, `marksMath`, `marksSains`, 
 --
 
 CREATE TABLE `report` (
-  `stuIC` int(12) NOT NULL,
-  `subName` int(11) NOT NULL,
+  `stuIC` varchar(12) NOT NULL,
   `attitude` varchar(10) NOT NULL,
+  `attendance` int(11) NOT NULL,
   `comment` varchar(100) NOT NULL,
   `teacherName` varchar(50) NOT NULL,
   `class` varchar(20) NOT NULL,
   `cocurricular` varchar(20) NOT NULL,
+  `rankingClass` varchar(20) NOT NULL,
+  `rankingWhole` varchar(20) NOT NULL,
   `year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `report`
+--
+
+INSERT INTO `report` (`stuIC`, `attitude`, `attendance`, `comment`, `teacherName`, `class`, `cocurricular`, `rankingClass`, `rankingWhole`, `year`) VALUES
+('4', 'among', 12, 'among us', '1234', '4 Bijak', '', '', '', 2022),
+('020822050567', 'amongus', 1, 'amongus', 'amongus', 'amongus', 'amongus', 'amongus', 'amongus', 2022);
 
 -- --------------------------------------------------------
 
@@ -93,15 +125,16 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`icNum`, `stuName`, `stuGender`, `date_of_birth`, `stuAddress`, `stu_phoneNum`, `stuPassword`, `class`, `cocurricular`) VALUES
 ('020822050567', 'Adam', 'Male', '22/08/22', 'Address', '0149454863', 'adam', '1 Bijak', 'cocurricular'),
-('4', 'test 4b', 'Male', '4', '4', '4', '', '4 Bijak', '4');
+('4', 'test 4b', 'Male', '4', '4', '4', 'amongus', '4 Bijak', '4'),
+('9999', 'hi', 'Male', '', '', '', '', '1 Bijak', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teacher`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `teacher` (
+CREATE TABLE `user` (
   `login_id` varchar(12) NOT NULL,
   `teacherPassword` varchar(100) NOT NULL,
   `teacherName` varchar(60) NOT NULL,
@@ -114,37 +147,30 @@ CREATE TABLE `teacher` (
   `teacherType` varchar(50) NOT NULL,
   `teacherSub1` varchar(50) NOT NULL,
   `teacherSub2` varchar(50) NOT NULL,
-  `teacherSub3` varchar(50) NOT NULL
+  `teacherSub3` varchar(50) NOT NULL,
+  `class` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `teacher`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `teacher` (`login_id`, `teacherPassword`, `teacherName`, `gender`, `teacherEmail`, `teacher_phoneNum`, `teacher_Address`, `date_of_birth`, `acaQualification`, `teacherType`, `teacherSub1`, `teacherSub2`, `teacherSub3`) VALUES
-('020822050567', '1234', 'eqals', 'Male', '123', 'semalam', '020822050567', '0208220505', '020822050567', 'Guru kelas', 'Bahasa Melayu', 'Bahasa Inggeris', 'Bahasa Inggeris'),
-('1234', '1234', 'adam', 'Male', '', '', '', '', '', 'Guru subjek', 'Bahasa Inggeris', '', ''),
-('4567', '4567', '', 'Male', '', '', '', '', '', 'Guru kelas', 'Sains', 'Pendidikan Seni Visual', ''),
-('admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin');
+INSERT INTO `user` (`login_id`, `teacherPassword`, `teacherName`, `gender`, `teacherEmail`, `teacher_phoneNum`, `teacher_Address`, `date_of_birth`, `acaQualification`, `teacherType`, `teacherSub1`, `teacherSub2`, `teacherSub3`, `class`) VALUES
+('020822050567', '1234', '', 'Male', '123', 'semalam', '020822050567', '0208220505', '020822050567', 'Guru kelas', 'Bahasa Melayu', 'Bahasa Inggeris', 'Bahasa Inggeris', '1 Bijak'),
+('1234', '1234', '', 'Male', '', '', '', '', '', 'Guru subjek', 'Bahasa Inggeris', '', '', '4 Bijak'),
+('4567', '4567', '', 'Male', '', '', '', '', '', 'Guru subjek', 'Sains', '', '', '1 Bijak'),
+('admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', ''),
+('test', '', 'hi', 'Male', '', '', '', '', '', 'Guru kelas', 'Bahasa Melayu', '', '', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `grades`
---
-ALTER TABLE `grades`
-  ADD PRIMARY KEY (`stuIC`),
-  ADD KEY `stuID` (`stuIC`),
-  ADD KEY `stuIC_2` (`stuIC`);
-
---
 -- Indexes for table `report`
 --
 ALTER TABLE `report`
   ADD KEY `icNum` (`stuIC`),
-  ADD KEY `subID` (`subName`),
   ADD KEY `teacherName` (`teacherName`);
 
 --
@@ -154,9 +180,9 @@ ALTER TABLE `student`
   ADD PRIMARY KEY (`icNum`);
 
 --
--- Indexes for table `teacher`
+-- Indexes for table `user`
 --
-ALTER TABLE `teacher`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`login_id`),
   ADD KEY `teacherName` (`teacherName`);
 COMMIT;

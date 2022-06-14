@@ -172,7 +172,24 @@ if (isset($_COOKIE["user_name"]))
 
                         <!-- Marks -->
                         <!-- Classes -->
-                        <?php if ($_COOKIE["type"] == "Guru kelas" || $_COOKIE["user_name"] == "admin") {
+                        <?php if ($_COOKIE["user_name"] == "admin") {
+                            echo '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="classes-view.php">
+                                <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Student list</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+                                
+                                echo '<li class="u-sidebar-nav-menu__item">
+                            <a class="u-sidebar-nav-menu__link" href="marks-admin.php">
+                                <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
+                                <span class="u-sidebar-nav-menu__item-title">Marks</span>
+                                <span class="u-sidebar-nav-menu__indicator"></span>
+                            </a>
+                        </li>';
+                        }
+                        if ($_COOKIE["type"] == "Guru kelas") {
                         
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-list.php">
@@ -185,16 +202,16 @@ if (isset($_COOKIE["user_name"]))
     
     
                         echo '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="marks.php">
+                            <a class="u-sidebar-nav-menu__link" href="marks-admin.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Marks</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
 }
-                        else {
+                        if ($_COOKIE["type"] == "Guru subjek") {
                         echo '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="marks-sub.php">
+                            <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Marks</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
@@ -316,7 +333,9 @@ if (isset($_COOKIE["user_name"]))
                                                 
                                                 ?>
                                                 <th scope="col" class="text-white">Student</th>
+                                                <?php if ($row["teacherSub1"] != ""){?>
                                                 <th scope="col" class="text-white text-center"><?php echo $row["teacherSub1"];?></th>
+                                                <?php } ?>
                                                 <?php if ($row["teacherSub2"] != ""){?>
                                                 <th scope="col" class="text-white text-center"><?php echo $row["teacherSub2"];?></th>
                                                 <?php } ?>

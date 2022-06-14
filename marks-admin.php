@@ -13,50 +13,6 @@ else
 $sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";
 }
 
-switch ($subject) {
-  case "Bahasa Melayu":
-    $newSub = "marksBM";
-    $newBand = "bandBM";
-    break;
-  case "Bahasa Inggeris":
-    $newSub = "marksBI";
-    $newBand = "bandBI";
-    break;
-  case "Sains":
-    $newSub = "marksSains";
-    $newBand = "bandSains";
-    break;
-  case "Pendidikan Seni Visual":
-    $newSub = "marksSeni";
-    $newBand = "bandSeni";
-    break;
-  case "Pendidikan Musik":
-    $newSub = "marksMusik";
-    $newBand = "bandMusik";
-    break;
-  case "Reka bentuk teknologi":
-    $newSub = "marksRBT";
-    $newBand = "bandRBT";
-    break;
-  case "Pendidikan Islam":
-    $newSub = "marksPI";
-    $newBand = "bandPI";
-    break;
-  case "Bahasa Arab":
-    $newSub = "marksBA";
-    $newBand = "bandBA";
-    break;
-  case "Tasmik":
-    $newSub = "marksTasmik";
-    $newBand = "bandTasmik";
-    break;
-   case "Sejarah":
-    $newSub = "marksSejarah";
-    $newBand = "bandSejarah";
-    break;
-  default:
-    echo "error";
-}
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 $val=$connect->query($sql);    
@@ -330,14 +286,22 @@ if (isset($_COOKIE["user_name"]))
                 <section class="es-form-area">
                     <div class="card">
                         <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
-                        
+                           <?php
+                            if ($_COOKIE["user_name"] == "admin") 
+                            {
+                             echo '<a href="marks-viewClass.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>';
+                            }
+                            else
+                            {
+                            echo    '<a href="marks-viewClass.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Add New</a>' ;
+                            } ?>
                         </header>
                         <div class="card-body">
-                            <form action="marks-add-teacher.php" method="get" class="es-form">
+                            <form action="marks-admin.php" method="post" class="es-form">
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <label for="class">Class</label>
-                                        <select name="class" id="class">
+                                        <select name="class" id="class" value="<?php echo $_POST['class'];?>">
                                             <option value="1 Bijak">1 Bijak</option>
                                             <option value="1 Cerdik">1 Cerdik</option>
                                             <option value="2 Bijak">2 Bijak</option>
@@ -353,18 +317,119 @@ if (isset($_COOKIE["user_name"]))
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <button type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white">Add marks to this class</button>
+                                        <button type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white">View</button>
                                     </div>
                                 </div>
                             </form> 
 
+                            <div class="attendances-list-wrap mt-5">
+                                <div class="show-option d-flex align-items-center mb-4">
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead class="bg-gradient-blue">
+                                            <tr>
+                                               <?php
+                                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                                if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
+                                                echo
+                                                '<th scope="col" class="text-white">Student</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Melayu</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Inggeris</th>
+                                                <th scope="col" class="text-white text-center">Matematik</th>
+                                                <th scope="col" class="text-white text-center">Sains</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Kesenian</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Islam</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Arab</th>
+                                                <th scope="col" class="text-white text-center">Tasmik</th>'
+                                                ;}
+                                                else echo
+                                                '<th scope="col" class="text-white">Student</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Melayu</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Inggeris</th>
+                                                <th scope="col" class="text-white text-center">Matematik</th>
+                                                <th scope="col" class="text-white text-center">Sains</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Seni Visual</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Musik</th>
+                                                <th scope="col" class="text-white text-center">Reka bentuk teknologi</th>
+                                                <th scope="col" class="text-white text-center">Pendidikan Islam</th>
+                                                <th scope="col" class="text-white text-center">Bahasa Arab</th>
+                                                <th scope="col" class="text-white text-center">Tasmik</th>
+                                                <th scope="col" class="text-white text-center">Sejarah</th>'  
+                                                ;}
+                                                ?>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                           <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                            while($row=$rows->fetch_assoc()):
+                                            if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row["stuName"];?></td>
+                                                <td><?php echo $row["marksBM"];?></td>
+                                                <td><?php echo $row["marksBI"];?></td>
+                                                <td><?php echo $row["marksMath"];?></td>
+                                                <td><?php echo $row["marksSains"];?></td>
+                                                <td><?php echo $row["marksSeni"];?></td>
+                                                <td><?php echo $row["marksPI"];?></td>
+                                                <td><?php echo $row["marksBA"];?></td>
+                                                <td><?php echo $row["marksTasmik"];?></td>
+                                            </tr><?php }
+                                            else
+                                            { ?>
+                                            <tr>
+                                                <td><?php echo $row["stuName"];?></td>
+                                                <td><?php echo $row["marksBM"];?></td>
+                                                <td><?php echo $row["marksBI"];?></td>
+                                                <td><?php echo $row["marksMath"];?></td>
+                                                <td><?php echo $row["marksSains"];?></td>
+                                                <td><?php echo $row["marksSeni"];?></td>
+                                                <td><?php echo $row["marksMusik"];?></td>
+                                                <td><?php echo $row["marksRBT"];?></td>
+                                                <td><?php echo $row["marksPI"];?></td>
+                                                <td><?php echo $row["marksBA"];?></td>
+                                                <td><?php echo $row["marksTasmik"];?></td>
+                                                <td><?php echo $row["marksSejarah"];?></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Delete</a></td>
+                                            </tr><?php
+                                            }
+                                            endwhile;
+}
+                                            ?>
+                                                  
+                                                   <tbody>
+                                            
+                                                
+                                            
+                                        </tbody>                           
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>    
                 </section>
 
                 <div class="row">
-                    
+                    <div class="col-md-12 text-center">
+                        <nav aria-label="Bootstrap Pagination" class="mt-5 text-center d-inline-block">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="btn btn-outline-danger prev" href="#"><span class="ml-1 d-none d-xl-inline-block">Previous</span></a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="btn btn-danger bg-gradient-blue text-white ml-4 mr-4" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="btn btn-outline-danger next" href="#"><span class="mr-1 d-none d-xl-inline-block">Next</span></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
 
                         
