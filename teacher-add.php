@@ -307,8 +307,8 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Gender</label>
                                         <select name="gender" id="gender" class="es-add-select">
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                            <option value="MALE">MALE</option>
+                                            <option value="FEMALE">FEMALE</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
@@ -317,7 +317,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Address</label>
-                                        <input type="text" name="teacher_Address">
+                                        <input type="text" oninput="this.value = this.value.toUpperCase()" name="teacher_Address">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Email</label>
@@ -325,7 +325,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Academic Qualification</label>
-                                        <input type="text" name="acaQualification">
+                                        <input type="text" oninput="this.value = this.value.toUpperCase()" name="acaQualification">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Type</label>

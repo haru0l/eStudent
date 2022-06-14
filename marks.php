@@ -7,7 +7,7 @@ $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
 $class = $_POST['class'];
 if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
-$sql = "SELECT grades.stuIC, grades.marksBM, grades.marksBI, grades.marksMath, grades.marksSains, grades.marksSeni, grades.marksPI, grades.marksBA, grades.marksTasmik, grades.remarks, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";}
+$sql = "SELECT grades.stuIC, grades.marksBM, grades.marksBI, grades.marksMath, grades.marksSains, grades.marksSeni, grades.marksPI, grades.marksBA, grades.marksTasmik, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";}
 else
 {
 $sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' AND year='2022' GROUP BY stuName ASC";
@@ -326,7 +326,6 @@ if (isset($_COOKIE["user_name"]))
                                                 <th scope="col" class="text-white text-center">Pendidikan Islam</th>
                                                 <th scope="col" class="text-white text-center">Bahasa Arab</th>
                                                 <th scope="col" class="text-white text-center">Tasmik</th>
-                                                <th scope="col" class="text-white text-center">Remarks</th>
                                                 <th scope="col" class="text-white text-center">Edit</th>
                                                 <th scope="col" class="text-white text-center">Delete</th>'
                                                 ;}
@@ -343,7 +342,6 @@ if (isset($_COOKIE["user_name"]))
                                                 <th scope="col" class="text-white text-center">Bahasa Arab</th>
                                                 <th scope="col" class="text-white text-center">Tasmik</th>
                                                 <th scope="col" class="text-white text-center">Sejarah</th>
-                                                <th scope="col" class="text-white text-center">Remarks</th>
                                                 <th scope="col" class="text-white text-center">Edit</th>
                                                 <th scope="col" class="text-white text-center">Delete</th>'  
                                                 ;}
@@ -366,7 +364,6 @@ if (isset($_COOKIE["user_name"]))
                                                 <td><?php echo $row["marksPI"];?></td>
                                                 <td><?php echo $row["marksBA"];?></td>
                                                 <td><?php echo $row["marksTasmik"];?></td>
-                                                <td><?php echo $row["remarks"];?></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Delete</a></td>
                                             </tr><?php }
@@ -385,7 +382,6 @@ if (isset($_COOKIE["user_name"]))
                                                 <td><?php echo $row["marksBA"];?></td>
                                                 <td><?php echo $row["marksTasmik"];?></td>
                                                 <td><?php echo $row["marksSejarah"];?></td>
-                                                <td><?php echo $row["remarks"];?></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Edit</a></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Delete</a></td>
                                             </tr><?php

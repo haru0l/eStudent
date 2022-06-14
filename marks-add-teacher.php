@@ -6,57 +6,72 @@ $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
 $class=$_GET['class'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$stuIC = $_POST['stuIC'];
+$stuIC = $_POST['stuName'];
 $subject = $_POST['subject'];
+$marks = $_POST['marks'];
+#$remarks = $_POST['remarks'];
+$test = $_POST['test'];
+$band = $_POST['band'];
+$year = $_POST['year'];
 
 switch ($subject) {
   case "Bahasa Melayu":
     $newSub = "marksBM";
+    $newBand = "bandBM";
     break;
   case "Bahasa Inggeris":
     $newSub = "marksBI";
+    $newBand = "bandBI";
     break;
   case "Sains":
     $newSub = "marksSains";
+    $newBand = "bandSains";
     break;
   case "Pendidikan Seni Visual":
     $newSub = "marksSeni";
+    $newBand = "bandSeni";
     break;
   case "Pendidikan Musik":
     $newSub = "marksMusik";
+    $newBand = "bandMusik";
     break;
   case "Reka bentuk teknologi":
     $newSub = "marksRBT";
+    $newBand = "bandRBT";
     break;
   case "Pendidikan Islam":
     $newSub = "marksPI";
+    $newBand = "bandPI";
     break;
   case "Bahasa Arab":
     $newSub = "marksBA";
+    $newBand = "bandBA";
     break;
   case "Tasmik":
     $newSub = "marksTasmik";
+    $newBand = "bandTasmik";
     break;
    case "Sejarah":
     $newSub = "marksSejarah";
+    $newBand = "bandSejarah";
     break;
   default:
     echo "error";
 }
-        
-        
-$marks = $_POST['marks'];
-$remarks = $_POST['remarks'];
-$year = $_POST['year'];
-if ($conn->query("SELECT * FROM grades WHERE stuIC = $stuIC AND year='2022'"))
+    
+if ($conn->query("SELECT * FROM grades WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'")===TRUE)
 {
-$sql = "UPDATE grades SET $newSub = '$marks', remarks = '$remarks' WHERE stuIC = $stuIC";
-$conn->query($sql);
+$conn->query("UPDATE grades SET $newBand='$band' WHERE stuIC = '$stuIC' AND test='$test'");
+$conn->query("UPDATE grades SET $newSub='$marks' WHERE stuIC = '$stuIC' AND test='$test'");
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
 }
 else
 {
-$sql = "INSERT into grades (stuIC, $newSub, year)
-VALUES ('$stuIC', '$marks', '$remarks', '$year')";
+$sql = "INSERT into grades (stuIC, $newSub, year, test, $newBand)
+VALUES ('$stuIC', '$marks', '$year', '$test', '$band')";
 $conn->query($sql);
 }
 }
@@ -325,7 +340,7 @@ if (isset($_COOKIE["user_name"]))
                                         $rows2=$val2;
                                             while($row2=$rows2->fetch_assoc()):?>
                                             
-                                            <option value="<?php echo $row2["icNum"];?>"><?php echo $row2["stuName"];?> - <?php echo $row2["icNum"];?></option>
+                                            <option value="<?php echo $row2["icNum"];?>"><?php echo $row2["stuName"];?></option>
                                             <?php endwhile; ?>
                                         </select>
                                     </div>
@@ -344,8 +359,29 @@ if (isset($_COOKIE["user_name"]))
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="marks">Marks</label>
-                                        <input name="marks" id="marks" type="text">
+                                        <input name="marks" id="marks" type="number" placeholder="90">
                                     </div>
+                                    
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="exam">Exam</label>
+                                           <select name="test" id="test" class="es-add-select">
+                                            <option value="PepAwal">Peperiksaan Awal Tahun</option>
+                                            <option value="PepAkhir">Peperiksaan Akhir Tahun</option>
+                                             </select>
+                                    </div>
+                                    
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="band">Band</label>
+                                        <select name="band" id="band" class="es-add-select">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                    
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Year</label>
                                         <select name="year" id="year" class="es-add-select">
@@ -354,11 +390,7 @@ if (isset($_COOKIE["user_name"]))
                                             <option value="2020">2020</option>
                                         </select>
                                     </div>
-                                    <?php if ($row["teacherType"] == "Guru kelas"){echo 
-                                    '<div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="remarks">Remarks</label>
-                                        <input name="remarks" id="remarks" type="text">
-                                    </div>';}?>
+                                    
                                     <div class="col-lg-4 offset-lg-4 col-md-12 text-center">    
                                         <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>       
                                     </div>
