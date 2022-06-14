@@ -5,7 +5,7 @@ $password = "";
 $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
 $login_user = $_COOKIE["user_name"];
-$sql = "SELECT * FROM user WHERE login_id='$login_user'";
+$sql = "SELECT user.*, teacher.class FROM user INNER JOIN teacher on teacher.class=user.class WHERE login_id='$login_user'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 $val=$conn->query($sql);    

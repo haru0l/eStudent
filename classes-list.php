@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
-$class = $_POST['class'];
+$class = $_COOKIE["class"];
 $sql = "SELECT * FROM student WHERE class='$class' GROUP BY stuName ASC";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
@@ -261,7 +261,7 @@ if (isset($_COOKIE["user_name"]))
                             <form action="classes-list.php" method="post" class="es-form">
                                 <div class="row align-items-center">
                                     <div class="es-form">
-                                        <label for="class">Class <?php echo $_POST['class']; ?></label>
+                                        <label for="class">Class <?php echo $class; ?></label>
                                     </div>
                                 </div>
                             </form> 

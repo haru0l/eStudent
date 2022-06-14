@@ -68,10 +68,10 @@ if ($count == 1)
 {
 $conn->query("UPDATE grades SET $newBand='$band' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
 $conn->query("UPDATE grades SET $newSub='$marks' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
-#echo '<script type="text/javascript">';
-#echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
-#echo '</script>';
-#echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
 }
 else
 {

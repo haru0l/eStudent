@@ -13,6 +13,8 @@ if (isset($_COOKIE['user_name'])) {
     setcookie('user_name', null, -1, '/');
     unset($_COOKIE['type']);
     setcookie('type', null, -1, '/');
+    unset($_COOKIE['class']);
+    setcookie('class', null, -1, '/');
 }
 // Redirect to login page
 header("location: login.php");
