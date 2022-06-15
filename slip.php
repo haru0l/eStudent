@@ -14,7 +14,7 @@ $countB = (int)"";
 $countC = (int)"";
 $countD = (int)"";
 $countE = (int)"";
-$countG = (int)"";
+$countTH = (int)"";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 $val=$connect->query($sql);    
@@ -202,7 +202,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade='TH';
+		$grade='TH';$countTH++;
 	}
                 
            echo $grade;     
@@ -274,7 +274,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade='TH';
+		$grade='TH';$countTH++;
 	}
                 
            echo $grade;     
@@ -346,7 +346,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade='TH';
+		$grade='TH';$countTH++;
 	}
                 
            echo $grade;     
@@ -416,7 +416,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade='TH';
+		$grade='TH';$countTH++;
 	}
                 
            echo $grade;     
@@ -488,7 +488,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade='TH';
+		$grade='TH';$countTH++;
 	}
                 
            echo $grade;     
@@ -558,7 +558,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade='TH';
+		$grade='TH';$countTH++;
 	}
                 
            echo $grade;     
@@ -628,7 +628,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade='TH';
+		$grade='TH';$countTH++;
 	}
                 
            echo $grade;     
@@ -698,7 +698,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade='TH';
+		$grade='TH';$countTH++;
 	}
                 
            echo $grade;     
@@ -770,7 +770,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade="TH";
+		$grade="TH";$countTH++;
 	}
                 
            echo $grade;     
@@ -840,7 +840,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade="TH";
+		$grade="TH";$countTH++;
 	}
                 
            echo $grade;     
@@ -910,7 +910,7 @@ function hideButton(x)
 	}                
 	else
 	{
-		$grade="TH";
+		$grade="TH";$countTH++;
 	}
                 
            echo $grade;     
@@ -1007,7 +1007,31 @@ function hideButton(x)
     <tr>
         <td>&nbsp;Pencapaian Gred Keseluruhan </td>
         <td width="1">:</td>
-        <td><?php echo $countA;?>[A] <?php echo $countB;?>[B] <?php echo $countC;?>[C] <?php echo $countD;?>[D] <?php echo $countE;?>[E]</td>
+        <td><?php
+            if ($countA>0){
+            echo $countA;
+            echo '[A]';
+            }?> <?php echo $countB;?>[B]
+           <?php
+            if ($countC>0){
+            echo $countC;
+            echo '[C]';
+            }?>
+            <?php
+            if ($countD>0){
+            echo $countD;
+            echo '[D]';
+            }?>
+            <?php
+            if ($countE>0){
+            echo $countE;
+            echo '[E]';
+            }?>
+            <?php
+            if ($countTH>0){
+            echo $countTH;
+            echo '[TH]';
+            }?></td>
         <td>Keputusan</td>
         <td width="1">:</td>
         <td>LULUS</td>
