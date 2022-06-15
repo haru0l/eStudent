@@ -17,7 +17,6 @@ $teacherName = $_POST['teacherName'];
 $teacher_phoneNum = $_POST['teacher_phoneNum'];
 $teacherEmail = $_POST['teacherEmail'];
 $tableID = $_POST['tableID'];
-echo "<script type='text/javascript'>alert('$tableID');</script>";
 $conn->query("UPDATE user SET teacherName='$teacherName' WHERE tableID = '$tableID'");
 $conn->query("UPDATE user SET teacher_phoneNum='$teacher_phoneNum' WHERE tableID = '$tableID'");
 $conn->query("UPDATE user SET teacherEmail='$teacherEmail' WHERE tableID = '$tableID'");
