@@ -9,13 +9,8 @@ $sql = "SELECT report.*, grades.*, student.* FROM report
 INNER JOIN grades on grades.stuIC = report.stuIC
 INNER JOIN student on student.icNum = report.stuIC
 WHERE report.stuIC = $login_user";
-$countAMinus = (int)"";
-$countAPlus = (int)"";
 $countA = (int)"";
-$countBMinus = (int)"";
-$countBPlus = (int)"";
 $countB = (int)"";
-$countCPlus = (int)"";
 $countC = (int)"";
 $countD = (int)"";
 $countE = (int)"";
@@ -38,7 +33,7 @@ if (!isset($_COOKIE["user_name"]))
         <p>We have detected that are not logged in to an account.</p>
         <hr>
         <p class="mb-0">Click on the 'Go home' button to login.</p>
-        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="logout()">Go home</button>
+        <button type="button" class="btn btn-danger" datAtoggle="modal" onclick="logout()">Go home</button>
     </div>
     <script>
         function logout() {
@@ -157,8 +152,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade='A+';
-        $countAPlus++;
+		$grade='A';
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -167,13 +162,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade='A-';
-            $countAMinus++;
+			$grade='A';
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade='B+';
-            $countBPlus++;
+			$grade='B';
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -182,8 +177,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade='C+';
-            $countCPlus++;
+			$grade='C';
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -202,8 +197,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade='G';
-            $countG++;
+			$grade='E';
+            $countE++;
 	}                
 	else
 	{
@@ -229,8 +224,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade='A+';
-        $countAPlus++;
+		$grade='A';
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -239,13 +234,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade='A-';
-            $countAMinus++;
+			$grade='A';
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade='B+';
-            $countBPlus++;
+			$grade='B';
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -254,8 +249,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade='C+';
-            $countCPlus++;
+			$grade='C';
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -274,8 +269,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade='G';
-            $countG++;
+			$grade='E';
+            $countE++;
 	}                
 	else
 	{
@@ -301,8 +296,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade='A+';
-        $countAPlus++;
+		$grade='A';
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -311,13 +306,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade='A-';
-            $countAMinus++;
+			$grade='A';
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade='B+';
-            $countBPlus++;
+			$grade='B';
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -326,8 +321,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade='C+';
-            $countCPlus++;
+			$grade='C';
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -346,8 +341,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade='G';
-            $countG++;
+			$grade='E';
+            $countE++;
 	}                
 	else
 	{
@@ -371,8 +366,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade='A+';
-        $countAPlus++;
+		$grade='A';
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -381,13 +376,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade='A-';
-            $countAMinus++;
+			$grade='A';
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade='B+';
-            $countBPlus++;
+			$grade='B';
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -396,8 +391,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade='C+';
-            $countCPlus++;
+			$grade='C';
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -416,8 +411,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade='G';
-            $countG++;
+			$grade='E';
+            $countE++;
 	}                
 	else
 	{
@@ -443,8 +438,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade='A+';
-        $countAPlus++;
+		$grade='A';
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -453,13 +448,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade='A-';
-            $countAMinus++;
+			$grade='A';
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade='B+';
-            $countBPlus++;
+			$grade='B';
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -468,8 +463,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade='C+';
-            $countCPlus++;
+			$grade='C';
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -488,8 +483,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade='G';
-            $countG++;
+			$grade='E';
+            $countE++;
 	}                
 	else
 	{
@@ -513,8 +508,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade='A+';
-        $countAPlus++;
+		$grade='A';
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -523,13 +518,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade='A-';
-            $countAMinus++;
+			$grade='A';
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade='B+';
-            $countBPlus++;
+			$grade='B';
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -538,8 +533,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade='C+';
-            $countCPlus++;
+			$grade='C';
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -558,8 +553,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade='G';
-            $countG++;
+			$grade='E';
+            $countE++;
 	}                
 	else
 	{
@@ -583,8 +578,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade='A+';
-        $countAPlus++;
+		$grade='A';
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -593,13 +588,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade='A-';
-            $countAMinus++;
+			$grade='A';
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade='B+';
-            $countBPlus++;
+			$grade='B';
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -608,8 +603,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade='C+';
-            $countCPlus++;
+			$grade='C';
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -628,8 +623,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade='G';
-            $countG++;
+			$grade='E';
+            $countE++;
 	}                
 	else
 	{
@@ -653,8 +648,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade='A+';
-        $countAPlus++;
+		$grade='A';
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -663,13 +658,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade='A-';
-            $countAMinus++;
+			$grade='A';
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade='B+';
-            $countBPlus++;
+			$grade='B';
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -678,8 +673,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade='C+';
-            $countCPlus++;
+			$grade='C';
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -698,8 +693,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade='G';
-            $countG++;
+			$grade='E';
+            $countE++;
 	}                
 	else
 	{
@@ -725,8 +720,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade="A+";
-        $countAPlus++;
+		$grade="A";
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -735,13 +730,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade="A-";
-            $countAMinus++;
+			$grade="A";
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade="B+";
-            $countBPlus++;
+			$grade="B";
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -750,8 +745,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade="C+";
-            $countCPlus++;
+			$grade="C";
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -770,8 +765,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade="G";
-            $countG++;
+			$grade="E";
+            $countE++;
 	}                
 	else
 	{
@@ -790,13 +785,13 @@ function hideButton(x)
         </td>
         <td>
             <center><?php
-                
-    $per = $row["marksRBT"];
+                .
+    $per = $row["marksRBT.."];
                     
     if($per>=90)
 	{
-		$grade="A+";
-        $countAPlus++;
+		$grade="A";
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -805,13 +800,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade="A-";
-            $countAMinus++;
+			$grade="A";
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade="B+";
-            $countBPlus++;
+			$grade="B";
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -820,8 +815,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade="C+";
-            $countCPlus++;
+			$grade="C";
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -840,8 +835,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade="G";
-            $countG++;
+			$grade="E";
+            $countE++;
 	}                
 	else
 	{
@@ -865,8 +860,8 @@ function hideButton(x)
                     
     if($per>=90)
 	{
-		$grade="A+";
-        $countAPlus++;
+		$grade="A";
+        $countA++;
 	}
 	elseif($per<90 && $per>=80)
 	{
@@ -875,13 +870,13 @@ function hideButton(x)
 	}
 	elseif($per<80 && $per>=75)
 	{
-			$grade="A-";
-            $countAMinus++;
+			$grade="A";
+            $countA++;
 	}
 	elseif($per<75 && $per>=70)
 	{
-			$grade="B+";
-            $countBPlus++;
+			$grade="B";
+            $countB++;
 	}
     elseif($per<70 && $per>=65)
 	{
@@ -890,8 +885,8 @@ function hideButton(x)
 	}
 	elseif($per<65 && $per>=60)
 	{
-			$grade="C+";
-            $countCPlus++;
+			$grade="C";
+            $countC++;
 	}
 	elseif($per<60 && $per>=50)
 	{
@@ -910,8 +905,8 @@ function hideButton(x)
 	}
 	elseif($per<30 && $per>=0)
 	{
-			$grade="G";
-            $countG++;
+			$grade="E";
+            $countE++;
 	}                
 	else
 	{
@@ -1004,7 +999,7 @@ function hideButton(x)
         <td><?php
             
             
-            $gps = ($countA + $countAPlus + $countAMinus + $countB + $countBPlus + $countBMinus + $countC + $countCPlus + $countD + $countE + $countG) / $registered;
+            $gps = ( ($countA*1) + ($countB*2) + ($countC*3) + ($countD*4) + ($countE*5)) / $registered;
             
             echo $gps;
             ?></td>
@@ -1012,7 +1007,7 @@ function hideButton(x)
     <tr>
         <td>&nbsp;Pencapaian Gred Keseluruhan </td>
         <td width="1">:</td>
-        <td><?php $totalA=$countAPlus + $countA + $countAMinus; echo $totalA;?>[A] 2[B] 2[C] 2[D] </td>
+        <td><?php echo $countA;?>[A] <?php echo $countB;?>[B] <?php echo $countC;?>[C] <?php echo $countD;?>[D] <?php echo $countE;?>[E]</td>
         <td>Keputusan</td>
         <td width="1">:</td>
         <td>LULUS</td>
