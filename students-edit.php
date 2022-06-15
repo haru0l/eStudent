@@ -6,14 +6,11 @@ $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
 if(isset($_GET['stuName'])) {
     $stuGet = $_GET['stuName'];
-    $dobGet = $_GET['date_of_birth'];
     $icGet = $_GET['icNum'];
     $genderGet = $_GET['stuGender'];
-    $phoneGet = $_GET['stu_phoneNum'];
-    $addressGet = $_GET['stuAddress'];
     $classGet = $_GET['class'];
-    $kokoGet = $_GET['cocurricular'];
     $tabGet = $_GET['tableID'];
+    $passGet = $_GET['stuPassword'];
 }
 $class = $_GET['class'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,6 +18,7 @@ $icNum = $_POST['icNum'];
 $stuName = $_POST['stuName'];
 $stuGender = $_POST['stuGender'];
 $class = $_POST['class'];
+$stuPassword = $_POST['stuPassword'];
 $year = $_POST['year'];
 $tableID = $_POST['tableID'];
 
@@ -28,7 +26,7 @@ $conn->query("UPDATE student SET icNum='$icNum' WHERE tableID='$tableID'");
 $conn->query("UPDATE student SET stuName='$stuName' WHERE tableID='$tableID'");
 $conn->query("UPDATE student SET stuGender='$stuGender' WHERE tableID='$tableID'");
 $conn->query("UPDATE student SET class='$class' WHERE tableID='$tableID'");
-$conn->query("UPDATE student SET year='$band' WHERE tableID = '$tableID'");
+$conn->query("UPDATE student SET stuPassword='$stuPassword' WHERE tableID='$tableID'");
 echo '<script type="text/javascript">';
 echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
 echo '</script>';
@@ -314,11 +312,15 @@ if (isset($_COOKIE["user_name"]))
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Nama murid</label>
-                                        <input type="text" name="stuName" value="<?php echo $stuGet?>">
+                                        <input type="text" required name="stuName" value="<?php echo $stuGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Nombor IC</label>
                                         <input type="text" required name="icNum" value="<?php echo $icGet?>">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Kata laluan</label>
+                                        <input type="text" required placeholder="Masukkan kata laluan" name="stuPassword" value="<?php echo $passGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Jantina</label>
@@ -329,7 +331,7 @@ if (isset($_COOKIE["user_name"]))
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Kelas</label>
-                                        <select name="class" id="class" value="<?php echo $classGet?>">
+                                        <select name="class" required id="class" value="<?php echo $classGet?>">
                                             <option value="1 Bijak">1 Bijak</option>
                                             <option value="1 Cerdik">1 Cerdik</option>
                                             <option value="2 Bijak">2 Bijak</option>
@@ -346,7 +348,7 @@ if (isset($_COOKIE["user_name"]))
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Tahun</label>
-                                        <select name="year" id="year" class="es-add-select" value="<?php echo $year?>">
+                                        <select name="year" required id="year" class="es-add-select" value="<?php echo $year?>">
                                             <option value="2022">2022</option>
                                             <option value="2021">2021</option>
                                             <option value="2020">2020</option>

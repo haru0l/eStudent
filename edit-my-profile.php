@@ -20,7 +20,10 @@ $tableID = $_POST['tableID'];
 $conn->query("UPDATE user SET teacherName='$teacherName' WHERE tableID = '$tableID'");
 $conn->query("UPDATE user SET teacher_phoneNum='$teacher_phoneNum' WHERE tableID = '$tableID'");
 $conn->query("UPDATE user SET teacherEmail='$teacherEmail' WHERE tableID = '$tableID'");
-#$conn->query("UPDATE user SET acaQualification='$acaQualification' WHERE tableID = '$tableID'");
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=index.php"/>';
 }
 if (!isset($_COOKIE["user_name"]))
 {?>

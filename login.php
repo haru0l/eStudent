@@ -83,7 +83,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Login</h2>
+					<h2 class="heading-section">Log masuk ke eStudent Assessment System</h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -94,7 +94,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 						<div class="login-wrap p-4 p-md-5">
 			      	<div class="d-flex">
 			      		<div class="w-100">
-			      			<h3 class="mb-4">Sign In</h3>
+			      			<h3 class="mb-4">Log masuk</h3>
 			      		</div>
 			      	</div>
 							<form action="login.php" class="signin-form" method="post">
@@ -113,7 +113,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 		            	<div class="w-50 text-left">
 									</div>
 									<div class="w-50 text-md-right">
-										<a href="#">Forgot Kata laluan</a>
+										<!--<a href="#">Forgot Kata laluan</a>-->
 									</div>
 		            </div>
 		          </form>

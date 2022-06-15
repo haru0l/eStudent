@@ -71,6 +71,9 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
             width: 70px !important;
             height: 70px !important;
         }
+        td {
+  text-align: center;
+}
     </style>
 </head>
 <!-- End Head -->

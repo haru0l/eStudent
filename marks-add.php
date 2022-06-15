@@ -27,6 +27,10 @@ switch ($subject) {
     $newSub = "marksSains";
     $newBand = "bandSains";
     break;
+  case "Matematik":
+    $newSub = "marksMath";
+    $newBand = "bandMath";
+    break;
   case "Pendidikan Seni Visual":
     $newSub = "marksSeni";
     $newBand = "bandSeni";
@@ -56,9 +60,6 @@ switch ($subject) {
     $newBand = "bandSejarah";
     break;
   default:
-    echo "went through switchcase";
-        echo $subject;
-        break;
 }
 
 $query = "SELECT * FROM grades WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'";

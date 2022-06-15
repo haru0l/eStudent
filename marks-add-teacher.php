@@ -27,6 +27,10 @@ switch ($subject) {
     $newSub = "marksSains";
     $newBand = "bandSains";
     break;
+  case "Matematik":
+    $newSub = "marksMath";
+    $newBand = "bandMath";
+    break;
   case "Pendidikan Seni Visual":
     $newSub = "marksSeni";
     $newBand = "bandSeni";
@@ -56,7 +60,6 @@ switch ($subject) {
     $newBand = "bandSejarah";
     break;
   default:
-    echo "error";
 }
 
 $query = "SELECT * FROM grades WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'";
@@ -78,6 +81,10 @@ else
 $sql = "INSERT into grades (stuIC, $newSub, year, test, $newBand)
 VALUES ('$stuIC', '$marks', '$year', '$test', '$band')";
 $conn->query($sql);
+echo '<script type="text/javascript">';
+echo ' alert("Data inserted! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
 }
 }
 $username = $_COOKIE["user_name"];
@@ -354,7 +361,7 @@ if (isset($_COOKIE["user_name"]))
                                         <label for="title">Nama murid</label>
                                         <select name="stuName" id="stuName" class="es-add-select">
                                         <?php
-                                            $sql2 = "SELECT * FROM student WHERE class='$class'";
+                                        $sql2 = "SELECT * FROM student WHERE class='$class'";
                                         $result2 = mysqli_query($conn, $sql2);
                                         $row2 = mysqli_fetch_array($result2);
 

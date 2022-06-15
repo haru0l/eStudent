@@ -1,23 +1,65 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "estudent";
-$connect = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
+$class=$_GET['class'];
+    $classGet = $_GET['class'];
+    $teacherGet = $_GET['teacherName'];
+    $yearGet = $_GET['year'];
+    $nameGet = $_GET['stuName'];
+    $icGet = $_GET['icNum'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$stuIC = $_POST['stuName'];
+#$remarks = $_POST['remarks'];
+$attitude = $_POST['attitude'];
+$attendance = $_POST['attendance'];
+$comment = $_POST['comment'];
+$teacherName = $_POST['teacherName'];
 $class = $_POST['class'];
-if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
-$sql = "SELECT grades.stuIC, grades.marksBM, grades.marksBI, grades.marksMath, grades.marksSains, grades.marksSeni, grades.marksPI, grades.marksBA, grades.marksTasmik, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' GROUP BY stuName ASC";}
+$rankingClass = $_POST['rankingClass'];
+$rankingWhole = $_POST['rankingWhole'];
+$test = $_POST['test'];
+$year = $_POST['year'];
+
+
+$query = "SELECT * FROM report WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'";
+$result = $conn->query($query);
+$row = $result->fetch_assoc();
+$count = mysqli_num_rows($result);
+    
+if ($count == 1)    
+{
+$conn->query("UPDATE report SET attitude='$attitude' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+$conn->query("UPDATE report SET attendance='$attendance' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+$conn->query("UPDATE report SET comment='$attitude' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+$conn->query("UPDATE report SET rankingClass='$attitude' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+$conn->query("UPDATE report SET rankingWhole='$attitude' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
+}
 else
 {
-$sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' GROUP BY stuName ASC";
+$sql = "INSERT into report
+VALUES ('$stuIC', '$attitude', '$attendance', '$comment', '$teacherName', '$class', '$rankingClass', '$rankingWhole', '$test', '$year')";
+$conn->query($sql);
+echo '<script type="text/javascript">';
+echo ' alert("Data inserted! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
 }
-
-$result = mysqli_query($connect, $sql);
+}
+$username = $_COOKIE["user_name"];
+$sql = "SELECT * FROM user WHERE login_id='$username'";
+$result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
-$val=$connect->query($sql);    
+
+$val=$conn->query($sql);    
 $rows=$val;
-}
+//header ('Location: attendances-blank.php');
 if (!isset($_COOKIE["user_name"]))
 {?>
 <html>
@@ -81,10 +123,6 @@ if (isset($_COOKIE["user_name"]))
             width: 70px !important;
             height: 70px !important;
         }
-        
-        td {
-  text-align: center;
-}
     </style>
 </head>
 <!-- End Head -->
@@ -271,172 +309,71 @@ if (isset($_COOKIE["user_name"]))
         <div class="u-content">
             <div class="u-body">
 
-                <!-- breadcumb-area -->
-                <section class="breadcumb-area card bg-gradient-blue mb-5">
-                    <div class="bread-cumb-content card-body d-flex align-items-center">
-                        <div class="breadcumb-heading">
-                            <h2 class="text-white">Markah murid</h2>
-                        </div>
-                        <div class="breadcumb-image ml-auto">
-                            <img src="assets/img/breadcumb-marks.png" alt="">
-                        </div>
-                    </div>
-                </section>
-                <!-- End breadcumb-area -->
-
                 
 
                 
                 <section class="es-form-area">
                     <div class="card">
                         <header class="card-header bg-gradient-blue border-0 pt-5 pb-5 d-flex align-items-center">
-                           <?php
-                            if ($_COOKIE["user_name"] == "admin") 
-                            {
-                             echo '<a href="marks-viewClass.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Tambah</a>';
-                            }
-                            else
-                            {
-                            echo    '<a href="marks-viewClass.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Tambah</a>' ;
-                            } ?>
+                            <h2 class="text-white mb-0">Tambah markah untuk Kelas <?php echo $class;?></h2>
                         </header>
                         <div class="card-body">
-                            <form action="marks-admin.php" method="post" class="es-form">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <label for="class">Kelas</label>
-                                        <select name="class" id="class" value="<?php echo $_POST['class'];?>">
-                                            <option value="1 Bijak">1 Bijak</option>
-                                            <option value="1 Cerdik">1 Cerdik</option>
-                                            <option value="2 Bijak">2 Bijak</option>
-                                            <option value="2 Cerdik">2 Cerdik</option>
-                                            <option value="3 Bijak">3 Bijak</option>
-                                            <option value="3 Cerdik">3 Cerdik</option>
-                                            <option value="4 Bijak">4 Bijak</option>
-                                            <option value="4 Cerdik">4 Cerdik</option>
-                                            <option value="5 Bijak">5 Bijak</option>
-                                            <option value="5 Cerdik">5 Cerdik</option>
-                                            <option value="6 Bijak">6 Bijak</option>
-                                            <option value="6 Cerdik">6 Cerdik</option>
+                            <form action="marks-add-teacher.php" method="post" class="es-form es-add-form">
+                                <div class="row">
+                                    
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Nama murid</label>
+                                        <select name="stuName" id="stuName" class="es-add-select">
+                                        
+                                            
+                                            <option value="<?php echo $icGet;?>"><?php echo $nameGet;?></option>
+                                        
                                         </select>
                                     </div>
-                                    <div class="col">
-                                        <button type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white">Lihat</button>
+                                    
+                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="attitude">Kelakuan</label>
+                                        <input name="attitude" id="attitude" type="text" placeholder="Masukkan kelakuan pelajar">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="attendance">Kehadiran</label>
+                                        <input name="attendance" id="attendance" type="text" placeholder="Masukkan kehadiran pelajar">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="comment">Ulasan</label>
+                                        <input name="comment" id="comment" type="text" placeholder="Masukkan kehadiran pelajar">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="teacherName">Nama guru</label>
+                                        <input name="teacherName" readonly id="teacherName" type="text" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $teacherGet?>" <?php  }?>>
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="kelas">Kelas</label>
+                                        <input name="kelas" readonly id="class" type="text" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $class?>" <?php  }?>>
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="comment">Kedudukan dalam kelas</label>
+                                        <input name="comment" id="rankingClass" type="num" placeholder="Masukkan kedudukan pelajar di dalam kelas">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="comment">Kedudukan dalam darjah</label>
+                                        <input name="comment" id="rankingWhole" type="num" placeholder="Masukkan kedudukan pelajar di dalam darjah">
+                                    </div>
+                                    
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="remarks">Tahun</label>
+                                        <input name="kelas" readonly id="kelas" type="text" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $yearGet?>" <?php  }?>>
+                                    </div>
+                                    
+                                    <div class="col-lg-4 offset-lg-4 col-md-12 text-center">    
+                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>       
                                     </div>
                                 </div>
-                            </form> 
-
-                            <div class="attendances-list-wrap mt-5">
-                                <div class="show-option d-flex align-items-center mb-4">
-                                </div>
-
-                                <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead class="bg-gradient-blue">
-                                            <tr>
-                                               <?php
-                                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                                if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
-                                                echo
-                                                '<th scope="col" class="text-white">Nama murid</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Melayu</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Inggeris</th>
-                                                <th scope="col" class="text-white text-center">Matematik</th>
-                                                <th scope="col" class="text-white text-center">Sains</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Kesenian</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Islam</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Arab</th>
-                                                <th scope="col" class="text-white text-center">Tasmik</th>'
-                                                ;}
-                                                else echo
-                                                '<th scope="col" class="text-white">Nama murid</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Melayu</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Inggeris</th>
-                                                <th scope="col" class="text-white text-center">Matematik</th>
-                                                <th scope="col" class="text-white text-center">Sains</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Seni Visual</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Musik</th>
-                                                <th scope="col" class="text-white text-center">Reka bentuk teknologi</th>
-                                                <th scope="col" class="text-white text-center">Pendidikan Islam</th>
-                                                <th scope="col" class="text-white text-center">Bahasa Arab</th>
-                                                <th scope="col" class="text-white text-center">Tasmik</th>
-                                                <th scope="col" class="text-white text-center">Sejarah</th>'  
-                                                ;}
-                                                ?>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                           <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                            while($row=$rows->fetch_assoc()):
-                                            if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $row["marksBM"];?> (Band <?php echo $bandBM;?>)</td>
-                                                <td><?php echo $row["marksBI"];?> (Band <?php echo $bandBI;?>)</td>
-                                                <td><?php echo $row["marksMath"];?> (Band <?php echo $bandMath;?>)</td>
-                                                <td><?php echo $row["marksSains"];?>  (Band <?php echo $bandSains;?>)</td>
-                                                <td><?php echo $row["marksSeni"];?>  (Band <?php echo $bandSeni;?>)</td>
-                                                <td><?php echo $row["marksPI"];?> (Band <?php echo $bandPI;?>)</td>
-                                                <td><?php echo $row["marksBA"];?> (Band <?php echo $bandBA;?>)</td>
-                                                <td><?php echo $row["marksTasmik"];?> (Band <?php echo $bandTasmik;?>)</td>
-                                            </tr><?php }
-                                            else
-                                            { ?>
-                                            <tr>
-                                                <td><?php echo $row["stuName"];?> (Band <?php echo $band1;?>)</td>
-                                                <td><?php echo $row["marksBM"];?> (Band <?php echo $bandBM;?>)</td>
-                                                <td><?php echo $row["marksBI"];?> (Band <?php echo $bandBI;?>)</td>
-                                                <td><?php echo $row["marksMath"];?> (Band <?php echo $bandMath;?>)</td>
-                                                <td><?php echo $row["marksSains"];?>  (Band <?php echo $bandSains;?>)</td>
-                                                <td><?php echo $row["marksSeni"];?>  (Band <?php echo $bandSeni;?>)</td>
-                                                <td><?php echo $row["marksMusik"];?> (Band <?php echo $bandMusik;?>)</td>
-                                                <td><?php echo $row["marksRBT"];?> (Band <?php echo $bandRBT;?>)</td>
-                                                <td><?php echo $row["marksPI"];?> (Band <?php echo $bandPI;?>)</td>
-                                                <td><?php echo $row["marksBA"];?> (Band <?php echo $bandBA;?>)</td>
-                                                <td><?php echo $row["marksTasmik"];?> (Band <?php echo $bandTasmik;?>)</td>
-                                                <td><?php echo $row["marksSejarah"];?> (Band <?php echo $band1;?>)</td>
-                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Sunting</a></td>
-                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Buang</a></td>
-                                            </tr><?php
-                                            }
-                                            endwhile;
-}
-                                            ?>
-                                                  
-                                                   <tbody>
-                                            
-                                                
-                                            
-                                        </tbody>                           
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                
+                            </form>
                         </div>
                     </div>    
                 </section>
-
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <nav aria-label="Bootstrap Pagination" class="mt-5 text-center d-inline-block">
-                            <ul class="pagination mb-0">
-                                <li class="page-item">
-                                    <a class="btn btn-outline-danger prev" href="#"><span class="ml-1 d-none d-xl-inline-block">Kembali</span></a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="btn btn-danger bg-gradient-blue text-white ml-4 mr-4" href="#">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="btn btn-outline-danger next" href="#"><span class="mr-1 d-none d-xl-inline-block">Seterusnya</span></a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-
-                        
 
             </div>
         </div>

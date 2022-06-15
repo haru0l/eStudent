@@ -78,6 +78,10 @@ if (isset($_COOKIE["user_name"]))
             width: 70px !important;
             height: 70px !important;
         }
+        
+        td {
+  text-align: center;
+}
     </style>
 </head>
 <!-- End Head -->
@@ -302,9 +306,12 @@ if (isset($_COOKIE["user_name"]))
                                         <thead class="bg-gradient-blue">
                                             <tr>
                                                 <th scope="col" class="text-white">Nama murid</th>
-                                                <th scope="col" class="text-white">IC Number</th>
+                                                <th scope="col" class="text-white">Nombor IC</th>
+                                                <th scope="col" class="text-white">Kata laluan</th>
                                                 <th scope="col" class="text-white">Jantina</th>
                                                 <th scope="col" class="text-white text-center">Sunting</th>
+                                                
+                                                <th scope="col" class="text-white text-center">Keluarkan slip</th>
                                                 <th scope="col" class="text-white text-center">Buang</th>
                                             </tr>
                                         </thead>
@@ -314,8 +321,13 @@ if (isset($_COOKIE["user_name"]))
                                             <tr>
                                                 <td><?php echo $row["stuName"];?></td>
                                                 <td><?php echo $row["icNum"];?></td>
+                                                <td><?php echo $row["stuPassword"];?></td>
                                                 <td><?php echo $row["stuGender"];?></td>
-                                                <td class="text-center"><a href="students-edit.php?stuName=<?php echo $row['stuName'];?>&icNum=<?php echo $row["icNum"];?>&stuGender=<?php echo $row["stuGender"];?>&date_of_birth=<?php echo $row["date_of_birth"];?>&stuAddress=<?php echo $row["stuAddress"];?>&stu_phoneNum=<?php echo $row["stu_phoneNum"];?>&cocurricular=<?php echo $row["cocurricular"];?>&class=<?php echo $class; ?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Sunting</a>
+                                                
+                                                <td class="text-center"><a href="students-edit.php?stuName=<?php echo $row['stuName'];?>&icNum=<?php echo $row["icNum"];?>&stuGender=<?php echo $row["stuGender"];?>&stuPassword=<?php echo $row["stuPassword"];?>&class=<?php echo $class; ?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Sunting</a>
+                                                
+                                                <td class="text-center"><a href="report-add.php?class=<?php echo $class;?>&icNum=<?php echo $row["icNum"];?>&teacherName=<?php echo $_COOKIE['teacherName']; ?>&year=2022&stuName=<?php echo $row['stuName'];?>&icNum=<?php echo $row["icNum"];?>" class="btn btn-outline-danger es-am-btn">Keluarkan slip</a>
+                                                
                                                 <td class="text-center"><a href="del-student.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Buang</a>
                                             </tr>
                                             <?php endwhile; ?>

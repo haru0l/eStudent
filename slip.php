@@ -84,7 +84,17 @@ function hideButton(x)
 </div><br>
 <table width="700" border="1" align="center" cellpadding="5" cellspacing="0" bordercolor="#CCCCCC">
     <tr>
-        <td align="center"><strong>SLIP KEPUTUSAN - UJIAN 1 - 2022</strong></td>
+        <td align="center"><strong>SLIP KEPUTUSAN - <?php 
+ if ($row["test"] == "PepAwal"){
+            echo "Peperiksaan Awal Tahun";
+ }
+ else {
+     echo "Peperiksaan Akhir Tahun";
+ }
+            
+            
+            
+            ?> - <?php echo $row["year"];?></strong></td>
     </tr>
 </table><br>
 <table width="700" border="0" align="center" cellpadding="3" cellspacing="0">
@@ -93,7 +103,7 @@ function hideButton(x)
         </td>
         <td width="1">:</font><br>
 		</td>
-        <td width="388">&nbsp;<?php echo $row["teacherName"];?></font><br>
+        <td width="388">&nbsp;<?php echo $row["stuName"];?></font><br>
         </td>
         <td width="80">&nbsp;Kelas</td>
         <td width="1">:</font><br>
@@ -286,6 +296,7 @@ function hideButton(x)
     <tr>
         <td>&nbsp;&nbsp;&nbsp;3.</td>
         <td>MATEMATIK</td>
+        
         <td>
             <center><?php echo $row["marksMath"];?></center>
         </td>
@@ -979,7 +990,7 @@ function hideButton(x)
         <td>&nbsp; </td>
         <td>&nbsp; </td>
     <tr>
-        <td>&nbsp;Kedudukan Dalam Tingkatan </td>
+        <td>&nbsp;Kedudukan Dalam Darjah </td>
         <td width="1">:</td>
         <td><?php echo $row["rankingWhole"]?> / - </td>
         <td>Peratus</td>

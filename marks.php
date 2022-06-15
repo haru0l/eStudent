@@ -7,7 +7,7 @@ $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
 $class = $_POST['class'];
 $loggedin = $_COOKIE["user_name"];
-$sql = "SELECT grades.*, student.*, user.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum INNER JOIN user ON student.class=user.class WHERE student.class='$class' AND user.login_id=$loggedin GROUP BY stuName ASC";
+$sql = "SELECT grades.*, student.*, user.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum INNER JOIN user WHERE student.class='$class' AND user.login_id=$loggedin GROUP BY stuName ASC";
     
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
@@ -79,6 +79,9 @@ if (isset($_COOKIE["user_name"]))
             width: 70px !important;
             height: 70px !important;
         }
+        td {
+  text-align: center;
+}
     </style>
 </head>
 <!-- End Head -->
@@ -363,6 +366,9 @@ if (isset($_COOKIE["user_name"]))
                                                       case "Sains":
                                                         $marks1 = $row["marksSains"];
                                                         break;
+                                                      case "Matematik":
+                                                        $marks1 = $row["marksMath"];
+                                                        break;
                                                       case "Pendidikan Seni Visual":
                                                         $marks1 = $row["marksSeni"];
                                                         break;
@@ -396,6 +402,9 @@ if (isset($_COOKIE["user_name"]))
                                                         break;
                                                       case "Sains":
                                                         $marks2 = $row["marksSains"];
+                                                        break;
+                                                      case "Matematik":
+                                                        $marks2 = $row["marksMath"];
                                                         break;
                                                       case "Pendidikan Seni Visual":
                                                         $marks2 = $row["marksSeni"];
@@ -431,6 +440,9 @@ if (isset($_COOKIE["user_name"]))
                                                       case "Sains":
                                                         $marks3 = $row["marksSains"];
                                                         break;
+                                                     case "Matematik":
+                                                        $marks3 = $row["marksMath"];
+                                                        break;
                                                       case "Pendidikan Seni Visual":
                                                         $marks3 = $row["marksSeni"];
                                                         break;
@@ -455,15 +467,127 @@ if (isset($_COOKIE["user_name"]))
                                                       default:
                                                         break;
                                                     }
+                                                    
+                                                    switch ($sub1) {
+                                                      case "Bahasa Melayu":
+                                                        $band1 = $row["bandBM"];
+                                                        break;
+                                                      case "Bahasa Inggeris":
+                                                        $band1 = $row["bandBI"];
+                                                        break;
+                                                      case "Sains":
+                                                        $band1 = $row["bandSains"];
+                                                        break;
+                                                      case "Pendidikan Seni Visual":
+                                                        $band1 = $row["bandSeni"];
+                                                        break;
+                                                        case "Matematik":
+                                                        $band1 = $row["bandMath"];
+                                                        break;
+                                                      case "Pendidikan Musik":
+                                                        $band1 = $row["bandMusik"];
+                                                        break;
+                                                      case "Reka bentuk teknologi":
+                                                        $band1 = $row["bandRBT"];
+                                                        break;
+                                                      case "Pendidikan Islam":
+                                                        $band1 = $row["bandPI"];
+                                                        break;
+                                                      case "Bahasa Arab":
+                                                        $band1 = $row["bandBA"];
+                                                        break;
+                                                      case "Tasmik":
+                                                        $band1 = $row["bandTasmik"];
+                                                        break;
+                                                       case "Sejarah":
+                                                        $band1 = $row["bandSejarah"];
+                                                        break;
+                                                      default:
+                                                        echo "error";
+                                                    }
+                                                    switch ($sub2) {
+                                                      case "Bahasa Melayu":
+                                                        $band2 = $row["bandBM"];
+                                                        break;
+                                                      case "Bahasa Inggeris":
+                                                        $band2 = $row["bandBI"];
+                                                        break;
+                                                        case "Matematik":
+                                                        $band2 = $row["bandMath"];
+                                                        break;
+                                                      case "Sains":
+                                                        $band2 = $row["bandSains"];
+                                                        break;
+                                                      case "Pendidikan Seni Visual":
+                                                        $band2 = $row["bandSeni"];
+                                                        break;
+                                                      case "Pendidikan Musik":
+                                                        $band2 = $row["bandMusik"];
+                                                        break;
+                                                      case "Reka bentuk teknologi":
+                                                        $band2 = $row["bandRBT"];
+                                                        break;
+                                                      case "Pendidikan Islam":
+                                                        $band2 = $row["bandPI"];
+                                                        break;
+                                                      case "Bahasa Arab":
+                                                        $band2 = $row["bandBA"];
+                                                        break;
+                                                      case "Tasmik":
+                                                        $band2 = $row["bandTasmik"];
+                                                        break;
+                                                       case "Sejarah":
+                                                        $band2 = $row["bandSejarah"];
+                                                        break;
+                                                      default:
+                                                        break;
+                                                    }
+                                                    switch ($sub3) {
+                                                      case "Bahasa Melayu":
+                                                        $band3 = $row["bandBM"];
+                                                        break;
+                                                      case "Bahasa Inggeris":
+                                                        $band3 = $row["bandBI"];
+                                                        break;
+                                                      case "Sains":
+                                                        $band3 = $row["bandSains"];
+                                                        break;
+                                                    case "Matematik":
+                                                        $band3 = $row["bandMath"];
+                                                        break;
+                                                      case "Pendidikan Seni Visual":
+                                                        $band3 = $row["bandSeni"];
+                                                        break;
+                                                      case "Pendidikan Musik":
+                                                        $band3 = $row["bandMusik"];
+                                                        break;
+                                                      case "Reka bentuk teknologi":
+                                                        $band3 = $row["bandRBT"];
+                                                        break;
+                                                      case "Pendidikan Islam":
+                                                        $band3 = $row["bandPI"];
+                                                        break;
+                                                      case "Bahasa Arab":
+                                                        $band3 = $row["bandBA"];
+                                                        break;
+                                                      case "Tasmik":
+                                                        $band3 = $row["bandTasmik"];
+                                                        break;
+                                                       case "Sejarah":
+                                                        $band3 = $row["bandSejarah"];
+                                                        break;
+                                                      default:
+                                                        break;
+                                                    }
                                             ?>
                                             <tr>
                                                 <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $marks1;?></td>
+                                                <td><?php echo $marks1;?> (Band <?php echo $band1;?>)</td>
                                                 <?php if ($row["teacherSub2"] != ""){ ?>
-                                                <td><?php echo $marks2;?></td>
+                                                <td><?php echo $marks2;?> (Band <?php echo $band2;?>)</td>
                                             <?php }
                                                 if ($row["teacherSub3"] != ""){ ?>
-                                                <td><?php echo $marks3?></td>
+                                                <td><?php echo $marks3?> (Band <?php echo $band3;?>)</td>
                                              <?php   }?>
                                             </tr><?php
                                             }

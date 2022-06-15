@@ -13,9 +13,10 @@ $stuName = $_POST['stuName'];
 $stuGender = $_POST['stuGender'];
 $class = $_POST['class'];
 $year = $_POST['year'];
+$stuPassword = $_POST['stuPassword'];
 
-$sql = "INSERT into student (icNum, stuName, stuGender, class, year)
-VALUES ('$icNum', '$stuName', '$stuGender', '$class', '$year')";
+$sql = "INSERT into student (icNum, stuName, stuPassword, stuGender, class, year)
+VALUES ('$icNum', '$stuName', '$stuPassword', '$stuGender', '$class', '$year')";
 $conn->query($sql);
 echo '<script type="text/javascript">';
 echo ' alert("Data inserted! Sending to previous page...")';  //not showing an alert box.
@@ -304,6 +305,10 @@ if (isset($_COOKIE["user_name"]))
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">IC Number</label>
                                         <input type="num" required placeholder="Masukkan nombor kad pengenalan tanpa sengkang (-)" name="icNum">
+                                    </div>
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="title">Kata laluan</label>
+                                        <input type="text" required placeholder="Masukkan kata laluan" name="stuPassword">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Jantina</label>

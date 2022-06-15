@@ -197,7 +197,7 @@ if (isset($_COOKIE["user_name"]))
     
     
                         echo '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="marks-admin.php">
+                            <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Permarkahan</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
@@ -543,7 +543,7 @@ new Chart(document.getElementById("pie-chart"), {
                                     
                                     
                                     
-                                    echo $count?><small class="d-block mt-2">Staff</small></h2>
+                                    echo $count?><small class="d-block mt-2">Staf</small></h2>
                             </div>
                         </div>
                     </div>
