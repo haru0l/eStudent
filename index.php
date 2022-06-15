@@ -68,6 +68,7 @@ if (isset($_COOKIE["user_name"]))
     <!-- Theme Styles -->
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
   
 </head>
@@ -255,31 +256,302 @@ if (isset($_COOKIE["user_name"]))
         <div class="u-content">
             <div class="u-body">
 
-                <!-- breadcumb-area -->
-                <section class="breadcumb-area card bg-gradient-blue mb-5">
-                    <div class="bread-cumb-content card-body d-flex align-items-center">
-                        <div class="breadcumb-heading">
-                            <h2 class="text-white">Dashboard</h2>
+                <!-- Deal Overview -->
+                <div class="card mb-4">
+                    <!-- Card Header -->
+                    <header class="card-header text-center">
+                        <h2 class="h3 card-header-title text-dark pt-2">Performance of the year</h2>
+                    </header>
+                    <!-- End Card Header -->
+
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Chart -->
+                            <div class="col-md-12 mb-4 mb-md-0" style="min-height: 300px;">
+                                <canvas id="pie-chart" width="800" height="450"></canvas>
+
+<script>
+    
+new Chart(document.getElementById("pie-chart"), {
+    <?php
+                                    # count a
+                                   $result = $conn->query("SELECT marksBM FROM grades WHERE marksBM BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBI FROM grades WHERE marksBI BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMath FROM grades WHERE marksMath BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSains FROM grades WHERE marksSains BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSeni FROM grades WHERE marksSeni BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksPI FROM grades WHERE marksPI BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBA FROM grades WHERE marksBA BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksTasmik FROM grades WHERE marksTasmik BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMusik FROM grades WHERE marksMusik BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksRBT FROM grades WHERE marksRBT BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSejarah FROM grades WHERE marksSejarah BETWEEN 80 AND 100;");
+                                    $row = $result->fetch_assoc();
+                                    $countA += mysqli_num_rows($result);
+                                     # count b
+                                   $result = $conn->query("SELECT marksBM FROM grades WHERE marksBM BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBI FROM grades WHERE marksBI BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMath FROM grades WHERE marksMath BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSains FROM grades WHERE marksSains BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSeni FROM grades WHERE marksSeni BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksPI FROM grades WHERE marksPI BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBA FROM grades WHERE marksBA BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksTasmik FROM grades WHERE marksTasmik BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMusik FROM grades WHERE marksMusik BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksRBT FROM grades WHERE marksRBT BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSejarah FROM grades WHERE marksSejarah BETWEEN 70 AND 79;");
+                                    $row = $result->fetch_assoc();
+                                    $countB += mysqli_num_rows($result);
+                                    # count c
+                                   $result = $conn->query("SELECT marksBM FROM grades WHERE marksBM BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBI FROM grades WHERE marksBI BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMath FROM grades WHERE marksMath BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSains FROM grades WHERE marksSains BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSeni FROM grades WHERE marksSeni BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksPI FROM grades WHERE marksPI BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBA FROM grades WHERE marksBA BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksTasmik FROM grades WHERE marksTasmik BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMusik FROM grades WHERE marksMusik BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksRBT FROM grades WHERE marksRBT BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSejarah FROM grades WHERE marksSejarah BETWEEN 60 AND 69;");
+                                    $row = $result->fetch_assoc();
+                                    $countC += mysqli_num_rows($result);
+                                    # count d
+                                   $result = $conn->query("SELECT marksBM FROM grades WHERE marksBM BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBI FROM grades WHERE marksBI BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMath FROM grades WHERE marksMath BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSains FROM grades WHERE marksSains BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSeni FROM grades WHERE marksSeni BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksPI FROM grades WHERE marksPI BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBA FROM grades WHERE marksBA BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksTasmik FROM grades WHERE marksTasmik BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMusik FROM grades WHERE marksMusik BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksRBT FROM grades WHERE marksRBT BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSejarah FROM grades WHERE marksSejarah BETWEEN 40 AND 59;");
+                                    $row = $result->fetch_assoc();
+                                    $countD += mysqli_num_rows($result);
+                                     # count e
+                                   $result = $conn->query("SELECT marksBM FROM grades WHERE marksBM BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBI FROM grades WHERE marksBI BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMath FROM grades WHERE marksMath BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSains FROM grades WHERE marksSains BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSeni FROM grades WHERE marksSeni BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksPI FROM grades WHERE marksPI BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksBA FROM grades WHERE marksBA BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksTasmik FROM grades WHERE marksTasmik BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksMusik FROM grades WHERE marksMusik BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksRBT FROM grades WHERE marksRBT BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+                                   $result = $conn->query("SELECT marksSejarah FROM grades WHERE marksSejarah BETWEEN 0 AND 39;");
+                                    $row = $result->fetch_assoc();
+                                    $countE += mysqli_num_rows($result);
+    
+    ?>
+    type: 'pie',
+    data: {
+      labels: ["A", "B", "C", "D", "E"],
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: [<?php echo $countA; ?>,<?php echo $countB; ?>,<?php echo $countC; ?>,<?php echo $countD; ?>,<?php echo $countE; ?>]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Student performance in 2022'
+      }
+    }
+});
+</script>
+                            </div>
+                            <!-- End Chart -->
                         </div>
-                        <div class="breadcumb-image ml-auto">
-                            
+                    </div>
+                    <!-- End Card Body -->
+                </div>
+                <!-- End Deal Overview -->
+
+
+            <!-- highlight-area start -->
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-asset-counting-list-box bg-gradient bg-gradient-purple card border-0 text-center">
+                            <div class="card-body">
+                                <div class="single-asset-counting-list-image-wrap">
+                                    <img src="assets/img/student.png" alt="">
+                                </div>
+                                <h2 class="text-white mb-0"><?php 
+                                    
+                                    $query = "SELECT * FROM student";
+                                    $result = $conn->query($query);
+                                    $row = $result->fetch_assoc();
+                                    $count = mysqli_num_rows($result);
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    echo $count?><small class="d-block mt-2">Students</small></h2>
+                            </div>
                         </div>
-                        
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-asset-counting-list-box bg-gradient bg-gradient-blue card border-0 text-center">
+                            <div class="card-body">
+                                <div class="single-asset-counting-list-image-wrap">
+                                    <img src="assets/img/teacher.png" alt="">
+                                </div>
+                                <h2 class="text-white mb-0"><?php 
+                                    
+                                    $query = "SELECT * FROM user WHERE teacherType !='admin'";
+                                    $result = $conn->query($query);
+                                    $row = $result->fetch_assoc();
+                                    $count = mysqli_num_rows($result);
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    echo $count?><small class="d-block mt-2">Teachers</small></h2>
+                            </div>
+                        </div>
                     </div>
                     
-                </section>
-                <div><img style="width: 50%; text-align: center; display: block; margin-left: auto; margin-right: auto;" src="assets/img/243372634_226895402813287_688017513299061509_n.jpg"></div>
-                <br>
-                <div><a>Sekolah Kebangsaan Kota Raja or its short name SK Kota Raja, is a national school located in Panchor.
-                <br>In 2009, Sekolah Kebangsaan Kota Raja had 104 male students and 98 female students, bringing the total number of students to 202. It has a total of 26 teachers.</a></div>
-                
-                <!-- End breadcumb-area -->   
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-asset-counting-list-box bg-gradient bg-gradient-yellow card border-0 text-center">
+                            <div class="card-body">
+                                <div class="single-asset-counting-list-image-wrap">
+                                    <img src="assets/img/staff.png" alt="">
+                                </div>
+                                <h2 class="text-white mb-0"><?php 
+                                    
+                                    $query = "SELECT * FROM user WHERE teacherType='admin'";
+                                    $result = $conn->query($query);
+                                    $row = $result->fetch_assoc();
+                                    $count = mysqli_num_rows($result);
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    echo $count?><small class="d-block mt-2">Staff</small></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- highlight-area End -->
             </div>
 
-            
-        </div>
-    </main>
 
+        </div>
+        
+        </main>
+        
     <!-- Global Vendor -->
     <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
@@ -288,7 +560,7 @@ if (isset($_COOKIE["user_name"]))
 
     <!-- Plugins -->
     <script src="assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
+    
     <script src="assets/js/jquery.nice-select.min.js"></script>
     <script src="assets/js/jquery-ui.min.js"></script>
     <!-- Initialization  -->
