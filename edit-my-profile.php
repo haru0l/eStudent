@@ -10,6 +10,19 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 $val=$conn->query($sql);    
 $rows=$val;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+$teacherName = $_POST['teacherName'];
+$teacher_phoneNum = $_POST['teacher_phoneNum'];
+$teacherEmail = $_POST['teacherEmail'];
+$tableID = $_POST['tableID'];
+
+$conn->query("UPDATE user SET teacherName='$teacherName' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacher_phoneNum='$teacher_phoneNum' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacherEmail='$teacherEmail' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET acaQualification='$acaQualification' WHERE tableID = '$tableID'");
+}
 if (!isset($_COOKIE["user_name"]))
 {?>
 <html>
@@ -268,26 +281,27 @@ if (isset($_COOKIE["user_name"]))
                             <h2 class="text-white mb-0">Edit profile</h2>
                         </header>
                         <div class="card-body">
-                            <form action="" class="es-form es-add-form">
+                            <form action="edit-my-profile" method="post" class="es-form es-add-form">
                                 <div class="row">
+                                   <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="tableID">Teacher ID</label>
+                                        <input type="text" name="tableID" readonly value="<?php echo $row["tableID"];?>">
+                                    </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="name">Name</label>
-                                        <input id="name" type="text" placeholder="Enter name" value="">
+                                        <input id="name" type="text" placeholder="Enter name" value="<?php echo $row["teacherName"];?>">
                                     </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="description">Description</label>
-                                        <input id="description" type="text" placeholder="Enter text">
-                                    </div>
+                                
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="email">Email</label>
-                                        <input id="email" type="email" placeholder="Enter email">
+                                        <input id="email" type="email" placeholder="Enter email" value="<?php echo $row["teacherEmail"];?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="phone">Phone</label>
-                                        <input id="phone" type="tel" placeholder="Enter phone">
+                                        <input id="phone" type="tel" placeholder="Enter phone" value="<?php echo $row["teacher_phoneNum"];?>">
                                     </div>
                                     <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
-                                        <a href="" class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</a>        
+                                        <a href="" class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Update</a>        
                                     </div>
                                 </div>
                                 

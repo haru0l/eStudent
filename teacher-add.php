@@ -346,7 +346,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                 <div class="row">
                                  <?php if(isset($_GET['login_id'])) { ?>
                                   <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="tableID">Student ID</label>
+                                        <label for="tableID">Teacher ID</label>
                                         <input type="text" name="tableID" readonly value="<?php echo $tabIDGet?>">
                                     <?php  }?>
                                     </div>
