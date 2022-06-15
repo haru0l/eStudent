@@ -351,12 +351,12 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     <?php  }?>
                                     </div>
                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Login ID</label>
+                                        <label for="title">Username</label>
                                         <input type="text" name="login_id"
                                         <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $idGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Login Password</label>
+                                        <label for="title">Password</label>
                                         <input type="text" name="teacherPassword" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $passGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">

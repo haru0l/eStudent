@@ -287,8 +287,8 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     <table class="table mb-0">
                                         <thead class="bg-gradient-blue">
                                             <tr>
-                                                <th scope="col" class="text-white">Login ID</th>
-                                                <th scope="col" class="text-white">Login Password</th>
+                                                <th scope="col" class="text-white">Username</th>
+                                                <th scope="col" class="text-white">Password</th>
                                                 <th scope="col" class="text-white">Teacher Name</th>
                                                 <th scope="col" class="text-white">Gender</th>
                                                 <th scope="col" class="text-white">Phone number</th>
