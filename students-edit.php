@@ -38,6 +38,10 @@ $conn->query("UPDATE student SET stu_phoneNum='$stu_phoneNum' WHERE tableID='$ta
 $conn->query("UPDATE student SET class='$class' WHERE tableID='$tableID'");
 $conn->query("UPDATE student SET cocurricular='$cocurricular' WHERE tableID='$tableID'");
 $conn->query("UPDATE student SET year='$band' WHERE tableID = '$tableID'");
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=index.php"/>';
 }
 $username = $_COOKIE["user_name"];
 $sql = "SELECT * FROM user WHERE login_id='$username'";

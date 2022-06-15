@@ -17,6 +17,11 @@ $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 $val=$connect->query($sql);    
 $rows=$val;
+    
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=index.php"/>';
 }
 if (!isset($_COOKIE["user_name"]))
 {?>

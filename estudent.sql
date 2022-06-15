@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2022 at 04:51 PM
+-- Generation Time: Jun 15, 2022 at 03:22 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -71,8 +71,8 @@ CREATE TABLE `grades` (
 --
 
 INSERT INTO `grades` (`stuIC`, `marksBM`, `marksBI`, `marksMath`, `marksSains`, `marksSeni`, `marksPI`, `marksBA`, `marksTasmik`, `marksMusik`, `marksRBT`, `marksSejarah`, `year`, `test`, `bandBM`, `bandBI`, `bandMath`, `bandSains`, `bandSeni`, `bandPI`, `bandBA`, `bandTasmik`, `bandMusik`, `bandRBT`, `bandSejarah`, `remarksBM`, `remarksBI`, `remarksMath`, `remarksSains`, `remarksSeni`, `remarksPI`, `remarksBA`, `remarksTaskmik`, `remarksMusik`, `remarksRBT`, `remarksSejarah`) VALUES
-('020822050567', '', '66', '', '33', '67', '', '', '', '', '', '', 2022, 'PepAwal', '', '1', '', '1', '1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-('020822050567', '', '', '', '99', '23', '', '', '', '', '', '', 2022, 'PepAkhir', '', '', '', '3', '6', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+('020822050567', '77', '66', '', '33', '67', '', '', '', '', '', '', 2022, 'PepAwal', '1', '1', '', '1', '1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('020822050567', '', '', '', '', '23', '', '', '', '', '', '', 2022, 'PepAkhir', '', '', '', '1', '6', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -108,6 +108,7 @@ INSERT INTO `report` (`stuIC`, `attitude`, `attendance`, `comment`, `teacherName
 --
 
 CREATE TABLE `student` (
+  `tableID` int(1) NOT NULL,
   `icNum` varchar(14) NOT NULL,
   `stuName` varchar(60) NOT NULL,
   `stuGender` varchar(10) NOT NULL,
@@ -116,17 +117,19 @@ CREATE TABLE `student` (
   `stu_phoneNum` varchar(15) NOT NULL,
   `stuPassword` varchar(20) NOT NULL,
   `class` varchar(20) NOT NULL,
-  `cocurricular` varchar(20) NOT NULL
+  `cocurricular` varchar(20) NOT NULL,
+  `year` varchar(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`icNum`, `stuName`, `stuGender`, `date_of_birth`, `stuAddress`, `stu_phoneNum`, `stuPassword`, `class`, `cocurricular`) VALUES
-('020822050567', 'Adam', 'Male', '22/08/22', 'Address', '0149454863', 'adam', '1 Bijak', 'cocurricular'),
-('4', 'test 4b', 'Male', '4', '4', '4', 'amongus', '4 Bijak', '4'),
-('9999', 'hi', 'Male', '', '', '', '', '1 Bijak', '');
+INSERT INTO `student` (`tableID`, `icNum`, `stuName`, `stuGender`, `date_of_birth`, `stuAddress`, `stu_phoneNum`, `stuPassword`, `class`, `cocurricular`, `year`) VALUES
+(1, '020822050567', 'Adam', 'Male', '22/08/22', 'Address', '0149454863', 'adam', '1 Bijak', 'cocurricular', '2022'),
+(2, '4', 'test 4b', 'Male', '4', '4', '4', 'amongus', '4 Bijak', '4', ''),
+(3, '9999', 'hi', 'Male', '', '', '', '', '1 Bijak', '', ''),
+(24, '2323', 'bangkai meow', 'Male', '23', '', 'meow', '', '1 Bijak', '', '');
 
 -- --------------------------------------------------------
 
@@ -135,6 +138,7 @@ INSERT INTO `student` (`icNum`, `stuName`, `stuGender`, `date_of_birth`, `stuAdd
 --
 
 CREATE TABLE `user` (
+  `tableID` int(11) NOT NULL,
   `login_id` varchar(12) NOT NULL,
   `teacherPassword` varchar(100) NOT NULL,
   `teacherName` varchar(60) NOT NULL,
@@ -155,12 +159,12 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`login_id`, `teacherPassword`, `teacherName`, `gender`, `teacherEmail`, `teacher_phoneNum`, `teacher_Address`, `date_of_birth`, `acaQualification`, `teacherType`, `teacherSub1`, `teacherSub2`, `teacherSub3`, `class`) VALUES
-('020822050567', '1234', '', 'Male', '123', 'semalam', '020822050567', '0208220505', '020822050567', 'Guru kelas', 'Bahasa Melayu', 'Bahasa Inggeris', 'Bahasa Inggeris', '1 Bijak'),
-('1234', '1234', '', 'Male', '', '', '', '', '', 'Guru subjek', 'Bahasa Inggeris', '', '', '4 Bijak'),
-('4567', '4567', '', 'Male', '', '', '', '', '', 'Guru subjek', 'Sains', '', '', '1 Bijak'),
-('admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', ''),
-('test', '', 'hi', 'Male', '', '', '', '', '', 'Guru kelas', 'Bahasa Melayu', '', '', '');
+INSERT INTO `user` (`tableID`, `login_id`, `teacherPassword`, `teacherName`, `gender`, `teacherEmail`, `teacher_phoneNum`, `teacher_Address`, `date_of_birth`, `acaQualification`, `teacherType`, `teacherSub1`, `teacherSub2`, `teacherSub3`, `class`) VALUES
+(1, '020822050567', '1234', '', 'MALE', '123', 'semalam', '020822050567', '0208220505', '020822050567', 'Guru kelas', 'Bahasa Melayu', '', '', '1 Bijak'),
+(2, '1234', '1234', '', 'Male', '', '', '', '', '', 'Guru subjek', 'Bahasa Inggeris', '', '', '4 Bijak'),
+(3, '4567', '4567', '', 'Male', '', '', '', '', '', 'Guru subjek', 'Sains', '', '', '1 Bijak'),
+(4, 'admin', 'admin', '', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', ''),
+(5, '222', 'meow', 'MEOW', 'MALE', '', '', '', '22', '', 'Guru kelas', 'Bahasa Melayu', '', '', '1 Bijak');
 
 --
 -- Indexes for dumped tables
@@ -177,14 +181,30 @@ ALTER TABLE `report`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`icNum`);
+  ADD PRIMARY KEY (`tableID`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`login_id`),
+  ADD PRIMARY KEY (`tableID`),
   ADD KEY `teacherName` (`teacherName`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+  MODIFY `tableID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `tableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

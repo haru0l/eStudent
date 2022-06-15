@@ -21,6 +21,10 @@ $year = $_POST['year'];
 $sql = "INSERT into student (icNum, stuName, stuGender, date_of_birth, stuAddress, stu_phoneNum, class, cocurricular)
 VALUES ('$icNum', '$stuName', '$stuGender', '$date_of_birth', '$stuAddress', '$stu_phoneNum', '$class', '$cocurricular')";
 $conn->query($sql);
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=index.php"/>';
 }
 
 $username = $_COOKIE["user_name"];
