@@ -27,11 +27,11 @@ if (!isset($_COOKIE["user_name"]))
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <div class="container">
     <div class="alert alert-danger alert-dismissible fade show">
-        <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> Oops! Something went wrong.</h4>
-        <p>We have detected that are not logged in to an account.</p>
+        <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> Ralat!</h4>
+        <p>Anda tidak log masuk dengan akaun yang sah.</p>
         <hr>
-        <p class="mb-0">Click on the 'Go home' button to login.</p>
-        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="logout()">Go home</button>
+        <p class="mb-0">Tekan butang 'Kembali' untuk ke laman log masuk semula.</p>
+        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="logout()">Kembali</button>
     </div>
     <script>
         function logout() {
@@ -117,12 +117,12 @@ if (isset($_COOKIE["user_name"]))
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-4">
                                     <a class="d-flex align-items-center link-dark" href="my-profile.php">
-                                        <span class="h3 mb-0"><i class="far fa-user-circle text-muted mr-3"></i></span> View Profile
+                                        <span class="h3 mb-0"><i class="far fa-user-circle text-muted mr-3"></i></span> Profil
                                     </a>
                                 </li>
                                 <li>
                                     <a class="d-flex align-items-center link-dark" href="logout.php">
-                                        <span class="h3 mb-0"><i class="far fa-share-square text-muted mr-3"></i></span> Sign Out
+                                        <span class="h3 mb-0"><i class="far fa-share-square text-muted mr-3"></i></span> Log keluar
                                     </a>
                                 </li>
                             </ul>
@@ -162,20 +162,20 @@ if (isset($_COOKIE["user_name"]))
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="teacher-list.php">
                                 <i class="fas fa-chalkboard-teacher u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Teachers</span>
+                                <span class="u-sidebar-nav-menu__item-title">Guru</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
 } ?>
                         <!-- End Classes -->
 
-                        <!-- Marks -->
+                        <!-- Markah -->
                         <!-- Classes -->
                         <?php if ($_COOKIE["user_name"] == "admin") {
                             echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-view.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Student list</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -183,7 +183,7 @@ if (isset($_COOKIE["user_name"]))
                                 echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="marks-admin.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Marks</span>
+                                <span class="u-sidebar-nav-menu__item-title">Permarkahan</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -193,7 +193,7 @@ if (isset($_COOKIE["user_name"]))
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-list.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Student list</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -203,7 +203,7 @@ if (isset($_COOKIE["user_name"]))
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="marks-admin.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Marks</span>
+                                <span class="u-sidebar-nav-menu__item-title">Permarkahan</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -212,7 +212,7 @@ if (isset($_COOKIE["user_name"]))
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Marks</span>
+                                <span class="u-sidebar-nav-menu__item-title">Permarkahan</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -221,22 +221,22 @@ if (isset($_COOKIE["user_name"]))
 
                         echo
                         '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="#!" data-target="#profile">
+                            <a class="u-sidebar-nav-menu__link" href="#!" data-target="#profil">
                                 <i class="fa fa-user u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">My Profile</span>
+                                <span class="u-sidebar-nav-menu__item-title">Profil</span>
                                 <i class="fa fa-angle-right u-sidebar-nav-menu__item-arrow"></i>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
 
-                            <ul id="profile" class="u-sidebar-nav-menu u-sidebar-nav-menu--second-level" style="display: none;">
+                            <ul id="profil" class="u-sidebar-nav-menu u-sidebar-nav-menu--second-level" style="display: none;">
                                 <li class="u-sidebar-nav-menu__item">
                                     <a class="u-sidebar-nav-menu__link" href="my-profile.php">
-                                        <span class="u-sidebar-nav-menu__item-title">My Profile</span>
+                                        <span class="u-sidebar-nav-menu__item-title">Profil</span>
                                     </a>
                                 </li>
                                 <li class="u-sidebar-nav-menu__item">
                                     <a class="u-sidebar-nav-menu__link" disabled href="edit-my-profile.php">
-                                        <span class="u-sidebar-nav-menu__item-title">Edit Profile</span>
+                                        <span class="u-sidebar-nav-menu__item-title">Sunting Profil</span>
                                     </a>
                                 </li>
                             </ul>
@@ -247,7 +247,7 @@ if (isset($_COOKIE["user_name"]))
                             '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="slip.php" target="_blank">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Check results</span>
+                                <span class="u-sidebar-nav-menu__item-title">Keputusan</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -268,7 +268,7 @@ if (isset($_COOKIE["user_name"]))
                 <section class="breadcumb-area card bg-gradient-blue mb-5">
                     <div class="bread-cumb-content card-body d-flex align-items-center">
                         <div class="breadcumb-heading">
-                            <h2 class="text-white">Manage Students</h2>
+                            <h2 class="text-white">Manage Murid</h2>
                         </div>
                         <div class="breadcumb-image ml-auto">
                             <img src="assets/img/breadcumb-manage-attendances.png" alt="">
@@ -284,7 +284,7 @@ if (isset($_COOKIE["user_name"]))
                             <form action="classes-view.php" method="post" class="es-form">
                                 <div class="row align-items-center">
                                     <div class="es-form">
-                                        <label for="class">Class <?php echo $class; ?></label>
+                                        <label for="class">Kelas <?php echo $class; ?></label>
                                     </div>
                                 </div>
                             </form> 
@@ -292,7 +292,7 @@ if (isset($_COOKIE["user_name"]))
                             <div class="attendances-list-wrap mt-1">
                                 <div class="show-option d-flex align-items-center mb-4">
                                     <div class="search-student ml-auto">
-                                        <a href="students-add.php?class=<?php echo $class;?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-lg btn-pill bg-gradient-blue text-white">Add new</a>
+                                        <a href="students-add.php?class=<?php echo $class;?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-lg btn-pill bg-gradient-blue text-white">Tambah</a>
                                     </div>
                                 </div>
 
@@ -300,15 +300,15 @@ if (isset($_COOKIE["user_name"]))
                                     <table class="table mb-0">
                                         <thead class="bg-gradient-blue">
                                             <tr>
-                                                <th scope="col" class="text-white">Student Name</th>
+                                                <th scope="col" class="text-white">Nama murid</th>
                                                 <th scope="col" class="text-white">IC Number</th>
-                                                <th scope="col" class="text-white">Gender</th>
-                                                <th scope="col" class="text-white">Date of Birth</th>
-                                                <th scope="col" class="text-white">Address</th>
-                                                <th scope="col" class="text-white">Phone number</th>
+                                                <th scope="col" class="text-white">Jantina</th>
+                                                <th scope="col" class="text-white">Tarikh Lahir</th>
+                                                <th scope="col" class="text-white">Alamat</th>
+                                                <th scope="col" class="text-white">No. Telefon</th>
                                                 <th scope="col" class="text-white">Co-curricular</th>
-                                                <th scope="col" class="text-white text-center">Edit</th>
-                                                <th scope="col" class="text-white text-center">Delete</th>
+                                                <th scope="col" class="text-white text-center">Sunting</th>
+                                                <th scope="col" class="text-white text-center">Buang</th>
                                             </tr>
                                         </thead>
 
@@ -322,8 +322,8 @@ if (isset($_COOKIE["user_name"]))
                                                 <td><?php echo $row["stuAddress"];?></td>
                                                 <td><?php echo $row["stu_phoneNum"];?></td>
                                                 <td><?php echo $row["cocurricular"];?></td>
-                                                <td class="text-center"><a href="students-edit.php?stuName=<?php echo $row['stuName'];?>&icNum=<?php echo $row["icNum"];?>&stuGender=<?php echo $row["stuGender"];?>&date_of_birth=<?php echo $row["date_of_birth"];?>&stuAddress=<?php echo $row["stuAddress"];?>&stu_phoneNum=<?php echo $row["stu_phoneNum"];?>&cocurricular=<?php echo $row["cocurricular"];?>&class=<?php echo $class; ?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Edit</a>
-                                                <td class="text-center"><a href="del-student.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Delete</a>
+                                                <td class="text-center"><a href="students-edit.php?stuName=<?php echo $row['stuName'];?>&icNum=<?php echo $row["icNum"];?>&stuGender=<?php echo $row["stuGender"];?>&date_of_birth=<?php echo $row["date_of_birth"];?>&stuAddress=<?php echo $row["stuAddress"];?>&stu_phoneNum=<?php echo $row["stu_phoneNum"];?>&cocurricular=<?php echo $row["cocurricular"];?>&class=<?php echo $class; ?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Sunting</a>
+                                                <td class="text-center"><a href="del-student.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Buang</a>
                                             </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -339,13 +339,13 @@ if (isset($_COOKIE["user_name"]))
                         <nav aria-label="Bootstrap Pagination" class="mt-5 text-center d-inline-block">
                             <ul class="pagination mb-0">
                                 <li class="page-item">
-                                    <a class="btn btn-outline-danger prev" href="#"><span class="ml-1 d-none d-xl-inline-block">Previous</span></a>
+                                    <a class="btn btn-outline-danger prev" href="#"><span class="ml-1 d-none d-xl-inline-block">Kembali</span></a>
                                 </li>
                                 <li class="page-item">
                                     <a class="btn btn-danger bg-gradient-blue text-white ml-4 mr-4" href="#">1</a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="btn btn-outline-danger next" href="#"><span class="mr-1 d-none d-xl-inline-block">Next</span></a>
+                                    <a class="btn btn-outline-danger next" href="#"><span class="mr-1 d-none d-xl-inline-block">Seterusnya</span></a>
                                 </li>
                             </ul>
                         </nav>

@@ -29,11 +29,11 @@ if (!isset($_COOKIE["user_name"]))
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <div class="container">
     <div class="alert alert-danger alert-dismissible fade show">
-        <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> Oops! Something went wrong.</h4>
-        <p>We have detected that are not logged in to an account.</p>
+        <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i> Ralat!</h4>
+        <p>Anda tidak log masuk dengan akaun yang sah.</p>
         <hr>
-        <p class="mb-0">Click on the 'Go home' button to login.</p>
-        <button type="button" class="btn btn-danger" datAtoggle="modal" onclick="logout()">Go home</button>
+        <p class="mb-0">Tekan butang 'Kembali' untuk ke laman log masuk semula.</p>
+        <button type="button" class="btn btn-danger" datAtoggle="modal" onclick="logout()">Kembali</button>
     </div>
     <script>
         function logout() {
@@ -92,7 +92,7 @@ function hideButton(x)
         <td width="80">&nbsp;Nama</font><br>
         </td>
         <td width="1">:</font><br>
-        </td>
+		</td>
         <td width="388">&nbsp;<?php echo $row["teacherName"];?></font><br>
         </td>
         <td width="80">&nbsp;Kelas</td>
