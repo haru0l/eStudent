@@ -17,7 +17,7 @@ $teacherName = $_POST['teacherName'];
 $teacher_phoneNum = $_POST['teacher_phoneNum'];
 $teacherEmail = $_POST['teacherEmail'];
 $tableID = $_POST['tableID'];
-
+echo "<script type='text/javascript'>alert('$tableID');</script>";
 $conn->query("UPDATE user SET teacherName='$teacherName' WHERE tableID = '$tableID'");
 $conn->query("UPDATE user SET teacher_phoneNum='$teacher_phoneNum' WHERE tableID = '$tableID'");
 $conn->query("UPDATE user SET teacherEmail='$teacherEmail' WHERE tableID = '$tableID'");
@@ -281,7 +281,7 @@ if (isset($_COOKIE["user_name"]))
                             <h2 class="text-white mb-0">Edit profile</h2>
                         </header>
                         <div class="card-body">
-                            <form action="edit-my-profile" method="post" class="es-form es-add-form">
+                            <form action="edit-my-profile.php" method="post" class="es-form es-add-form">
                                 <div class="row">
                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="tableID">Teacher ID</label>
