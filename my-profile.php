@@ -286,7 +286,6 @@ if (isset($_COOKIE["user_name"]))
                               <p><strong><?php echo $row["teacherType"];?></strong></p>
                               <p>E-mail: <?php echo $row["teacherEmail"];?></p>
                               <p>No. Telefon: <?php echo $row["teacher_phoneNum"];?></p>
-                              <p>Alamat:<?php echo $row["teacher_Address"];?></p>
                               <br>
                               <br>
                               <a href="edit-my-profile.php" class="btn btn-outline-danger pl-4 pr-4">Sunting</a>

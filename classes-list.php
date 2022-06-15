@@ -268,7 +268,7 @@ if (isset($_COOKIE["user_name"]))
                 <section class="breadcumb-area card bg-gradient-blue mb-5">
                     <div class="bread-cumb-content card-body d-flex align-items-center">
                         <div class="breadcumb-heading">
-                            <h2 class="text-white">Manage Murid</h2>
+                            <h2 class="text-white">Senarai Murid</h2>
                         </div>
                         <div class="breadcumb-image ml-auto">
                             <img src="assets/img/breadcumb-manage-attendances.png" alt="">
@@ -284,10 +284,11 @@ if (isset($_COOKIE["user_name"]))
                             <form action="classes-view.php" method="post" class="es-form">
                                 <div class="row align-items-center">
                                     <div class="es-form">
-                                        <label for="class">Kelas <?php echo $class; ?></label>
+                                        
                                     </div>
                                 </div>
                             </form> 
+                                                                <b><label for="class">Kelas <?php echo $class; ?></label></b>
 
                             <div class="attendances-list-wrap mt-1">
                                 <div class="show-option d-flex align-items-center mb-4">
@@ -303,10 +304,6 @@ if (isset($_COOKIE["user_name"]))
                                                 <th scope="col" class="text-white">Nama murid</th>
                                                 <th scope="col" class="text-white">IC Number</th>
                                                 <th scope="col" class="text-white">Jantina</th>
-                                                <th scope="col" class="text-white">Tarikh Lahir</th>
-                                                <th scope="col" class="text-white">Alamat</th>
-                                                <th scope="col" class="text-white">No. Telefon</th>
-                                                <th scope="col" class="text-white">Co-curricular</th>
                                                 <th scope="col" class="text-white text-center">Sunting</th>
                                                 <th scope="col" class="text-white text-center">Buang</th>
                                             </tr>
@@ -318,10 +315,6 @@ if (isset($_COOKIE["user_name"]))
                                                 <td><?php echo $row["stuName"];?></td>
                                                 <td><?php echo $row["icNum"];?></td>
                                                 <td><?php echo $row["stuGender"];?></td>
-                                                <td><?php echo $row["date_of_birth"];?></td>
-                                                <td><?php echo $row["stuAddress"];?></td>
-                                                <td><?php echo $row["stu_phoneNum"];?></td>
-                                                <td><?php echo $row["cocurricular"];?></td>
                                                 <td class="text-center"><a href="students-edit.php?stuName=<?php echo $row['stuName'];?>&icNum=<?php echo $row["icNum"];?>&stuGender=<?php echo $row["stuGender"];?>&date_of_birth=<?php echo $row["date_of_birth"];?>&stuAddress=<?php echo $row["stuAddress"];?>&stu_phoneNum=<?php echo $row["stu_phoneNum"];?>&cocurricular=<?php echo $row["cocurricular"];?>&class=<?php echo $class; ?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Sunting</a>
                                                 <td class="text-center"><a href="del-student.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Buang</a>
                                             </tr>

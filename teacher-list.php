@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
-$sql = "SELECT * FROM user GROUP BY login_id ASC";
+$sql = "SELECT * FROM user WHERE teacherType!='admin' GROUP BY login_id ASC";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 
@@ -261,7 +261,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                 <section class="breadcumb-area card bg-gradient-blue mb-5">
                     <div class="bread-cumb-content card-body d-flex align-items-center">
                         <div class="breadcumb-heading">
-                            <h2 class="text-white">Manage Guru</h2>
+                            <h2 class="text-white">Senarai Guru</h2>
                         </div>
                         <div class="breadcumb-image ml-auto">
                             <img src="assets/img/breadcumb-manage-attendances.png" alt="">
@@ -287,15 +287,12 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     <table class="table mb-0">
                                         <thead class="bg-gradient-blue">
                                             <tr>
-                                                <th scope="col" class="text-white">Username</th>
-                                                <th scope="col" class="text-white">Password</th>
+                                                <th scope="col" class="text-white">No IC</th>
+                                                <th scope="col" class="text-white">Kata laluan</th>
                                                 <th scope="col" class="text-white">Nama Guru</th>
                                                 <th scope="col" class="text-white">Jantina</th>
                                                 <th scope="col" class="text-white">No. Telefon</th>
-                                                <th scope="col" class="text-white">Tarikh Lahir</th>
-                                                <th scope="col" class="text-white">Alamat</th>
                                                 <th scope="col" class="text-white">E-mail</th>
-                                                <th scope="col" class="text-white">Qualification</th>
                                                 <th scope="col" class="text-white">Jenis</th>
                                                 <th scope="col" class="text-white">Subjek 1</th>
                                                 <th scope="col" class="text-white">Subjek 2</th>
@@ -314,10 +311,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                                 <td><?php echo $row["teacherName"];?></td>
                                                 <td><?php echo $row["gender"];?></td>
                                                 <td><?php echo $row["teacher_phoneNum"];?></td>
-                                                <td><?php echo $row["date_of_birth"];?></td>
-                                                <td><?php echo $row["teacher_Address"];?></td>
                                                 <td><?php echo $row["teacherEmail"];?></td>
-                                                <td><?php echo $row["acaQualification"];?></td>
                                                 <td><?php echo $row["teacherType"];?></td>
                                                 <td><?php echo $row["teacherSub1"];?></td>
                                                 <td><?php echo $row["teacherSub2"];?></td>

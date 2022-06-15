@@ -99,12 +99,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 			      	</div>
 							<form action="login.php" class="signin-form" method="post">
 			      		<div class="form-group mb-3">
-			      			<label class="label" for="name">Username</label>
-			      			<input type="text" name="username" class="form-control" placeholder="Username" required>
+			      			<label class="label" for="name">No IC</label>
+			      			<input type="text" name="username" class="form-control" placeholder="No IC" required>
 			      		</div>
 		            <div class="form-group mb-3">
-		            	<label class="label" for="password">Password</label>
-		              <input type="password" name="password" class="form-control" placeholder="Password" required>
+		            	<label class="label" for="password">Kata laluan</label>
+		              <input type="password" name="password" class="form-control" placeholder="Kata laluan" required>
 		            </div>
 		            <div class="form-group">
 		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Log masuk</button>
@@ -113,7 +113,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 		            	<div class="w-50 text-left">
 									</div>
 									<div class="w-50 text-md-right">
-										<a href="#">Forgot Password</a>
+										<a href="#">Forgot Kata laluan</a>
 									</div>
 		            </div>
 		          </form>

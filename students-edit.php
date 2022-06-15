@@ -20,23 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $icNum = $_POST['icNum'];
 $stuName = $_POST['stuName'];
 $stuGender = $_POST['stuGender'];
-$date_of_birth = $_POST['date_of_birth'];
-$stuAddress = $_POST['stuAddress'];
-$stu_phoneNum = $_POST['stu_phoneNum'];
 $class = $_POST['class'];
-$cocurricular = $_POST['cocurricular'];
 $year = $_POST['year'];
 $tableID = $_POST['tableID'];
 
-echo "<script type='text/javascript'>alert('$tableID');</script>";
 $conn->query("UPDATE student SET icNum='$icNum' WHERE tableID='$tableID'");
 $conn->query("UPDATE student SET stuName='$stuName' WHERE tableID='$tableID'");
 $conn->query("UPDATE student SET stuGender='$stuGender' WHERE tableID='$tableID'");
-$conn->query("UPDATE student SET date_of_birth='$date_of_birth' WHERE tableID='$tableID'");
-$conn->query("UPDATE student SET stuAddress='$stuAddress' WHERE tableID='$tableID'");
-$conn->query("UPDATE student SET stu_phoneNum='$stu_phoneNum' WHERE tableID='$tableID'");
 $conn->query("UPDATE student SET class='$class' WHERE tableID='$tableID'");
-$conn->query("UPDATE student SET cocurricular='$cocurricular' WHERE tableID='$tableID'");
 $conn->query("UPDATE student SET year='$band' WHERE tableID = '$tableID'");
 echo '<script type="text/javascript">';
 echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
@@ -326,27 +317,15 @@ if (isset($_COOKIE["user_name"]))
                                         <input type="text" name="stuName" value="<?php echo $stuGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Tarikh Lahir</label>
-                                        <input type="text" name="date_of_birth" value="<?php echo $dobGet?>">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">IC Number</label>
-                                        <input type="text" name="icNum" value="<?php echo $icGet?>">
+                                        <label for="title">Nombor IC</label>
+                                        <input type="text" required name="icNum" value="<?php echo $icGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Jantina</label>
-                                        <select name="stuGender" id="gender" class="es-add-select" value="<?php echo $genderGet?>">
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                        <select required name="stuGender" id="gender" class="es-add-select" value="<?php echo $genderGet?>">
+                                            <option value="Lelaki">Lelaki</option>
+                                            <option value="Perempuan">Perempuan</option>
                                         </select>
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">No. Telefon</label>
-                                        <input type="tel" name="stu_phoneNum" value="<?php echo $phoneGet?>">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Alamat</label>
-                                        <input type="text" name="stuAddress" value="<?php echo $addressGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Kelas</label>
@@ -364,10 +343,6 @@ if (isset($_COOKIE["user_name"]))
                                             <option value="6 Bijak">6 Bijak</option>
                                             <option value="6 Cerdik">6 Cerdik</option>
                                         </select>
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Co-curricular</label>
-                                        <input type="text" name="cocurricular" value="<?php echo $kokoGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Tahun</label>

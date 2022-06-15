@@ -11,18 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $icNum = $_POST['icNum'];
 $stuName = $_POST['stuName'];
 $stuGender = $_POST['stuGender'];
-$date_of_birth = $_POST['date_of_birth'];
-$stuAddress = $_POST['stuAddress'];
-$stu_phoneNum = $_POST['stu_phoneNum'];
 $class = $_POST['class'];
-$cocurricular = $_POST['cocurricular'];
 $year = $_POST['year'];
 
-$sql = "INSERT into student (icNum, stuName, stuGender, date_of_birth, stuAddress, stu_phoneNum, class, cocurricular)
-VALUES ('$icNum', '$stuName', '$stuGender', '$date_of_birth', '$stuAddress', '$stu_phoneNum', '$class', '$cocurricular')";
+$sql = "INSERT into student (icNum, stuName, stuGender, class, year)
+VALUES ('$icNum', '$stuName', '$stuGender', '$class', '$year')";
 $conn->query($sql);
 echo '<script type="text/javascript">';
-echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo ' alert("Data inserted! Sending to previous page...")';  //not showing an alert box.
 echo '</script>';
 echo '<meta http-equiv="Refresh" content="0; url=index.php"/>';
 }
@@ -303,55 +299,26 @@ if (isset($_COOKIE["user_name"]))
                                 <div class="row">
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Nama murid</label>
-                                        <input type="text" name="stuName">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Tarikh Lahir</label>
-                                        <input type="text" name="date_of_birth">
+                                        <input type="text" required oninput="this.value = this.value.toUpperCase()" placeholder="Masukkan nama murid" name="stuName">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">IC Number</label>
-                                        <input type="text" name="icNum">
+                                        <input type="num" required placeholder="Masukkan nombor kad pengenalan tanpa sengkang (-)" name="icNum">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Jantina</label>
-                                        <select name="stuGender" id="gender" class="es-add-select">
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                        <select name="stuGender" required id="gender" class="es-add-select">
+                                            <option value="Lelaki">Lelaki</option>
+                                            <option value="Perempuan">Perempuan</option>
                                         </select>
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">No. Telefon</label>
-                                        <input type="tel" name="stu_phoneNum">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Alamat</label>
-                                        <input type="text" name="stuAddress">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Kelas</label>
-                                        <select name="class" id="class">
-                                            <option value="1 Bijak">1 Bijak</option>
-                                            <option value="1 Cerdik">1 Cerdik</option>
-                                            <option value="2 Bijak">2 Bijak</option>
-                                            <option value="2 Cerdik">2 Cerdik</option>
-                                            <option value="3 Bijak">3 Bijak</option>
-                                            <option value="3 Cerdik">3 Cerdik</option>
-                                            <option value="4 Bijak">4 Bijak</option>
-                                            <option value="4 Cerdik">4 Cerdik</option>
-                                            <option value="5 Bijak">5 Bijak</option>
-                                            <option value="5 Cerdik">5 Cerdik</option>
-                                            <option value="6 Bijak">6 Bijak</option>
-                                            <option value="6 Cerdik">6 Cerdik</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="title">Co-curricular</label>
-                                        <input type="text" name="cocurricular">
+                                            <input type="text" readonly name="class" value="<?php echo $class?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Tahun</label>
-                                        <select name="year" id="year" class="es-add-select">
+                                        <select name="year" required id="year" class="es-add-select">
                                             <option value="2022">2022</option>
                                             <option value="2021">2021</option>
                                             <option value="2020">2020</option>
