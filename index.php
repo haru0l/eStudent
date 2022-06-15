@@ -91,10 +91,13 @@ if (isset($_COOKIE["user_name"]))
                 
             </a>
             <h1 class="text" style="text-align: center; font-size: 36">e-Student Assessment System</h1>
+			
 
         <div class="u-header-right">
             <!-- User Profile -->
+			<h6 class="text" style="text-align: center; font-size: 16">Welcome, <?php echo $_COOKIE['teacherName']; ?>    </h6>
             <div class="dropdown ml-2">
+			
                 <a class="link-muted d-flex align-items-center us-u-avatar-wrap" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                     <img class="u-avatar--xs img-fluid rounded-circle mr-2 bg-gradient-blue" src="assets/img/avatars/user-unknown.jpg" alt="User Profile">
                     <span class="d-none d-sm-inline-block text-danger">
@@ -104,10 +107,11 @@ if (isset($_COOKIE["user_name"]))
 
                 <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-3" aria-labelledby="dropdownMenuLink" style="width: 260px;">
                     <div class="card">
-
+						
                         <div class="card-body">
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-4">
+								
                                     <a class="d-flex align-items-center link-dark" href="my-profile.php">
                                         <span class="h3 mb-0"><i class="far fa-user-circle text-muted mr-3"></i></span> Profil
                                     </a>

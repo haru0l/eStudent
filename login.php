@@ -26,6 +26,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         $cookie_name = "class";
         $cookie_value = $class;
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+        
+        $name = $row["teacherName"];
+        $cookie_name = "teacherName";
+        $cookie_value = $name;
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+        
         header ('Location: index.php');
         
     }
