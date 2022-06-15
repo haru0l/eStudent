@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
-$sql = "SELECT * FROM user GROUP BY teacherName ASC";
+$sql = "SELECT * FROM user GROUP BY login_id ASC";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 
@@ -323,8 +323,8 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                                 <td><?php echo $row["teacherSub2"];?></td>
                                                 <td><?php echo $row["teacherSub3"];?></td>
                                                 <td><?php echo $row["class"];?></td>
-                                                <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Edit</a>
-                                                <td class="text-center"><a disabled href="" class="btn btn-outline-danger es-am-btn">Delete</a>
+                                                <td class="text-center"><a href="teacher-add.php?login_id=<?php echo $row["login_id"];?>&teacherPassword=<?php echo $row["teacherPassword"];?>&teacherName=<?php echo $row["teacherName"];?>&gender=<?php echo $row["gender"];?>&teacher_phoneNum=<?php echo $row["teacher_phoneNum"];?>&date_of_birth=<?php echo $row["date_of_birth"];?>&teacher_Address=<?php echo $row["teacher_Address"];?>&teacherEmail=<?php echo $row["teacherEmail"];?>&acaQualification=<?php echo $row["acaQualification"];?>&teacherType=<?php echo $row["teacherType"];?>&teacherSub1=<?php echo $row["teacherSub1"];?>&teacherSub2<?php echo $row["teacherSub2"];?>&teacherSub3<?php echo $row["teacherSub3"];?>&class=<?php echo $row["class"];?>&tableID=<?php echo $row["tableID"];?>&teacherEmail=<?php echo $row["teacherEmail"];?>" class="btn btn-outline-danger es-am-btn">Edit</a>
+                                                <td class="text-center"><a href="del-teacher.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Delete</a>
                                             </tr>
                                             <?php endwhile; ?>
                                         </tbody>

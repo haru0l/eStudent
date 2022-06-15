@@ -4,8 +4,24 @@ $username = "root";
 $password = "";
 $dbname = "estudent";
 $conn = new mysqli($servername, $username, $password, $dbname);
+if(isset($_GET['login_id'])) {
+    $idGet = $_GET['login_id'];
+    $passGet = $_GET['teacherPassword'];
+    $nameGet = $_GET['teacherName'];
+    $genderGet = $_GET['gender'];
+    $phoneGet = $_GET['teacher_phoneNum'];
+    $dobGet = $_GET['date_of_birth'];
+    $mailGet = $_GET['teacherEmail'];
+    $addressGet = $_GET['teacher_Address'];
+    $qualifGet = $_GET['acaQualification'];
+    $typeGet = $_GET['teacherType'];
+    $sub1Get = $_GET['teacherSub1'];
+    $sub2Get = $_GET['teacherSub2'];
+    $sub3Get = $_GET['teacherSub3'];
+    $classGet = $_GET['class'];
+    $tabIDGet = $_GET['tableID'];
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
 
 $login_id = $_POST['login_id'];
 $teacherPassword = $_POST['teacherPassword'];
@@ -21,22 +37,45 @@ $teacherSub1 = $_POST['teacherSub1'];
 $teacherSub2 = $_POST['teacherSub2'];
 $teacherSub3 = $_POST['teacherSub3'];
 $class = $_POST['class'];
-    
-$sql = "INSERT into teacher
-VALUES ('$login_id', '$teacherPassword', '$teacherName', '$gender', '$teacher_phoneNum', '$date_of_birth', '$teacher_Address', '$teacherEmail', '$acaQualification', '$teacherType', '$teacherSub1', '$teacherSub2', '$teacherSub3', '$class')";
+$tableID = $_POST['tableID'];
 
-if ($conn -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-  exit();
+$query = "SELECT * FROM user WHERE login_id ='$login_id' AND tableID='$tableID'";
+$result = $conn->query($query);
+$row = $result->fetch_assoc();
+$count = mysqli_num_rows($result);
+    
+if ($count == 1)    
+{
+$conn->query("UPDATE user SET login_id='$login_id' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacherPassword='$teacherPassword' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacherName='$teacherName' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET gender='$gender' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacher_phoneNum='$teacher_phoneNum' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET date_of_birth='$date_of_birth' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacher_Address='$teacher_Address' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacherEmail='$teacherEmail' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET acaQualification='$acaQualification' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacherType='$teacherType' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacherSub1='$teacherSub1' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacherSub2='$teacherSub2' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET teacherSub3='$teacherSub3' WHERE tableID = '$tableID'");
+$conn->query("UPDATE user SET class='$class' WHERE tableID = '$tableID'");
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=teacher-list.php"/>';
 }
-if (!$conn->query($sql)) {
-  echo("Error description: " . $mysqli -> error);
+else
+{
+$sql = "INSERT into user (login_id, teacherPassword, teacherName, gender, teacherEmail, teacher_phoneNum, teacher_Address, date_of_birth, acaQualification, teacherType, teacherSub1, teacherSub2, teacherSub3, class)
+VALUES ('$login_id', '$teacherPassword', '$teacherName', '$gender', '$teacher_phoneNum', '$date_of_birth', '$teacher_Address', '$teacherEmail', '$acaQualification', '$teacherType', '$teacherSub1', '$teacherSub2', '$teacherSub3', '$class')";
+$conn->query($sql);
+echo '<script type="text/javascript">';
+echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=teacher-list.php"/>';
 }
-else {
-    echo '<script>alert("Success")</script>';
-    header("Location: teacher-list.php");
-die();
-}
+
 }
 $login_user = $_COOKIE["user_name"];
 $sql = "SELECT * FROM user WHERE login_id='$login_user'";
@@ -305,48 +344,55 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                         <div class="card-body">
                             <form action="teacher-add.php" method="post" class="es-form es-add-form">
                                 <div class="row">
+                                 <?php if(isset($_GET['login_id'])) { ?>
+                                  <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="tableID">Student ID</label>
+                                        <input type="text" name="tableID" readonly value="<?php echo $tabIDGet?>">
+                                    <?php  }?>
+                                    </div>
                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Login ID</label>
-                                        <input type="text" name="login_id">
+                                        <input type="text" name="login_id"
+                                        <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $idGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Login Password</label>
-                                        <input type="text" name="teacherPassword">
+                                        <input type="text" name="teacherPassword" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $passGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Teacher Name</label>
-                                        <input type="text" oninput="this.value = this.value.toUpperCase()" name="teacherName">
+                                        <input type="text" oninput="this.value = this.value.toUpperCase()" name="teacherName" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $nameGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Date of Birth</label>
-                                        <input type="text" name="date_of_birth">
+                                        <input type="text" name="date_of_birth" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $dobGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Gender</label>
-                                        <select name="gender" id="gender" class="es-add-select">
+                                        <select name="gender" id="gender" class="es-add-select" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $genderGet?>" <?php  }?>>
                                             <option value="MALE">MALE</option>
                                             <option value="FEMALE">FEMALE</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Phone number</label>
-                                        <input type="tel" name="teacher_phoneNum">
+                                        <input type="tel" name="teacher_phoneNum" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $phoneGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Address</label>
-                                        <input type="text" oninput="this.value = this.value.toUpperCase()" name="teacher_Address">
+                                        <input type="text" oninput="this.value = this.value.toUpperCase()" name="teacher_Address" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $addressGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Email</label>
-                                        <input type="text" name="teacherEmail">
+                                        <input type="text" name="teacherEmail" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $mailGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Academic Qualification</label>
-                                        <input type="text" oninput="this.value = this.value.toUpperCase()" name="acaQualification">
+                                        <input type="text" oninput="this.value = this.value.toUpperCase()" name="acaQualification" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $qualifGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Type</label>
-                                        <select name="teacherType" id="class">
+                                        <select name="teacherType" id="class" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $typeGet?>" <?php  }?>>
                                             <option value="Guru kelas">Guru kelas</option>
                                             <option value="Guru subjek">Guru subjek</option>
 											<option value="Guru subjek">Admin</option>
@@ -354,7 +400,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="subject">Subject 1</label>
-                                        <select name="teacherSub1" id="subject" class="es-add-select">
+                                        <select name="teacherSub1" id="subject" class="es-add-select" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $sub1Get?>" <?php } ?> >
                                             <option value="Bahasa Melayu">Bahasa Melayu</option>
                                             <option value="Bahasa Inggeris">Bahasa Inggeris</option>
                                             <option value="Matematik">Matematik</option>
@@ -370,7 +416,8 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="subject">Subject 2</label>
-                                        <select name="teacherSub2" id="subject" class="es-add-select">
+                                        <select name="teacherSub2" id="subject" class="es-add-select"
+                                        <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $sub2Get;?>"<?php }?>>
                                             <option value="">-</option>
                                             <option value="Bahasa Melayu">Bahasa Melayu</option>
                                             <option value="Bahasa Inggeris">Bahasa Inggeris</option>
@@ -387,7 +434,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="subject">Subject 3</label>
-                                        <select name="teacherSub3" id="subject" class="es-add-select">
+                                        <select name="teacherSub3" id="subject" class="es-add-select" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $sub3Get?>" <?php  }?>>
                                             <option value="">-</option>
                                             <option value="Bahasa Melayu">Bahasa Melayu</option>
                                             <option value="Bahasa Inggeris">Bahasa Inggeris</option>
@@ -404,7 +451,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Class</label>
-                                        <select name="class" id="class">
+                                        <select name="class" id="class" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $classGet?>" <?php  }?>>
                                             <option value="1 Bijak">1 Bijak</option>
                                             <option value="1 Cerdik">1 Cerdik</option>
                                             <option value="2 Bijak">2 Bijak</option>
