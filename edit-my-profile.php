@@ -272,7 +272,7 @@ if (isset($_COOKIE["user_name"]))
                                 <div class="row">
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="name">Name</label>
-                                        <input id="name" type="text" placeholder="Enter name">
+                                        <input id="name" type="text" placeholder="Enter name" value="">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="description">Description</label>
@@ -285,15 +285,6 @@ if (isset($_COOKIE["user_name"]))
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="phone">Phone</label>
                                         <input id="phone" type="tel" placeholder="Enter phone">
-                                    </div>
-                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="subject">Subject</label>
-                                        <select id="subject" class="es-add-select">
-                                            <option data-display="English">English</option>
-                                            <option value="1">Bahasa Melayu</option>
-                                            <option value="2">Mathmatics</option>
-                                            <option value="3">Science</option>
-                                        </select>
                                     </div>
                                     <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
                                         <a href="" class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</a>        

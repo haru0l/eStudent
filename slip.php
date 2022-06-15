@@ -9,7 +9,17 @@ $sql = "SELECT report.*, grades.*, student.* FROM report
 INNER JOIN grades on grades.stuIC = report.stuIC
 INNER JOIN student on student.icNum = report.stuIC
 WHERE report.stuIC = $login_user";
-
+$countAMinus = (int)"";
+$countAPlus = (int)"";
+$countA = (int)"";
+$countBMinus = (int)"";
+$countBPlus = (int)"";
+$countB = (int)"";
+$countCPlus = (int)"";
+$countC = (int)"";
+$countD = (int)"";
+$countE = (int)"";
+$countG = (int)"";
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
 $val=$connect->query($sql);    
@@ -141,7 +151,67 @@ function hideButton(x)
             <center><?php echo $row["marksBM"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksBM"];?></center>
+            <center><?php
+                
+    $per = $row["marksBM"];
+                    
+    if($per>=90)
+	{
+		$grade='A+';
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade='A';
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade='A-';
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade='B+';
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade='B';
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade='C+';
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade='C';
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade='D';
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade='E';
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade='G';
+            $countG++;
+	}                
+	else
+	{
+		$grade='TH';
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <tr>
@@ -153,7 +223,67 @@ function hideButton(x)
             <center><?php echo $row["marksBI"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksBI"];?></center>
+            <center><?php
+                
+    $per = $row["marksBI"];
+                    
+    if($per>=90)
+	{
+		$grade='A+';
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade='A';
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade='A-';
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade='B+';
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade='B';
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade='C+';
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade='C';
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade='D';
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade='E';
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade='G';
+            $countG++;
+	}                
+	else
+	{
+		$grade='TH';
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <tr>
@@ -165,7 +295,67 @@ function hideButton(x)
             <center><?php echo $row["marksMath"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksMath"];?></center>
+            <center><?php
+                
+    $per = $row["marksMath"];
+                    
+    if($per>=90)
+	{
+		$grade='A+';
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade='A';
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade='A-';
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade='B+';
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade='B';
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade='C+';
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade='C';
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade='D';
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade='E';
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade='G';
+            $countG++;
+	}                
+	else
+	{
+		$grade='TH';
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <tr>
@@ -175,7 +365,67 @@ function hideButton(x)
             <center><?php echo $row["marksPI"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksPI"];?></center>
+            <center><?php
+                
+    $per = $row["marksPI"];
+                    
+    if($per>=90)
+	{
+		$grade='A+';
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade='A';
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade='A-';
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade='B+';
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade='B';
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade='C+';
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade='C';
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade='D';
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade='E';
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade='G';
+            $countG++;
+	}                
+	else
+	{
+		$grade='TH';
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <tr>
@@ -187,7 +437,67 @@ function hideButton(x)
             <center><?php echo $row["marksSeni"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksSeni"];?></center>
+            <center><?php
+                
+    $per = $row["marksSeni"];
+                    
+    if($per>=90)
+	{
+		$grade='A+';
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade='A';
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade='A-';
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade='B+';
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade='B';
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade='C+';
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade='C';
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade='D';
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade='E';
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade='G';
+            $countG++;
+	}                
+	else
+	{
+		$grade='TH';
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <tr>
@@ -197,7 +507,67 @@ function hideButton(x)
             <center><?php echo $row["marksBA"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksBA"];?></center>
+            <center><?php
+                
+    $per = $row["marksBA"];
+                    
+    if($per>=90)
+	{
+		$grade='A+';
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade='A';
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade='A-';
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade='B+';
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade='B';
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade='C+';
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade='C';
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade='D';
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade='E';
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade='G';
+            $countG++;
+	}                
+	else
+	{
+		$grade='TH';
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <tr>
@@ -207,7 +577,67 @@ function hideButton(x)
             <center><?php echo $row["marksTasmik"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksTasmik"];?></center>
+            <center><?php
+                
+    $per = $row["marksTasmik"];
+                    
+    if($per>=90)
+	{
+		$grade='A+';
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade='A';
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade='A-';
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade='B+';
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade='B';
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade='C+';
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade='C';
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade='D';
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade='E';
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade='G';
+            $countG++;
+	}                
+	else
+	{
+		$grade='TH';
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <tr>
@@ -217,7 +647,67 @@ function hideButton(x)
             <center><?php echo $row["marksSains"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksSains"];?></center>
+            <center><?php
+                
+    $per = $row["marksSains"];
+                    
+    if($per>=90)
+	{
+		$grade='A+';
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade='A';
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade='A-';
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade='B+';
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade='B';
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade='C+';
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade='C';
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade='D';
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade='E';
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade='G';
+            $countG++;
+	}                
+	else
+	{
+		$grade='TH';
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <?php
@@ -229,7 +719,67 @@ function hideButton(x)
             <center><?php echo $row["marksMusik"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksMusik"];?></center>
+            <center><?php
+                
+    $per = $row["marksMusik"];
+                    
+    if($per>=90)
+	{
+		$grade="A+";
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade="A";
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade="A-";
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade="B+";
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade="B";
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade="C+";
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade="C";
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade="D";
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade="E";
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade="G";
+            $countG++;
+	}                
+	else
+	{
+		$grade="TH";
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <tr>
@@ -239,7 +789,67 @@ function hideButton(x)
             <center><?php echo $row["marksRBT"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksRBT"];?></center>
+            <center><?php
+                
+    $per = $row["marksRBT"];
+                    
+    if($per>=90)
+	{
+		$grade="A+";
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade="A";
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade="A-";
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade="B+";
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade="B";
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade="C+";
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade="C";
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade="D";
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade="E";
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade="G";
+            $countG++;
+	}                
+	else
+	{
+		$grade="TH";
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>
     <tr>
@@ -249,7 +859,67 @@ function hideButton(x)
             <center><?php echo $row["marksSejarah"];?></center>
         </td>
         <td>
-            <center><?php echo $row["marksSejarah"];?></center>
+            <center><?php
+                
+    $per = $row["marksSejarah"];
+                    
+    if($per>=90)
+	{
+		$grade="A+";
+        $countAPlus++;
+	}
+	elseif($per<90 && $per>=80)
+	{
+			$grade="A";
+            $countA++;
+	}
+	elseif($per<80 && $per>=75)
+	{
+			$grade="A-";
+            $countAMinus++;
+	}
+	elseif($per<75 && $per>=70)
+	{
+			$grade="B+";
+            $countBPlus++;
+	}
+    elseif($per<70 && $per>=65)
+	{
+			$grade="B";
+            $countB++;
+	}
+	elseif($per<65 && $per>=60)
+	{
+			$grade="C+";
+            $countCPlus++;
+	}
+	elseif($per<60 && $per>=50)
+	{
+			$grade="C";
+            $countC++;
+	}
+	elseif($per<50 && $per>=40)
+	{
+			$grade="D";
+            $countD++;
+	}
+    elseif($per<40 && $per>=30)
+	{
+			$grade="E";
+            $countE++;
+	}
+	elseif($per<30 && $per>=0)
+	{
+			$grade="G";
+            $countG++;
+	}                
+	else
+	{
+		$grade="TH";
+	}
+                
+           echo $grade;     
+                ?></center>
         </td>
     </tr>';
     }?>
@@ -267,42 +937,82 @@ function hideButton(x)
         <td width="179"><?php
             if (in_array($row["class"], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
                 echo '8';
+                $registered = (int) 8;
             }
  else {
      echo '11';
+     $registered = (int) 11;
  }
             ?></td>
         <td width="214">Jumlah Markah </td>
         <td width="1">:</td>
-        <td width="85">505</td>
+        <?php
+        
+        $m1= (int) $row["marksBM"];
+        $m2= (int) $row["marksBI"];
+        $m3= (int) $row["marksMath"];
+        $m4= (int) $row["marksPI"];
+        $m5= (int) $row["marksSeni"];
+        $m6= (int) $row["marksBA"];
+        $m7= (int) $row["marksTasmik"];
+        $m8= (int) $row["marksSains"];
+        $m9= (int) $row["marksMusik"];
+        $m10= (int) $row["marksRBT"];
+        $m11= (int) $row["marksSejarah"];
+        
+        $total = $m1+$m2+$m3+$m4+$m5+$m6+$m7+$m8+$m9+$m10+$m11;
+        
+        
+        ?>
+        <td width="85"><?php echo $total?></td>
     </tr>
     <tr>
         <td>&nbsp;Kedudukan Dalam Kelas </td>
         <td width="1">:</td>
-        <td><?php echo $row["rankingClass"]?> / 26</td>
+        
+        
+        
+        <?php
+                $class = $row["class"];
+                $query2 = "SELECT * FROM user WHERE class='$class'";
+                $result2 = $connect->query($query2);
+                $row2 = $result->fetch_assoc();
+                $count = mysqli_num_rows($result);?>
+        <td><?php echo $row["rankingClass"]?> / <?php echo $count?>
+        </td>
         <td>&nbsp; </td>
         <td>&nbsp; </td>
         <td>&nbsp; </td>
     <tr>
         <td>&nbsp;Kedudukan Dalam Tingkatan </td>
         <td width="1">:</td>
-        <td><?php echo $row["rankingWhole"]?> / 116</td>
+        <td><?php echo $row["rankingWhole"]?> / - </td>
         <td>Peratus</td>
         <td width="1">:</td>
-        <td>72.14</td>
+        <td>
+            <?php 
+                    $peratus = $total / $registered;
+                    echo $peratus;
+ ?></td>
     </tr>
     <tr>
         <td>&nbsp;Kehadiran</td>
         <td width="1">:</td>
-        <td><?php echo $row["attendance"]?> / 999 Hari</td>
+        <td><?php echo $row["attendance"]?> / - Hari</td>
         <td>Gred Purata Pelajar </td>
         <td width="1">:</td>
-        <td>2.71</td>
+        <td><?php
+            
+            
+            $gps = ($countA + $countAPlus + $countAMinus + $countB + $countBPlus + $countBMinus + $countC + $countCPlus + $countD + $countE + $countG) / $registered;
+            
+            echo $gps;
+            ?></td>
     </tr>
     <tr>
         <td>&nbsp;Pencapaian Gred Keseluruhan </td>
         <td width="1">:</td>
-        <td>1[A] 2[B] 2[C] 2[D] </td>
+        <td><?php $totalA=$countAPlus + $countA + $countAMinus; echo $totalA;?>[A] 2[B] 2[C] 2[D] </td>
         <td>Keputusan</td>
         <td width="1">:</td>
         <td>LULUS</td>

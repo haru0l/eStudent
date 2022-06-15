@@ -7,7 +7,7 @@ $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
 $class = $_POST['class'];
 $loggedin = $_COOKIE["user_name"];
-$sql = "SELECT grades.*, student.*, user.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum INNER JOIN user ON student.class=user.class WHERE student.class='$class' AND year='2022' AND user.login_id=$loggedin GROUP BY stuName ASC";
+$sql = "SELECT grades.*, student.*, user.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum INNER JOIN user ON student.class=user.class WHERE student.class='$class' AND user.login_id=$loggedin GROUP BY stuName ASC";
     
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
