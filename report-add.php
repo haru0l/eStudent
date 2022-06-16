@@ -34,12 +34,13 @@ if ($count == 1)
 $conn->query("UPDATE report SET attitude='$attitude' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
 $conn->query("UPDATE report SET attendance='$attendance' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
 $conn->query("UPDATE report SET comment='$attitude' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
-$conn->query("UPDATE report SET rankingClass='$attitude' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
-$conn->query("UPDATE report SET rankingWhole='$attitude' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+$conn->query("UPDATE report SET rankingClass='$rankingClass' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+$conn->query("UPDATE report SET rankingWhole='$rankingWhole' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
+$conn->query("UPDATE report SET test='$test' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
 echo '<script type="text/javascript">';
 echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
 echo '</script>';
-echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
+echo '<meta http-equiv="Refresh" content="0; url=index.php"/>';
 }
 else
 {
@@ -49,7 +50,7 @@ $conn->query($sql);
 echo '<script type="text/javascript">';
 echo ' alert("Data inserted! Sending to previous page...")';  //not showing an alert box.
 echo '</script>';
-echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
+echo '<meta http-equiv="Refresh" content="0; url=index.php"/>';
 }
 }
 $username = $_COOKIE["user_name"];
@@ -318,7 +319,7 @@ if (isset($_COOKIE["user_name"]))
                             <h2 class="text-white mb-0">Tambah markah untuk Kelas <?php echo $class;?></h2>
                         </header>
                         <div class="card-body">
-                            <form action="marks-add-teacher.php" method="post" class="es-form es-add-form">
+                            <form action="report-add.php" method="post" class="es-form es-add-form">
                                 <div class="row">
                                     
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
@@ -337,36 +338,42 @@ if (isset($_COOKIE["user_name"]))
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="attendance">Kehadiran</label>
-                                        <input name="attendance" id="attendance" type="text" placeholder="Masukkan kehadiran pelajar">
+                                        <input name="attendance" id="attendance" type="number" placeholder="Masukkan kehadiran pelajar">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="comment">Ulasan</label>
-                                        <input name="comment" id="comment" type="text" placeholder="Masukkan kehadiran pelajar">
+                                        <input name="comment" id="comment" type="text" placeholder="Masukkan ulasan pelajar">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="teacherName">Nama guru</label>
-                                        <input name="teacherName" readonly id="teacherName" type="text" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $teacherGet?>" <?php  }?>>
+                                        <input name="teacherName" readonly id="teacherName" type="text"  value="<?php echo $teacherGet;?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="kelas">Kelas</label>
-                                        <input name="kelas" readonly id="class" type="text" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $class?>" <?php  }?>>
+                                        <input name="class" readonly id="class" type="text"  value="<?php echo $class;?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="comment">Kedudukan dalam kelas</label>
-                                        <input name="comment" id="rankingClass" type="num" placeholder="Masukkan kedudukan pelajar di dalam kelas">
+                                        <input name="rankingClass" id="rankingClass" type="number" placeholder="Masukkan kedudukan pelajar di dalam kelas">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="comment">Kedudukan dalam darjah</label>
-                                        <input name="comment" id="rankingWhole" type="num" placeholder="Masukkan kedudukan pelajar di dalam darjah">
+                                        <input name="rankingWhole" id="rankingWhole" type="number" placeholder="Masukkan kedudukan pelajar di dalam darjah">
                                     </div>
                                     
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Tahun</label>
-                                        <input name="kelas" readonly id="kelas" type="text" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $yearGet?>" <?php  }?>>
+                                        <input name="year" readonly id="year" type="text"  value="<?php echo $yearGet?>">
                                     </div>
-                                    
+                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
+                                        <label for="exam">Peperiksaan</label>
+                                           <select name="test" id="test" class="es-add-select">
+                                            <option value="PepAwal">Peperiksaan Awal Tahun</option>
+                                            <option value="PepAkhir">Peperiksaan Akhir Tahun</option>
+                                             </select>
+                                    </div>
                                     <div class="col-lg-4 offset-lg-4 col-md-12 text-center">    
-                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>       
+                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Keluarkan</button>       
                                     </div>
                                 </div>
                                 
