@@ -984,7 +984,7 @@ function hideButton(x)
                 $result2 = $connect->query($query2);
                 $row2 = $result->fetch_assoc();
                 $count = mysqli_num_rows($result);?>
-        <td><?php echo $row["rankingClass"]?> / <?php echo $count?>
+        <td><?php echo $row["rankingClass"]?> /
         </td>
         <td>&nbsp; </td>
         <td>&nbsp; </td>
@@ -992,7 +992,7 @@ function hideButton(x)
     <tr>
         <td>&nbsp;Kedudukan Dalam Darjah </td>
         <td width="1">:</td>
-        <td><?php echo $row["rankingWhole"]?> / - </td>
+        <td><?php echo $row["rankingWhole"]?> / </td>
         <td>Peratus</td>
         <td width="1">:</td>
         <td>
@@ -1004,7 +1004,7 @@ function hideButton(x)
     <tr>
         <td>&nbsp;Kehadiran</td>
         <td width="1">:</td>
-        <td><?php echo $row["attendance"]?> / - Hari</td>
+        <td><?php echo $row["attendance"]?> /  Hari</td>
         <td>Gred Purata Pelajar </td>
         <td width="1">:</td>
         <td><?php
@@ -1045,7 +1045,14 @@ function hideButton(x)
             }?></td>
         <td>Keputusan</td>
         <td width="1">:</td>
-        <td>LULUS</td>
+        <td><?php if ($countTH>0)
+            {
+                echo 'GAGAL';
+            }
+    else
+    {
+        echo 'LULUS';
+    }?></td>
     </tr>
     
     <tr>
