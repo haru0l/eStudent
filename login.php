@@ -100,11 +100,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 							<form action="login.php" class="signin-form" method="post">
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">No IC</label>
-			      			<input type="text" name="username" class="form-control" placeholder="No IC" required>
+			      			<input required type="text" name="username" class="form-control" placeholder="No IC" required>
 			      		</div>
 		            <div class="form-group mb-3">
 		            	<label class="label" for="password">Kata laluan</label>
-		              <input type="password" name="password" class="form-control" placeholder="Kata laluan" required>
+		              <input required type="password" name="password" class="form-control" placeholder="Kata laluan" required>
 		            </div>
 		            <div class="form-group">
 		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Log masuk</button>

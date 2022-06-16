@@ -385,7 +385,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="marks">Markah</label>
-                                        <input name="marks" id="marks" type="number" placeholder="90">
+                                        <input required name="marks" id="marks" type="number" placeholder="90">
                                     </div>
                                     
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">

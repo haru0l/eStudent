@@ -339,21 +339,21 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                  <?php if(isset($_GET['login_id'])) { ?>
                                   <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="tableID">ID Guru</label>
-                                        <input type="text" name="tableID" readonly value="<?php echo $tabIDGet?>">
+                                        <input required type="text" name="tableID" readonly value="<?php echo $tabIDGet?>">
                                     <?php  }?>
                                     </div>
                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">No IC</label>
-                                        <input type="number" required name="login_id" placeholder="Masukkan nombor kad pengenalan tanpa sengkang (-)"
+                                        <input required type="number" required name="login_id" placeholder="Masukkan nombor kad pengenalan tanpa sengkang (-)"
                                         <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $idGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Kata laluan</label>
-                                        <input type="text" required placeholder="Masukkan kata laluan" name="teacherPassword" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $passGet?>" <?php  }?>>
+                                        <input required type="text" required placeholder="Masukkan kata laluan" name="teacherPassword" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $passGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Nama Guru</label>
-                                        <input type="text" required placeholder="Masukkan nama guru" oninput="this.value = this.value.toUpperCase()" name="teacherName" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $nameGet?>" <?php  }?>>
+                                        <input required type="text" required placeholder="Masukkan nama guru" oninput="this.value = this.value.toUpperCase()" name="teacherName" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $nameGet?>" <?php  }?>>
                                     </div>
                                      <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Jantina</label>
@@ -364,11 +364,11 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="phone">No. Telefon</label>
-                                        <input type="num" required placeholder="Masukkan nombor telefon tanpa sengkang (-)" name="teacher_phoneNum" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $phoneGet?>" <?php  }?>>
+                                        <input required type="num" required placeholder="Masukkan nombor telefon tanpa sengkang (-)" name="teacher_phoneNum" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $phoneGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="email">E-mail</label>
-                                        <input type="email" required name="teacherEmail" placeholder="Masukkan e-mail" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $mailGet?>" <?php  }?>>
+                                        <input required type="email" required name="teacherEmail" placeholder="Masukkan e-mail" <?php if(isset($_GET['login_id'])) { ?> value="<?php echo $mailGet?>" <?php  }?>>
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Jenis</label>

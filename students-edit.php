@@ -308,19 +308,19 @@ if (isset($_COOKIE["user_name"]))
                                 <div class="row">
                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="tableID">ID Murid</label>
-                                        <input type="text" name="tableID" readonly value="<?php echo $tabGet?>">
+                                        <input required type="text" name="tableID" readonly value="<?php echo $tabGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Nama murid</label>
-                                        <input type="text" required name="stuName" value="<?php echo $stuGet?>">
+                                        <input required type="text" required name="stuName" value="<?php echo $stuGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Nombor IC</label>
-                                        <input type="text" required name="icNum" value="<?php echo $icGet?>">
+                                        <input required type="text" required name="icNum" value="<?php echo $icGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Kata laluan</label>
-                                        <input type="text" required placeholder="Masukkan kata laluan" name="stuPassword" value="<?php echo $passGet?>">
+                                        <input required type="text" required placeholder="Masukkan kata laluan" name="stuPassword" value="<?php echo $passGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Jantina</label>

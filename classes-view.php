@@ -301,7 +301,7 @@ if (isset($_COOKIE["user_name"]))
                                     </div>
                                     
                                     <div class="col">
-                                        <input type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white" value="Submit"/>
+                                       <input type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white" value="Submit"/>
                                     </div>
                                 </div>
                             </form> 

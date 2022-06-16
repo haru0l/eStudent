@@ -334,36 +334,36 @@ if (isset($_COOKIE["user_name"]))
                                     
                                      <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="attitude">Kelakuan</label>
-                                        <input name="attitude" id="attitude" type="text" placeholder="Masukkan kelakuan pelajar">
+                                        <input required name="attitude" id="attitude" type="text" placeholder="Masukkan kelakuan pelajar">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="attendance">Kehadiran</label>
-                                        <input name="attendance" id="attendance" type="number" placeholder="Masukkan kehadiran pelajar">
+                                        <input required name="attendance" id="attendance" type="number" placeholder="Masukkan kehadiran pelajar">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="comment">Ulasan</label>
-                                        <input name="comment" id="comment" type="text" placeholder="Masukkan ulasan pelajar">
+                                        <input required name="comment" id="comment" type="text" placeholder="Masukkan ulasan pelajar">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="teacherName">Nama guru</label>
-                                        <input name="teacherName" readonly id="teacherName" type="text"  value="<?php echo $teacherGet;?>">
+                                        <input required name="teacherName" readonly id="teacherName" type="text"  value="<?php echo $teacherGet;?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="kelas">Kelas</label>
-                                        <input name="class" readonly id="class" type="text"  value="<?php echo $class;?>">
+                                        <input required name="class" readonly id="class" type="text"  value="<?php echo $class;?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="comment">Kedudukan dalam kelas</label>
-                                        <input name="rankingClass" id="rankingClass" type="number" placeholder="Masukkan kedudukan pelajar di dalam kelas">
+                                        <input required name="rankingClass" id="rankingClass" type="number" placeholder="Masukkan kedudukan pelajar di dalam kelas">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="comment">Kedudukan dalam darjah</label>
-                                        <input name="rankingWhole" id="rankingWhole" type="number" placeholder="Masukkan kedudukan pelajar di dalam darjah">
+                                        <input required name="rankingWhole" id="rankingWhole" type="number" placeholder="Masukkan kedudukan pelajar di dalam darjah">
                                     </div>
                                     
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Tahun</label>
-                                        <input name="year" readonly id="year" type="text"  value="<?php echo $yearGet?>">
+                                        <input required name="year" readonly id="year" type="text"  value="<?php echo $yearGet?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="exam">Peperiksaan</label>

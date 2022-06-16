@@ -300,15 +300,15 @@ if (isset($_COOKIE["user_name"]))
                                 <div class="row">
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Nama murid</label>
-                                        <input type="text" required oninput="this.value = this.value.toUpperCase()" placeholder="Masukkan nama murid" name="stuName">
+                                        <input required type="text" required oninput="this.value = this.value.toUpperCase()" placeholder="Masukkan nama murid" name="stuName">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">IC Number</label>
-                                        <input type="num" required placeholder="Masukkan nombor kad pengenalan tanpa sengkang (-)" name="icNum">
+                                        <input required type="num" required placeholder="Masukkan nombor kad pengenalan tanpa sengkang (-)" name="icNum">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="title">Kata laluan</label>
-                                        <input type="text" required placeholder="Masukkan kata laluan" name="stuPassword">
+                                        <input required type="text" required placeholder="Masukkan kata laluan" name="stuPassword">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Jantina</label>
@@ -319,7 +319,7 @@ if (isset($_COOKIE["user_name"]))
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="class">Kelas</label>
-                                            <input type="text" readonly name="class" value="<?php echo $class?>">
+                                            <input required type="text" readonly name="class" value="<?php echo $class?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="remarks">Tahun</label>

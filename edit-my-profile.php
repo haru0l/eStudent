@@ -287,19 +287,19 @@ if (isset($_COOKIE["user_name"]))
                                 <div class="row">
                                    <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="tableID">ID Guru</label>
-                                        <input type="text" name="tableID"  readonly value="<?php echo $row["tableID"];?>">
+                                        <input required type="text" name="tableID"  readonly value="<?php echo $row["tableID"];?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="name">Nama</label>
-                                        <input id="name" name="teacherName" type="text" oninput="this.value = this.value.toUpperCase()" value="<?php echo $row["teacherName"];?>">
+                                        <input required id="name" name="teacherName" type="text" oninput="this.value = this.value.toUpperCase()" value="<?php echo $row["teacherName"];?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="email">E-mail</label>
-                                        <input id="email" name="teacherEmail" type="email" placeholder="Enter email" value="<?php echo $row["teacherEmail"];?>">
+                                        <input required id="email" name="teacherEmail" type="email" placeholder="Enter email" value="<?php echo $row["teacherEmail"];?>">
                                     </div>
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
                                         <label for="phone">No. Telefon</label>
-                                        <input id="phone" name="teacher_phoneNum" type="tel" placeholder="Enter phone" value="<?php echo $row["teacher_phoneNum"];?>">
+                                        <input required id="phone" name="teacher_phoneNum" type="tel" placeholder="Enter phone" value="<?php echo $row["teacher_phoneNum"];?>">
                                     </div>
                                     
                                     <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
