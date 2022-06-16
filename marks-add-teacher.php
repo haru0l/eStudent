@@ -160,7 +160,7 @@ if (isset($_COOKIE["user_name"]))
     <!-- Header (Topbar) -->
     <header class="u-header">
         <div class="u-header-left">
-            <a class="u-header-logo" href="index.php">
+            <a class="u-header-logo" href="dashboard.php">
                 <img class="u-logo-desktop" src="assets/img/logo_sk.png" width="160" alt="Stream Dashboard">
                 <img class="img-fluid u-logo-mobile" src="assets/img/logo-mobile.png" width="50" alt="Stream Dashboard">
             </a>
@@ -218,7 +218,7 @@ if (isset($_COOKIE["user_name"]))
         <aside id="sidebar" class="u-sidebar">
             <div class="u-sidebar-inner bg-gradient-yellow bdrs-30">
                 <header class="u-sidebar-header">
-                    <a class="u-sidebar-logo" href="index.php">
+                    <a class="u-sidebar-logo" href="dashboard.php">
                         <img class="img-fluid" src="assets/img/logo_sk.png" width="124" alt="Stream Dashboard">
                     </a>
                 </header>
@@ -226,7 +226,7 @@ if (isset($_COOKIE["user_name"]))
                     <ul class="u-sidebar-nav-menu u-sidebar-nav-menu--top-level">
                         <!-- Dashboard -->
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="index.php">
+                            <a class="u-sidebar-nav-menu__link" href="dashboard.php">
                                 <i class="fas fa-tachometer-alt u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Dashboard</span>
                             </a>

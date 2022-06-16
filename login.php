@@ -31,8 +31,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         $cookie_name = "teacherName";
         $cookie_value = $name;
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-        
-        header ('Location: index.php');
+        echo '<script>alert("Log masuk berjaya.")</script>';
+        header ('Location: dashboard.php');
         
     }
     else if ($count != 1)
@@ -49,16 +49,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         $cookie_name = "type";
         $cookie_value = "student";
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-        header ('Location: index.php');
+        echo '<script>alert("Log masuk berjaya.")</script>';
+        header ('Location: dashboard.php');
         }
         else
         {
-            echo "wrong username or password";
+            echo '<script>alert("Pengguna tidak ditemui. Pastikan Nombor Kad Pengenalan dan Kata Laluan anda dimasuki dengan betul.")</script>';
         }
     }
     else 
     {
-        echo "wrong username or password";
+        echo '<script>alert("Pengguna tidak ditemui. Pastikan Nombor Kad Pengenalan dan Kata Laluan anda dimasuki dengan betul.")</script>';
     }
 }
 
@@ -113,8 +114,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 		            	<div class="w-50 text-left">
 									</div>
 									<div class="w-50 text-md-right">
-										<!--<a href="#">Forgot Kata laluan</a>-->
+										<a href="#" onclick="myFunction()">Lupa kata laluan?</a>
 									</div>
+               <script>
+function myFunction() {
+  alert("Sila hubungi admin sekolah untuk bantuan lanjut.");
+}
+</script>
+                
 		            </div>
 		          </form>
 		        </div>
