@@ -51,9 +51,9 @@ if (isset($_COOKIE["user_name"]))
 {?>
 <html>
 
-<head>
-    <title>eStudent Assessment System</title>
+<title>eStudent Assessment System</title>
 
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -71,18 +71,9 @@ if (isset($_COOKIE["user_name"]))
     <!-- Theme Styles -->
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-    <!-- Custom Charts -->
-    <style>
-        .js-doughnut-chart {
-            width: 70px !important;
-            height: 70px !important;
-        }
-        
-        td {
-  text-align: center;
-}
-    </style>
+  
 </head>
 <!-- End Head -->
 
@@ -103,10 +94,13 @@ if (isset($_COOKIE["user_name"]))
                 
             </a>
             <h1 class="text" style="text-align: center; font-size: 36">e-Student Assessment System</h1>
+			
 
         <div class="u-header-right">
             <!-- User Profile -->
+			<h6 class="text" style="text-align: center; font-size: 16">Welcome, <?php echo $_COOKIE['teacherName']; ?>    </h6>
             <div class="dropdown ml-2">
+			
                 <a class="link-muted d-flex align-items-center us-u-avatar-wrap" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                     <img class="u-avatar--xs img-fluid rounded-circle mr-2 bg-gradient-blue" src="assets/img/avatars/user-unknown.jpg" alt="User Profile">
                     <span class="d-none d-sm-inline-block text-danger">
@@ -116,10 +110,11 @@ if (isset($_COOKIE["user_name"]))
 
                 <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-3" aria-labelledby="dropdownMenuLink" style="width: 260px;">
                     <div class="card">
-
+						
                         <div class="card-body">
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-4">
+								
                                     <a class="d-flex align-items-center link-dark" href="my-profile.php">
                                         <span class="h3 mb-0"><i class="far fa-user-circle text-muted mr-3"></i></span> Profil
                                     </a>
@@ -179,7 +174,7 @@ if (isset($_COOKIE["user_name"]))
                             echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-view.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai murid</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -197,7 +192,7 @@ if (isset($_COOKIE["user_name"]))
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-list.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai murid</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -205,7 +200,7 @@ if (isset($_COOKIE["user_name"]))
     
     
                         echo '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="marks-admin.php">
+                            <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Permarkahan</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
@@ -281,7 +276,7 @@ if (isset($_COOKIE["user_name"]))
                 </section>
                 <!-- End breadcumb-area -->
 
-                <section class="es-form-area">
+                <section id="senarai" class="es-form-area">
                     <div class="card">
                         
                         <div class="card-body">
@@ -298,9 +293,11 @@ if (isset($_COOKIE["user_name"]))
                                 <div class="show-option d-flex align-items-center mb-4">
                                     <div class="search-student ml-auto">
                                         <a href="students-add.php?class=<?php echo $class;?>&tableID=<?php echo $row["tableID"];?>" class="btn btn-lg btn-pill bg-gradient-blue text-white">Tambah</a>
+                                        <button class="btn btn-lg btn-pill bg-gradient-blue text-white" onclick="window.print();">Cetak</button>
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                                        
                                     </div>
                                 </div>
-
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead class="bg-gradient-blue">
@@ -338,7 +335,6 @@ if (isset($_COOKIE["user_name"]))
                         </div>
                     </div>    
                 </section>
-
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <nav aria-label="Bootstrap Pagination" class="mt-5 text-center d-inline-block">

@@ -6,12 +6,9 @@ $password = "";
 $dbname = "estudent";
 $connect = new mysqli($servername, $username, $password, $dbname);
 $class = $_POST['class'];
-if (in_array($_POST['class'], array("1 Bijak", "1 Cerdik","2 Bijak", "2 Cerdik","3 Bijak", "3 Cerdik"), true)) {
-$sql = "SELECT grades.stuIC, grades.marksBM, grades.marksBI, grades.marksMath, grades.marksSains, grades.marksSeni, grades.marksPI, grades.marksBA, grades.marksTasmik, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' GROUP BY stuName ASC";}
-else
-{
+
 $sql = "SELECT grades.*, student.* FROM student INNER JOIN grades ON grades.stuIC=student.icNum WHERE class='$class' GROUP BY stuName ASC";
-}
+
 
 $result = mysqli_query($connect, $sql);
 $row = mysqli_fetch_array($result);
@@ -53,8 +50,7 @@ if (isset($_COOKIE["user_name"]))
 <html lang="en" class="no-js">
 <!-- Head -->
 
-<head>
-    <title>eStudent Assessment System</title>
+<title>eStudent Assessment System</title>
 
     
     <meta charset="utf-8">
@@ -74,18 +70,13 @@ if (isset($_COOKIE["user_name"]))
     <!-- Theme Styles -->
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-    <!-- Custom Charts -->
-    <style>
-        .js-doughnut-chart {
-            width: 70px !important;
-            height: 70px !important;
-        }
-        
-        td {
+  <style>
+td {
   text-align: center;
 }
-    </style>
+</style>
 </head>
 <!-- End Head -->
 
@@ -106,10 +97,13 @@ if (isset($_COOKIE["user_name"]))
                 
             </a>
             <h1 class="text" style="text-align: center; font-size: 36">e-Student Assessment System</h1>
+			
 
         <div class="u-header-right">
             <!-- User Profile -->
+			<h6 class="text" style="text-align: center; font-size: 16">Welcome, <?php echo $_COOKIE['teacherName']; ?>    </h6>
             <div class="dropdown ml-2">
+			
                 <a class="link-muted d-flex align-items-center us-u-avatar-wrap" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                     <img class="u-avatar--xs img-fluid rounded-circle mr-2 bg-gradient-blue" src="assets/img/avatars/user-unknown.jpg" alt="User Profile">
                     <span class="d-none d-sm-inline-block text-danger">
@@ -119,10 +113,11 @@ if (isset($_COOKIE["user_name"]))
 
                 <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-3" aria-labelledby="dropdownMenuLink" style="width: 260px;">
                     <div class="card">
-
+						
                         <div class="card-body">
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-4">
+								
                                     <a class="d-flex align-items-center link-dark" href="my-profile.php">
                                         <span class="h3 mb-0"><i class="far fa-user-circle text-muted mr-3"></i></span> Profil
                                     </a>
@@ -182,7 +177,7 @@ if (isset($_COOKIE["user_name"]))
                             echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-view.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai murid</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -200,7 +195,7 @@ if (isset($_COOKIE["user_name"]))
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-list.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai murid</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -208,7 +203,7 @@ if (isset($_COOKIE["user_name"]))
     
     
                         echo '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="marks-admin.php">
+                            <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Permarkahan</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
@@ -293,12 +288,15 @@ if (isset($_COOKIE["user_name"]))
                            <?php
                             if ($_COOKIE["user_name"] == "admin") 
                             {
+                            
                              echo '<a href="marks-viewClass.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Tambah</a>';
                             }
                             else
                             {
                             echo    '<a href="marks-viewClass.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Tambah</a>' ;
                             } ?>
+                            
+                                        <button class="btn btn-sm btn-pill btn-outline-light" onclick="window.print();">Cetak</button>
                         </header>
                         <div class="card-body">
                             <form action="marks-admin.php" method="post" class="es-form">
@@ -331,6 +329,7 @@ if (isset($_COOKIE["user_name"]))
                                 </div>
 
                                 <div class="table-responsive">
+                                   
                                     <table class="table mb-0">
                                         <thead class="bg-gradient-blue">
                                             <tr>
@@ -373,30 +372,30 @@ if (isset($_COOKIE["user_name"]))
                                             ?>
                                             <tr>
                                                 <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $row["marksBM"];?> (Band <?php echo $bandBM;?>)</td>
-                                                <td><?php echo $row["marksBI"];?> (Band <?php echo $bandBI;?>)</td>
-                                                <td><?php echo $row["marksMath"];?> (Band <?php echo $bandMath;?>)</td>
-                                                <td><?php echo $row["marksSains"];?>  (Band <?php echo $bandSains;?>)</td>
-                                                <td><?php echo $row["marksSeni"];?>  (Band <?php echo $bandSeni;?>)</td>
-                                                <td><?php echo $row["marksPI"];?> (Band <?php echo $bandPI;?>)</td>
-                                                <td><?php echo $row["marksBA"];?> (Band <?php echo $bandBA;?>)</td>
-                                                <td><?php echo $row["marksTasmik"];?> (Band <?php echo $bandTasmik;?>)</td>
+                                                <td><?php echo $row["marksBM"];?> (Band <?php echo $row["bandBM"];?>)</td>
+                                                <td><?php echo $row["marksBI"];?> (Band <?php echo $row["bandBI"];?>)</td>
+                                                <td><?php echo $row["marksMath"];?> (Band <?php echo $row["bandMath"];?>)</td>
+                                                <td><?php echo $row["marksSains"];?>  (Band <?php echo $row["bandSains"];?>)</td>
+                                                <td><?php echo $row["marksSeni"];?>  (Band <?php echo $row["bandSeni"];?>)</td>
+                                                <td><?php echo $row["marksPI"];?> (Band <?php echo $row["bandPI"];?>)</td>
+                                                <td><?php echo $row["marksBA"];?> (Band <?php echo $row["bandBA"];?>)</td>
+                                                <td><?php echo $row["marksTasmik"];?> (Band <?php echo $row["bandTasmik"];?>)</td>
                                             </tr><?php }
                                             else
                                             { ?>
                                             <tr>
-                                                <td><?php echo $row["stuName"];?> (Band <?php echo $band1;?>)</td>
-                                                <td><?php echo $row["marksBM"];?> (Band <?php echo $bandBM;?>)</td>
-                                                <td><?php echo $row["marksBI"];?> (Band <?php echo $bandBI;?>)</td>
-                                                <td><?php echo $row["marksMath"];?> (Band <?php echo $bandMath;?>)</td>
-                                                <td><?php echo $row["marksSains"];?>  (Band <?php echo $bandSains;?>)</td>
-                                                <td><?php echo $row["marksSeni"];?>  (Band <?php echo $bandSeni;?>)</td>
-                                                <td><?php echo $row["marksMusik"];?> (Band <?php echo $bandMusik;?>)</td>
-                                                <td><?php echo $row["marksRBT"];?> (Band <?php echo $bandRBT;?>)</td>
-                                                <td><?php echo $row["marksPI"];?> (Band <?php echo $bandPI;?>)</td>
-                                                <td><?php echo $row["marksBA"];?> (Band <?php echo $bandBA;?>)</td>
-                                                <td><?php echo $row["marksTasmik"];?> (Band <?php echo $bandTasmik;?>)</td>
-                                                <td><?php echo $row["marksSejarah"];?> (Band <?php echo $band1;?>)</td>
+                                                <td><?php echo $row["stuName"];?></td>
+                                                <td><?php echo $row["marksBM"];?> (Band <?php echo $row["bandBM"];?>)</td>
+                                                <td><?php echo $row["marksBI"];?> (Band <?php echo $row["bandBI"];?>)</td>
+                                                <td><?php echo $row["marksMath"];?> (Band <?php echo $row["bandMath"];?>)</td>
+                                                <td><?php echo $row["marksSains"];?>  (Band <?php echo $row["bandSains"];?>)</td>
+                                                <td><?php echo $row["marksSeni"];?>  (Band <?php echo $row["bandSeni"];?>)</td>
+                                                <td><?php echo $row["marksMusik"];?> (Band <?php echo $row["bandMusik"];?>)</td>
+                                                <td><?php echo $row["marksRBT"];?> (Band <?php echo $row["bandRBT"];?>)</td>
+                                                <td><?php echo $row["marksPI"];?> (Band <?php echo $row["bandPI"];?>)</td>
+                                                <td><?php echo $row["marksBA"];?> (Band <?php echo $row["bandBA"];?>)</td>
+                                                <td><?php echo $row["marksTasmik"];?> (Band <?php echo $row["bandTasmik"];?>)</td>
+                                                <td><?php echo $row["marksSejarah"];?> (Band <?php echo $row["bandSejarah"];?>)</td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Sunting</a></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Buang</a></td>
                                             </tr><?php

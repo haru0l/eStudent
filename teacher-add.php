@@ -110,8 +110,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
 <html lang="en" class="no-js">
 <!-- Head -->
 
-<head>
-    <title>eStudent Assessment System</title>
+<title>eStudent Assessment System</title>
 
     
     <meta charset="utf-8">
@@ -131,14 +130,9 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
     <!-- Theme Styles -->
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-    <!-- Custom Charts -->
-    <style>
-        .js-doughnut-chart {
-            width: 70px !important;
-            height: 70px !important;
-        }
-    </style>
+  
 </head>
 <!-- End Head -->
 
@@ -159,10 +153,13 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                 
             </a>
             <h1 class="text" style="text-align: center; font-size: 36">e-Student Assessment System</h1>
+			
 
         <div class="u-header-right">
             <!-- User Profile -->
+			<h6 class="text" style="text-align: center; font-size: 16">Welcome, <?php echo $_COOKIE['teacherName']; ?>    </h6>
             <div class="dropdown ml-2">
+			
                 <a class="link-muted d-flex align-items-center us-u-avatar-wrap" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                     <img class="u-avatar--xs img-fluid rounded-circle mr-2 bg-gradient-blue" src="assets/img/avatars/user-unknown.jpg" alt="User Profile">
                     <span class="d-none d-sm-inline-block text-danger">
@@ -172,10 +169,11 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
 
                 <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-3" aria-labelledby="dropdownMenuLink" style="width: 260px;">
                     <div class="card">
-
+						
                         <div class="card-body">
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-4">
+								
                                     <a class="d-flex align-items-center link-dark" href="my-profile.php">
                                         <span class="h3 mb-0"><i class="far fa-user-circle text-muted mr-3"></i></span> Profil
                                     </a>
@@ -195,7 +193,6 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
     </header>
     <!-- End Header (Topbar) -->
 
-    
     <main class="u-main" role="main">
         <!-- Sidebar -->
         <aside id="sidebar" class="u-sidebar">
@@ -236,7 +233,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                             echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-view.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai murid</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -254,7 +251,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-list.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai murid</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -262,7 +259,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
     
     
                         echo '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="marks-admin.php">
+                            <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Permarkahan</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
@@ -449,7 +446,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                     </div>
                                     </div>
                                     <div class="col-lg-4 offset-lg-4 col-md-12 text-center">
-                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Add</button>
+                                        <button type=submit class="btn btn-danger btn-block bg-gradient-blue border-0 text-white">Tambah</button>
                                     </div>
                                 </div>
                             </form>

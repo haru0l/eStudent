@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2022 at 06:59 PM
+-- Generation Time: Jun 16, 2022 at 03:43 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -66,6 +66,14 @@ CREATE TABLE `grades` (
   `remarksSejarah` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `grades`
+--
+
+INSERT INTO `grades` (`stuIC`, `marksBM`, `marksBI`, `marksMath`, `marksSains`, `marksSeni`, `marksPI`, `marksBA`, `marksTasmik`, `marksMusik`, `marksRBT`, `marksSejarah`, `year`, `test`, `bandBM`, `bandBI`, `bandMath`, `bandSains`, `bandSeni`, `bandPI`, `bandBA`, `bandTasmik`, `bandMusik`, `bandRBT`, `bandSejarah`, `remarksBM`, `remarksBI`, `remarksMath`, `remarksSains`, `remarksSeni`, `remarksPI`, `remarksBA`, `remarksTaskmik`, `remarksMusik`, `remarksRBT`, `remarksSejarah`) VALUES
+('050104121427', '70', '90', '40', '', '', '', '', '', '', '', '', 2022, 'PepAwal', '3', '6', '3', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+('050230503423', '76', '81', '', '', '', '', '', '', '', '', '', 2022, 'PepAwal', '5', '5', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -79,12 +87,18 @@ CREATE TABLE `report` (
   `comment` varchar(100) NOT NULL,
   `teacherName` varchar(50) NOT NULL,
   `class` varchar(20) NOT NULL,
-  `cocurricular` varchar(20) NOT NULL,
   `rankingClass` varchar(20) NOT NULL,
   `rankingWhole` varchar(20) NOT NULL,
   `test` varchar(50) NOT NULL,
-  `year` year(4) NOT NULL
+  `year` varchar(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `report`
+--
+
+INSERT INTO `report` (`stuIC`, `attitude`, `attendance`, `comment`, `teacherName`, `class`, `rankingClass`, `rankingWhole`, `test`, `year`) VALUES
+('050230503423', 'Baik', 180, 'Tingkatkan usaha anda.', 'ADAM MIRZAN BIN AHMAD RIDZUAN', '1 Bijak', '20', '1', 'PepAwal', '2022');
 
 -- --------------------------------------------------------
 
@@ -107,8 +121,9 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`tableID`, `icNum`, `stuName`, `stuGender`, `stuPassword`, `class`, `year`) VALUES
-(2, '050104121427', 'XU YOO WEI', 'Lelaki', '', '1 Bijak', '2022'),
-(3, '050230503423', 'SYED AIMAN HASADI BIN CHE ZAINI', 'Lelaki', '', '1 Bijak', '2022');
+(2, '050104121427', 'XU YOO WEI', 'Lelaki', 'xu0501', '1 Bijak', '2022'),
+(3, '050230503423', 'SYED AIMAN HASADI BIN CHE ZAINI', 'Lelaki', 'aiman0502', '1 Bijak', ''),
+(4, '051214060472', 'MUHAMAD ROSELI SAFFUAN BIN BUKHARUDIN MUADDIB', 'Lelaki', 'roseli0512', '1 Cerdik', '2022');
 
 -- --------------------------------------------------------
 
@@ -137,7 +152,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`tableID`, `login_id`, `teacherPassword`, `teacherName`, `gender`, `teacherEmail`, `teacher_phoneNum`, `teacherType`, `teacherSub1`, `teacherSub2`, `teacherSub3`, `class`) VALUES
 (1, 'admin', 'admin123', 'Admin SK Kota Raja', '', 'JBB5038@moe.edu.my', '069737536', 'admin', '', '', '', ''),
-(2, '020822050567', 'adam123', 'ADAM MIRZAN BIN AHMAD RIDZUAN', 'LELAKI', 'mirzan53@gmail.com', '0149454863', 'Guru kelas', 'Bahasa Inggeris', 'Matematik', '', '1 Bijak');
+(2, '020822050567', 'adam123', 'ADAM MIRZAN BIN AHMAD RIDZUAN', 'LELAKI', 'mirzan53@gmail.com', '60149454863', 'Guru kelas', 'Bahasa Inggeris', 'Matematik', '', '1 Bijak'),
+(3, '021712010321', 'syaz123', 'SYAZWAN BIN SUHAILAN', 'LELAKI', 'syazwan92@gmail.com', '0121471212', 'Guru subjek', 'Bahasa Melayu', '', '', '1 Bijak');
 
 --
 -- Indexes for dumped tables
@@ -163,13 +179,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `tableID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tableID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `tableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tableID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

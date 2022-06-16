@@ -51,9 +51,12 @@ if (isset($_COOKIE["user_name"]))
 <html lang="en" class="no-js">
 <!-- Head -->
 
-<head>
-    <title>eStudent Assessment System</title>
-
+<title>eStudent Assessment System</title>
+<style>
+td {
+  text-align: center;
+}
+</style>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -72,17 +75,9 @@ if (isset($_COOKIE["user_name"]))
     <!-- Theme Styles -->
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-    <!-- Custom Charts -->
-    <style>
-        .js-doughnut-chart {
-            width: 70px !important;
-            height: 70px !important;
-        }
-        td {
-  text-align: center;
-}
-    </style>
+  
 </head>
 <!-- End Head -->
 
@@ -103,10 +98,13 @@ if (isset($_COOKIE["user_name"]))
                 
             </a>
             <h1 class="text" style="text-align: center; font-size: 36">e-Student Assessment System</h1>
+			
 
         <div class="u-header-right">
             <!-- User Profile -->
+			<h6 class="text" style="text-align: center; font-size: 16">Welcome, <?php echo $_COOKIE['teacherName']; ?>    </h6>
             <div class="dropdown ml-2">
+			
                 <a class="link-muted d-flex align-items-center us-u-avatar-wrap" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                     <img class="u-avatar--xs img-fluid rounded-circle mr-2 bg-gradient-blue" src="assets/img/avatars/user-unknown.jpg" alt="User Profile">
                     <span class="d-none d-sm-inline-block text-danger">
@@ -116,10 +114,11 @@ if (isset($_COOKIE["user_name"]))
 
                 <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-3" aria-labelledby="dropdownMenuLink" style="width: 260px;">
                     <div class="card">
-
+						
                         <div class="card-body">
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-4">
+								
                                     <a class="d-flex align-items-center link-dark" href="my-profile.php">
                                         <span class="h3 mb-0"><i class="far fa-user-circle text-muted mr-3"></i></span> Profil
                                     </a>
@@ -179,7 +178,7 @@ if (isset($_COOKIE["user_name"]))
                             echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-view.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai murid</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -197,7 +196,7 @@ if (isset($_COOKIE["user_name"]))
                         echo '<li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="classes-list.php">
                                 <i class="fas fa-user-check u-sidebar-nav-menu__item-icon"></i>
-                                <span class="u-sidebar-nav-menu__item-title">Senarai pelajar</span>
+                                <span class="u-sidebar-nav-menu__item-title">Senarai murid</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
                             </a>
                         </li>';
@@ -205,7 +204,7 @@ if (isset($_COOKIE["user_name"]))
     
     
                         echo '<li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="marks-admin.php">
+                            <a class="u-sidebar-nav-menu__link" href="marks.php">
                                 <i class="far fa-clipboard u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Permarkahan</span>
                                 <span class="u-sidebar-nav-menu__indicator"></span>
@@ -296,6 +295,7 @@ if (isset($_COOKIE["user_name"]))
                             {
                             echo    '<a href="marks-viewClass.php" class="btn btn-sm btn-pill btn-outline-light ml-auto">+ Tambah</a>' ;
                             } ?>
+                            <button class="btn btn-sm btn-pill btn-outline-light" onclick="window.print();">Cetak</button>
                         </header>
                         <div class="card-body">
                             <form action="marks.php" method="post" class="es-form">
@@ -582,12 +582,39 @@ if (isset($_COOKIE["user_name"]))
                                             ?>
                                             <tr>
                                                 <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $marks1;?> (Band <?php echo $band1;?>)</td>
+                                                <td>
+                                                
+                                                <?php if ($marks1!=""){
+                                                echo $marks1;?>
+                                                (Band <?php echo $band1;?>)
+                                           <?php }
+                                                else
+                                                {
+                                                    echo "Markah tidak dimasukkan";
+                                                }
+                                                ?>
+                                                </td>
                                                 <?php if ($row["teacherSub2"] != ""){ ?>
-                                                <td><?php echo $marks2;?> (Band <?php echo $band2;?>)</td>
+                                                <td><?php if ($marks2!=""){
+                                                echo $marks2;?>
+                                                (Band <?php echo $band2;?>)
+                                           <?php }
+                                                else
+                                                {
+                                                    echo "Markah tidak dimasukkan";
+                                                }
+                                                ?></td>
                                             <?php }
                                                 if ($row["teacherSub3"] != ""){ ?>
-                                                <td><?php echo $marks3?> (Band <?php echo $band3;?>)</td>
+                                                <td><?php if ($marks3!=""){
+                                                echo $marks3;?>
+                                                (Band <?php echo $band3;?>)
+                                           <?php }
+                                                else
+                                                {
+                                                    echo "Marks not entered";
+                                                }
+                                                ?></td>
                                              <?php   }?>
                                             </tr><?php
                                             }
