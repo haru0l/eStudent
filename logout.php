@@ -19,6 +19,6 @@ if (isset($_COOKIE['user_name'])) {
     setcookie('teacherName', null, -1, '/');
 }
 // Redirect to login page
-header("location: login.php");
+header("location: index.php");
 exit;
 ?>
