@@ -101,7 +101,7 @@ td {
 
         <div class="u-header-right">
             <!-- User Profile -->
-			<h6 class="text" style="text-align: center; font-size: 16">Welcome, <?php echo $_COOKIE['teacherName']; ?>    </h6>
+			<h6 class="text" style="text-align: center; font-size: 16">Selamat datang, <?php echo $_COOKIE['teacherName']; ?>    </h6>
             <div class="dropdown ml-2">
 			
                 <a class="link-muted d-flex align-items-center us-u-avatar-wrap" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
@@ -319,7 +319,7 @@ td {
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <button type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white">Lihat</button>
+                                        <button type="submit" class="es-form-btn btn btn-block bg-gradient-blue text-white">Paparkan</button>
                                     </div>
                                 </div>
                             </form> 
@@ -329,7 +329,7 @@ td {
                                 </div>
 
                                 <div class="table-responsive">
-                                   
+                                   <b><label for="class">Kelas <?php echo $class; ?></label></b>
                                     <table class="table mb-0">
                                         <thead class="bg-gradient-blue">
                                             <tr>
@@ -345,7 +345,9 @@ td {
                                                 <th scope="col" class="text-white text-center">Pendidikan Kesenian</th>
                                                 <th scope="col" class="text-white text-center">Pendidikan Islam</th>
                                                 <th scope="col" class="text-white text-center">Bahasa Arab</th>
-                                                <th scope="col" class="text-white text-center">Tasmik</th>'
+                                                <th scope="col" class="text-white text-center">Tasmik</th>
+                                                <th scope="col" class="text-white text-center">Sunting</th>
+                                                <th scope="col" class="text-white text-center">Buang</th>'
                                                 ;}
                                                 else echo
                                                 '<th scope="col" class="text-white">Nama murid</th>
@@ -359,7 +361,9 @@ td {
                                                 <th scope="col" class="text-white text-center">Pendidikan Islam</th>
                                                 <th scope="col" class="text-white text-center">Bahasa Arab</th>
                                                 <th scope="col" class="text-white text-center">Tasmik</th>
-                                                <th scope="col" class="text-white text-center">Sejarah</th>'  
+                                                <th scope="col" class="text-white text-center">Sejarah</th>
+                                                <th scope="col" class="text-white text-center">Sunting</th>
+                                                <th scope="col" class="text-white text-center">Buang</th>'
                                                 ;}
                                                 ?>
                                             </tr>
@@ -372,30 +376,92 @@ td {
                                             ?>
                                             <tr>
                                                 <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $row["marksBM"];?> (Band <?php echo $row["bandBM"];?>)</td>
-                                                <td><?php echo $row["marksBI"];?> (Band <?php echo $row["bandBI"];?>)</td>
-                                                <td><?php echo $row["marksMath"];?> (Band <?php echo $row["bandMath"];?>)</td>
-                                                <td><?php echo $row["marksSains"];?>  (Band <?php echo $row["bandSains"];?>)</td>
-                                                <td><?php echo $row["marksSeni"];?>  (Band <?php echo $row["bandSeni"];?>)</td>
-                                                <td><?php echo $row["marksPI"];?> (Band <?php echo $row["bandPI"];?>)</td>
-                                                <td><?php echo $row["marksBA"];?> (Band <?php echo $row["bandBA"];?>)</td>
-                                                <td><?php echo $row["marksTasmik"];?> (Band <?php echo $row["bandTasmik"];?>)</td>
+                                                <td><?php
+                                             
+                                             if ($row["marksBM"] !=""){
+                                                 echo $row["marksBM"];?> (Band <?php echo $row["bandBM"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksBI"] !=""){
+                                                 echo $row["marksBI"];?> (Band <?php echo $row["bandBI"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksMath"] !=""){
+                                                 echo $row["marksMath"];?> (Band <?php echo $row["bandMath"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksSains"] !=""){
+                                                 echo $row["marksSains"];?> (Band <?php echo $row["bandSains"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksSeni"] !=""){
+                                                 echo $row["marksSeni"];?> (Band <?php echo $row["bandSeni"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksPI"] !=""){
+                                                 echo $row["marksPI"];?> (Band <?php echo $row["bandPI"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksBA"] !=""){
+                                                 echo $row["marksBA"];?> (Band <?php echo $row["bandBA"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksTasmik"] !=""){
+                                                 echo $row["marksTasmik"];?> (Band <?php echo $row["Tasmik"]; echo ')';}?></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Sunting</a></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Buang</a></td>
                                             </tr><?php }
                                             else
                                             { ?>
                                             <tr>
                                                 <td><?php echo $row["stuName"];?></td>
-                                                <td><?php echo $row["marksBM"];?> (Band <?php echo $row["bandBM"];?>)</td>
-                                                <td><?php echo $row["marksBI"];?> (Band <?php echo $row["bandBI"];?>)</td>
-                                                <td><?php echo $row["marksMath"];?> (Band <?php echo $row["bandMath"];?>)</td>
-                                                <td><?php echo $row["marksSains"];?>  (Band <?php echo $row["bandSains"];?>)</td>
-                                                <td><?php echo $row["marksSeni"];?>  (Band <?php echo $row["bandSeni"];?>)</td>
-                                                <td><?php echo $row["marksMusik"];?> (Band <?php echo $row["bandMusik"];?>)</td>
-                                                <td><?php echo $row["marksRBT"];?> (Band <?php echo $row["bandRBT"];?>)</td>
-                                                <td><?php echo $row["marksPI"];?> (Band <?php echo $row["bandPI"];?>)</td>
-                                                <td><?php echo $row["marksBA"];?> (Band <?php echo $row["bandBA"];?>)</td>
-                                                <td><?php echo $row["marksTasmik"];?> (Band <?php echo $row["bandTasmik"];?>)</td>
-                                                <td><?php echo $row["marksSejarah"];?> (Band <?php echo $row["bandSejarah"];?>)</td>
+                                                <td><?php
+                                             
+                                             if ($row["marksBM"] !=""){
+                                                 echo $row["marksBM"];?> (Band <?php echo $row["bandBM"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksBI"] !=""){
+                                                 echo $row["marksBI"];?> (Band <?php echo $row["bandBI"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksMath"] !=""){
+                                                 echo $row["marksMath"];?> (Band <?php echo $row["bandMath"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksSains"] !=""){
+                                                 echo $row["marksSains"];?> (Band <?php echo $row["bandSains"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksSeni"] !=""){
+                                                 echo $row["marksSeni"];?> (Band <?php echo $row["bandSeni"]; echo ')';}?></td>
+                                                 
+                                                <td><?php
+                                             
+                                             if ($row["marksMusik"] !=""){
+                                                 echo $row["marksMusik"];?> (Band <?php echo $row["bandMusik"]; echo ')';}?></td>
+                                                
+                                                <td><?php
+                                             
+                                             if ($row["marksRBT"] !=""){
+                                                 echo $row["marksRBT"];?> (Band <?php echo $row["bandRBT"]; echo ')';}?></td>
+                                                
+                                                <td><?php
+                                             
+                                             if ($row["marksPI"] !=""){
+                                                 echo $row["marksPI"];?> (Band <?php echo $row["bandPI"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksBA"] !=""){
+                                                 echo $row["marksBA"];?> (Band <?php echo $row["bandBA"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksTasmik"] !=""){
+                                                 echo $row["marksTasmik"];?> (Band <?php echo $row["Tasmik"]; echo ')';}?></td>
+                                                <td><?php
+                                             
+                                             if ($row["marksSejarah"] !=""){
+                                                 echo $row["marksSejarah"];?> (Band <?php echo $row["bandSejarah"]; echo ')';}?></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Sunting</a></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Buang</a></td>
                                             </tr><?php

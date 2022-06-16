@@ -19,7 +19,7 @@ $sql = "INSERT into student (icNum, stuName, stuPassword, stuGender, class, year
 VALUES ('$icNum', '$stuName', '$stuPassword', '$stuGender', '$class', '$year')";
 $conn->query($sql);
 echo '<script type="text/javascript">';
-echo ' alert("Data inserted! Sending to previous page...")';  //not showing an alert box.
+echo ' alert("Data berjaya dimasukkan!")';  //not showing an alert box.
 echo '</script>';
 echo '<meta http-equiv="Refresh" content="0; url=dashboard.php"/>';
 }
@@ -120,7 +120,7 @@ if (isset($_COOKIE["user_name"]))
 
         <div class="u-header-right">
             <!-- User Profile -->
-			<h6 class="text" style="text-align: center; font-size: 16">Welcome, <?php echo $_COOKIE['teacherName']; ?>    </h6>
+			<h6 class="text" style="text-align: center; font-size: 16">Selamat datang, <?php echo $_COOKIE['teacherName']; ?>    </h6>
             <div class="dropdown ml-2">
 			
                 <a class="link-muted d-flex align-items-center us-u-avatar-wrap" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">

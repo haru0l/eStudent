@@ -72,7 +72,7 @@ if ($count == 1)
 $conn->query("UPDATE grades SET $newBand='$band' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
 $conn->query("UPDATE grades SET $newSub='$marks' WHERE stuIC = '$stuIC' AND test='$test' AND year='$year'");
 echo '<script type="text/javascript">';
-echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
+echo ' alert("Data telah dikemaskini!")';  //not showing an alert box.
 echo '</script>';
 echo '<meta http-equiv="Refresh" content="0; url=marks-admin.php"/>';
 }
@@ -82,7 +82,7 @@ $sql = "INSERT into grades (stuIC, $newSub, year, test, $newBand)
 VALUES ('$stuIC', '$marks', '$year', '$test', '$band')";
 $conn->query($sql);
 echo '<script type="text/javascript">';
-echo ' alert("Data inserted! Sending to previous page...")';  //not showing an alert box.
+echo ' alert("Data berjaya dimasukkan!")';  //not showing an alert box.
 echo '</script>';
 echo '<meta http-equiv="Refresh" content="0; url=marks-admin.php"/>';
 }
@@ -177,7 +177,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
 
         <div class="u-header-right">
             <!-- User Profile -->
-			<h6 class="text" style="text-align: center; font-size: 16">Welcome, <?php echo $_COOKIE['teacherName']; ?>    </h6>
+			<h6 class="text" style="text-align: center; font-size: 16">Selamat datang, <?php echo $_COOKIE['teacherName']; ?>    </h6>
             <div class="dropdown ml-2">
 			
                 <a class="link-muted d-flex align-items-center us-u-avatar-wrap" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
