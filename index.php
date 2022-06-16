@@ -45,6 +45,12 @@ body {
 .topnav-right {
   float: right;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
         
         
         
@@ -134,10 +140,9 @@ footer {
 </header>
 
 <section>
-  
   <article>
 <!--    <h1>E-STUDENT ASSESSMENT SYSTEM</h1>-->
-      <img src="assets/img/logo_sk.png" >
+      <img src="assets/img/logo_sk.png" class="center">
     <p>E-student assessment system merupakan laman web pentaksiran murid yang dicipta khas bagi Sekolah Kebangsaan Kota Raja Panchor, Johor. Tujuan laman web ini dicipta adalah untuk membantu guru-guru bagi mengisi dan memaparkan markah serta prestasi murid dalam pelajaran di sekolah secara atas talian yang lebih mudah untuk diakses. Selain itu, objektif utama sistem ini dibangunkan adalah untuk menginovasi sistem pentaksiran pelajar kepada yang baharu dan lebih khusus kepada pelajar Sekolah Kebangsaan Kota Raja, Panchor. Seterusnya, sistem ini dibangunkan untuk meminimumkan masalah yang dihadapi semasa menggunakan sistem terdahulu, atau sistem konvensional. Akhir sekali, ianya dibangunkan untuk membantu guru menetapkan dan mengemaskini data pelajar dengan lebih teratur dan mudah dan cermat. Diharapkan sistem yang dibangunkan ini sedikit sebanyak dapat membantu khususnya kepada ibu bapa, pelajar, dan guru Sekolah Kebangsaan Kota Raja, Panchor.</p>
      
      
