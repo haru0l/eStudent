@@ -718,7 +718,7 @@ function hideButton(x)
     </tr>
     <?php
     if (in_array($row["class"], array("4 Bijak", "4 Cerdik","5 Bijak", "5 Cerdik","6 Bijak", "6 Cerdik"), true)) {
-        echo '<tr>
+        ?><tr>
         <td>&nbsp;&nbsp;&nbsp;9.</td>
         <td>PENDIDIKAN MUSIK</td>
         <td>
@@ -796,8 +796,8 @@ function hideButton(x)
         </td>
         <td>
             <center><?php
-                .
-    $per = $row["marksRBT.."];
+                
+    $per = $row["marksRBT"];
                     
     if($per>=90)
 	{
@@ -927,8 +927,8 @@ function hideButton(x)
            echo $grade;     
                 ?></center>
         </td>
-    </tr>';
-    }?>
+    </tr>
+    <?php }?>
     
 </table>
 <table width="700" border="0" align="center" cellpadding="3" cellspacing="0">
