@@ -74,13 +74,17 @@ $conn->query("UPDATE grades SET $newSub='$marks' WHERE stuIC = '$stuIC' AND test
 echo '<script type="text/javascript">';
 echo ' alert("Data updated! Sending to previous page...")';  //not showing an alert box.
 echo '</script>';
-echo '<meta http-equiv="Refresh" content="0; url=marks.php"/>';
+echo '<meta http-equiv="Refresh" content="0; url=marks-admin.php"/>';
 }
 else
 {
 $sql = "INSERT into grades (stuIC, $newSub, year, test, $newBand)
 VALUES ('$stuIC', '$marks', '$year', '$test', '$band')";
 $conn->query($sql);
+echo '<script type="text/javascript">';
+echo ' alert("Data inserted! Sending to previous page...")';  //not showing an alert box.
+echo '</script>';
+echo '<meta http-equiv="Refresh" content="0; url=marks-admin.php"/>';
 }
 }
 $username = $_COOKIE["user_name"];
