@@ -309,7 +309,7 @@ if (isset($_COOKIE["user_name"]))
                                                 <th scope="col" class="text-white text-center">Sunting</th>
                                                 
                                                 <th scope="col" class="text-white text-center">Keluarkan slip</th>
-                                                <th scope="col" class="text-white text-center">Buang</th>
+                                                <th scope="col" class="text-white text-center">Padam</th>
                                             </tr>
                                         </thead>
 
@@ -325,7 +325,7 @@ if (isset($_COOKIE["user_name"]))
                                                 
                                                 <td class="text-center"><a href="report-add.php?class=<?php echo $class;?>&icNum=<?php echo $row["icNum"];?>&teacherName=<?php echo $_COOKIE['teacherName']; ?>&year=2022&stuName=<?php echo $row['stuName'];?>&icNum=<?php echo $row["icNum"];?>" class="btn btn-outline-danger es-am-btn">Keluarkan slip</a>
                                                 
-                                                <td class="text-center"><a href="del-student.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Buang</a>
+                                                <td class="text-center"><a href="del-student.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Padam</a>
                                             </tr>
                                             <?php endwhile; ?>
                                         </tbody>

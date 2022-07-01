@@ -345,7 +345,7 @@ if (isset($_COOKIE["user_name"]))
                                                 <th scope="col" class="text-white text-center">Tasmik</th>
                                                 <th scope="col" class="text-white text-center">Remarks</th>
                                                 <th scope="col" class="text-white text-center">Sunting</th>
-                                                <th scope="col" class="text-white text-center">Buang</th>'
+                                                <th scope="col" class="text-white text-center">Padam</th>'
                                                 ;}
                                                 else echo
                                                 '<th scope="col" class="text-white">Nama murid</th>
@@ -362,7 +362,7 @@ if (isset($_COOKIE["user_name"]))
                                                 <th scope="col" class="text-white text-center">Sejarah</th>
                                                 <th scope="col" class="text-white text-center">Remarks</th>
                                                 <th scope="col" class="text-white text-center">Sunting</th>
-                                                <th scope="col" class="text-white text-center">Buang</th>'  
+                                                <th scope="col" class="text-white text-center">Padam</th>'  
                                                 ;}
                                                 ?>
                                             </tr>

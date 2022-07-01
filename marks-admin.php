@@ -347,7 +347,7 @@ td {
                                                 <th scope="col" class="text-white text-center">Bahasa Arab</th>
                                                 <th scope="col" class="text-white text-center">Tasmik</th>
                                                 <th scope="col" class="text-white text-center">Sunting</th>
-                                                <th scope="col" class="text-white text-center">Buang</th>'
+                                                <th scope="col" class="text-white text-center">Padam</th>'
                                                 ;}
                                                 else echo
                                                 '<th scope="col" class="text-white">Nama murid</th>
@@ -363,7 +363,7 @@ td {
                                                 <th scope="col" class="text-white text-center">Tasmik</th>
                                                 <th scope="col" class="text-white text-center">Sejarah</th>
                                                 <th scope="col" class="text-white text-center">Sunting</th>
-                                                <th scope="col" class="text-white text-center">Buang</th>'
+                                                <th scope="col" class="text-white text-center">Padam</th>'
                                                 ;}
                                                 ?>
                                             </tr>
@@ -379,37 +379,37 @@ td {
                                                 <td><?php
                                              
                                              if ($row["marksBM"] !=""){
-                                                 echo $row["marksBM"];?> (Band <?php echo $row["bandBM"]; echo ')';}?></td>
+                                                 echo $row["marksBM"];?> (Tahap Penguasaan <?php echo $row["bandBM"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksBI"] !=""){
-                                                 echo $row["marksBI"];?> (Band <?php echo $row["bandBI"]; echo ')';}?></td>
+                                                 echo $row["marksBI"];?> (Tahap Penguasaan <?php echo $row["bandBI"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksMath"] !=""){
-                                                 echo $row["marksMath"];?> (Band <?php echo $row["bandMath"]; echo ')';}?></td>
+                                                 echo $row["marksMath"];?> (Tahap Penguasaan <?php echo $row["bandMath"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksSains"] !=""){
-                                                 echo $row["marksSains"];?> (Band <?php echo $row["bandSains"]; echo ')';}?></td>
+                                                 echo $row["marksSains"];?> (Tahap Penguasaan <?php echo $row["bandSains"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksSeni"] !=""){
-                                                 echo $row["marksSeni"];?> (Band <?php echo $row["bandSeni"]; echo ')';}?></td>
+                                                 echo $row["marksSeni"];?> (Tahap Penguasaan <?php echo $row["bandSeni"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksPI"] !=""){
-                                                 echo $row["marksPI"];?> (Band <?php echo $row["bandPI"]; echo ')';}?></td>
+                                                 echo $row["marksPI"];?> (Tahap Penguasaan <?php echo $row["bandPI"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksBA"] !=""){
-                                                 echo $row["marksBA"];?> (Band <?php echo $row["bandBA"]; echo ')';}?></td>
+                                                 echo $row["marksBA"];?> (Tahap Penguasaan <?php echo $row["bandBA"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksTasmik"] !=""){
-                                                 echo $row["marksTasmik"];?> (Band <?php echo $row["Tasmik"]; echo ')';}?></td>
+                                                 echo $row["marksTasmik"];?> (Tahap Penguasaan <?php echo $row["Tasmik"]; echo ')';}?></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Sunting</a></td>
-                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Buang</a></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Padam</a></td>
                                             </tr><?php }
                                             else
                                             { ?>
@@ -418,52 +418,52 @@ td {
                                                 <td><?php
                                              
                                              if ($row["marksBM"] !=""){
-                                                 echo $row["marksBM"];?> (Band <?php echo $row["bandBM"]; echo ')';}?></td>
+                                                 echo $row["marksBM"];?> (Tahap Penguasaan <?php echo $row["bandBM"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksBI"] !=""){
-                                                 echo $row["marksBI"];?> (Band <?php echo $row["bandBI"]; echo ')';}?></td>
+                                                 echo $row["marksBI"];?> (Tahap Penguasaan <?php echo $row["bandBI"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksMath"] !=""){
-                                                 echo $row["marksMath"];?> (Band <?php echo $row["bandMath"]; echo ')';}?></td>
+                                                 echo $row["marksMath"];?> (Tahap Penguasaan <?php echo $row["bandMath"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksSains"] !=""){
-                                                 echo $row["marksSains"];?> (Band <?php echo $row["bandSains"]; echo ')';}?></td>
+                                                 echo $row["marksSains"];?> (Tahap Penguasaan <?php echo $row["bandSains"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksSeni"] !=""){
-                                                 echo $row["marksSeni"];?> (Band <?php echo $row["bandSeni"]; echo ')';}?></td>
+                                                 echo $row["marksSeni"];?> (Tahap Penguasaan <?php echo $row["bandSeni"]; echo ')';}?></td>
                                                  
                                                 <td><?php
                                              
                                              if ($row["marksMusik"] !=""){
-                                                 echo $row["marksMusik"];?> (Band <?php echo $row["bandMusik"]; echo ')';}?></td>
+                                                 echo $row["marksMusik"];?> (Tahap Penguasaan <?php echo $row["bandMusik"]; echo ')';}?></td>
                                                 
                                                 <td><?php
                                              
                                              if ($row["marksRBT"] !=""){
-                                                 echo $row["marksRBT"];?> (Band <?php echo $row["bandRBT"]; echo ')';}?></td>
+                                                 echo $row["marksRBT"];?> (Tahap Penguasaan <?php echo $row["bandRBT"]; echo ')';}?></td>
                                                 
                                                 <td><?php
                                              
                                              if ($row["marksPI"] !=""){
-                                                 echo $row["marksPI"];?> (Band <?php echo $row["bandPI"]; echo ')';}?></td>
+                                                 echo $row["marksPI"];?> (Tahap Penguasaan <?php echo $row["bandPI"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksBA"] !=""){
-                                                 echo $row["marksBA"];?> (Band <?php echo $row["bandBA"]; echo ')';}?></td>
+                                                 echo $row["marksBA"];?> (Tahap Penguasaan <?php echo $row["bandBA"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksTasmik"] !=""){
-                                                 echo $row["marksTasmik"];?> (Band <?php echo $row["Tasmik"]; echo ')';}?></td>
+                                                 echo $row["marksTasmik"];?> (Tahap Penguasaan <?php echo $row["Tasmik"]; echo ')';}?></td>
                                                 <td><?php
                                              
                                              if ($row["marksSejarah"] !=""){
-                                                 echo $row["marksSejarah"];?> (Band <?php echo $row["bandSejarah"]; echo ')';}?></td>
+                                                 echo $row["marksSejarah"];?> (Tahap Penguasaan <?php echo $row["bandSejarah"]; echo ')';}?></td>
                                                 <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Sunting</a></td>
-                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Buang</a></td>
+                                                <td class="text-center"><a href="" class="btn btn-outline-danger es-am-btn">Padam</a></td>
                                             </tr><?php
                                             }
                                             endwhile;

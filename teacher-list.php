@@ -299,7 +299,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                                 <th scope="col" class="text-white">Subjek 3</th>
                                                 <th scope="col" class="text-white">Kelas</th>
                                                 <th scope="col" class="text-white text-center">Sunting</th>
-                                                <th scope="col" class="text-white text-center">Buang</th>
+                                                <th scope="col" class="text-white text-center">Padam</th>
                                             </tr>
                                         </thead>
 
@@ -318,7 +318,7 @@ if (isset($_COOKIE["user_name"]) && $_COOKIE["user_name"] == "admin")
                                                 <td><?php echo $row["teacherSub3"];?></td>
                                                 <td><?php echo $row["class"];?></td>
                                                 <td class="text-center"><a href="teacher-add.php?login_id=<?php echo $row["login_id"];?>&teacherPassword=<?php echo $row["teacherPassword"];?>&teacherName=<?php echo $row["teacherName"];?>&gender=<?php echo $row["gender"];?>&teacher_phoneNum=<?php echo $row["teacher_phoneNum"];?>&date_of_birth=<?php echo $row["date_of_birth"];?>&teacher_Address=<?php echo $row["teacher_Address"];?>&teacherEmail=<?php echo $row["teacherEmail"];?>&acaQualification=<?php echo $row["acaQualification"];?>&teacherType=<?php echo $row["teacherType"];?>&teacherSub1=<?php echo $row["teacherSub1"];?>&teacherSub2<?php echo $row["teacherSub2"];?>&teacherSub3<?php echo $row["teacherSub3"];?>&class=<?php echo $row["class"];?>&tableID=<?php echo $row["tableID"];?>&teacherEmail=<?php echo $row["teacherEmail"];?>" class="btn btn-outline-danger es-am-btn">Sunting</a>
-                                                <td class="text-center"><a href="del-teacher.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Buang</a>
+                                                <td class="text-center"><a href="del-teacher.php?tableID=<?php echo $row["tableID"];?>" class="btn btn-outline-danger es-am-btn">Padam</a>
                                             </tr>
                                             <?php endwhile; ?>
                                         </tbody>

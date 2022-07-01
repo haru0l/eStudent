@@ -399,7 +399,7 @@ if (isset($_COOKIE["user_name"]))
                                     </div>
                                     
                                     <div class="col-lg-8 offset-lg-2 col-md-12 mb-4">
-                                        <label for="band">Band</label>
+                                        <label for="band">Tahap Penguasaan</label>
                                         <select name="band" id="band" class="es-add-select">
                                             <option value="1">1</option>
                                             <option value="2">2</option>

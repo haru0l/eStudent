@@ -586,7 +586,7 @@ td {
                                                 
                                                 <?php if ($marks1!=""){
                                                 echo $marks1;?>
-                                                (Band <?php echo $band1;?>)
+                                                (Tahap Penguasaan <?php echo $band1;?>)
                                            <?php }
                                                 else
                                                 {
@@ -597,7 +597,7 @@ td {
                                                 <?php if ($row["teacherSub2"] != ""){ ?>
                                                 <td><?php if ($marks2!=""){
                                                 echo $marks2;?>
-                                                (Band <?php echo $band2;?>)
+                                                (Tahap Penguasaan <?php echo $band2;?>)
                                            <?php }
                                                 else
                                                 {
@@ -608,7 +608,7 @@ td {
                                                 if ($row["teacherSub3"] != ""){ ?>
                                                 <td><?php if ($marks3!=""){
                                                 echo $marks3;?>
-                                                (Band <?php echo $band3;?>)
+                                                (Tahap Penguasaan <?php echo $band3;?>)
                                            <?php }
                                                 else
                                                 {
